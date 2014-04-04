@@ -1,5 +1,11 @@
 {
   "packages": {
-    "iron-router": {}
+    "houston": {
+      "git": "https://github.com/gterrono/houston.git",
+      "tag": "v1.0.1",
+      "commit": "d6fc902ef84ba9c3df4a429daf69b0ada821e2c7"
+    },
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

@@ -4,8 +4,15 @@
   </head>
 
   <body>
+    <header>
+      {{> loginButtons}}
+    </header>
     {{> miniNav }}
-    {{> yield}}
+    <div class="container">
+      <div class="row">
+        {{> yield}}
+      </div>
+    </div>
   </body>
 </template>
 
@@ -18,11 +25,15 @@
     <a href="{{pathFor 'home'}}" id="home">Home</a>
     <a href="{{pathFor 'beverages'}}" id="bevlist">Bev List</a>
     <a href="{{pathFor 'inventory'}}" id="inventory">Inventory</a>
+    <a href="{{pathFor 'locations'}}" id="locations">Locations</a>
+
+    <a href="{{pathFor 'beveragesAdd'}}" id="bevsAdd">Bev Add</a>
+    <a href="{{pathFor 'locationAdd'}}" id="locationsAdd">Location Add</a>
   </nav>
 </template>
 
 <template name="bevlist">
-  <h1>Location 101 - Beverage Inventory</h1>
+  <h1>All Beverage Inventory</h1>
   <table>
     <thead>
       <tr>
@@ -47,9 +58,3 @@
   <h1>Inventory List</h1>
 </template>
 
-<template name="location">
-  <h1>Location {{_id}}</h1>
-  {{#each inventory}}
-  <p>{{name}}</p>
-  {{/each}}
-</template>

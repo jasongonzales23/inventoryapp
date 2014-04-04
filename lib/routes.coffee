@@ -19,23 +19,22 @@ Router.map(->
     path: '/inventory'
     template: 'inventory'
 
+  @.route 'locationAdd',
+    path: '/location/add'
+    template: 'locationAdd'
+
+  @.route 'locations',
+    path: '/locations'
+    template: 'locations'
+
   @.route 'location',
-    path: '/location/:_id',
+    path: '/location/:number',
     template: 'location',
     data: ()->
-      _id = @.params._id
+      number = @.params.number
       templateData = {
-        _id: _id
-        inventory: Inventories.find({ location: _id })
+        location: Locations.findOne({ number: number })
+        inventory: Inventories.find({ location: number })
       }
 )
 
-Template.bevlist.beverages = ->
-  Beverages.find()
-
-#TODO use enter key to submit
-Template.bevAdd.events "click #beverageAdd": (evt, templ) ->
-  input = templ.find("#beverageText")
-  name = input.value
-  input.value = ""
-  Beverages.insert name: name

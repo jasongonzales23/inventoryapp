@@ -1,0 +1,32 @@
+<template name="locations">
+<h1>These are all the locations</h1>
+  {{#each locations}}
+  <p>blah</p>
+  <p>{{number}}-{{name}}</p>
+  {{/each}}
+</template>
+
+<template name="location">
+  <h1>Location {{location.number}}</h1>
+  <h2>{{location.name}}</h2>
+  {{#each inventory}}
+  <p>{{name}}</p>
+  {{/each}}
+</template>
+
+<template name="locationAdd">
+<div class="col-md-6">
+  <h2>Add a Location</h2>
+  <div class="form-group">
+    <label for="locationNum">Location Number</label>
+    <input class="form-control" type="text" id="locationNum"/>
+  </div>
+  <div class="form-group">
+    <label for="locationName">Location Name</label>
+    <input class="form-control" type="text" id="locationName"/>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-default btn-primary" type="button" id="locationAdd" value="Add Location"/>
+  </div>
+</div>
+</template>
