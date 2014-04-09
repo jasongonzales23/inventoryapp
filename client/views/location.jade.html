@@ -1,0 +1,23 @@
+template(name='locations')
+  h1 These are all the locations
+  each locations
+    p blah
+    p {{number}}-{{name}}
+
+template(name='location')
+  h1 Location {{location.number}}
+  h2 {{location.name}}
+  each inventory
+    p {{name}}
+
+template(name='locationAdd')
+  .col-md-6
+    h2 Add a Location
+    .form-group
+      label(for='locationNum') Location Number
+      input#locationNum.form-control(type='text')
+    .form-group
+      label(for='locationName') Location Name
+      input#locationName.form-control(type='text')
+    .form-group
+      input#locationAdd.btn.btn-default.btn-primary(type='button', value='Add Location')
