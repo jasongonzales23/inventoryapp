@@ -51,7 +51,9 @@ template(name='location')
         button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Location Beverage
 
   each location.beverages
-    .bev {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
+    .bev
+      span.destroy &times;
+      {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
 
 template(name='locations')
   .col-md-6

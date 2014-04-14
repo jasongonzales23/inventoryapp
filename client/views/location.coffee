@@ -63,4 +63,9 @@ Template.location.events
     else
       alert "That Beverage Already Exists for This Location"
 
+  "click .destroy": (evt, templ) ->
+    location = Locations.findOne({ "beverages._id": this._id})
+    Locations.update( {_id: location._id}, {$pull: { "beverages": { _id: this._id }}})
+
+
 
