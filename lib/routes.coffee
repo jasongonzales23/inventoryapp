@@ -20,7 +20,7 @@ Router.map(->
     template: 'inventory'
 
   @.route 'locationAdd',
-    path: '/locations/add'
+    path: '/admin/locations/add'
     template: 'locationAdd'
 
   @.route 'locations',

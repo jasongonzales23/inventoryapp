@@ -53,7 +53,7 @@ template(name='location')
   each location.beverages
     .bev
       span.destroy &times;
-      {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
+      span {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
 
 template(name='locations')
   .col-md-6
