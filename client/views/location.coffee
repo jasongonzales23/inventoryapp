@@ -27,7 +27,7 @@ Template.locationAdd.events
     Locations.remove(this._id)
 
 Template.locationAdd.locations = ->
-  Locations.find()
+  Locations.find({}, {sort: {number: 1}})
 
 Template.adminLocation.events
   "click #beverageAdd": (evt, templ) ->
@@ -46,7 +46,7 @@ Template.adminLocation.events
     fillToInput.value = ""
     orderWhenInput.value = ""
 
-    alreadyThere = Locations.find( {_id: this.adminLocation._id, "beverages.name": name})
+    alreadyThere = Locations.find( {_id: this.location._id, "beverages.name": name})
     if not alreadyThere.fetch().length
       Locations.update this.location._id, {$addToSet:
         beverages:
@@ -62,4 +62,7 @@ Template.adminLocation.events
   "click .destroy": (evt, templ) ->
     location = Locations.findOne({ "beverages._id": this._id})
     Locations.update( {_id: location._id}, {$pull: { "beverages": { _id: this._id }}})
+
+Template.locations.locations = ->
+  Locations.find({}, {sort: {number: 1}})
 

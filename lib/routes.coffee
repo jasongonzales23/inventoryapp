@@ -27,12 +27,14 @@ Router.map(->
     path: '/locations'
     template: 'locations'
 
+  @.route 'location',
+    path: '/locations/:_id',
+    template: 'location',
+    data: ()-> Locations.findOne(this.params._id)
+
   @.route 'adminLocation',
     path: '/_admin/locations/:_id',
     template: 'adminLocation',
-    data: ()->
-      templateData = {
-        location: Locations.findOne(this.params._id)
-      }
+    data: ()-> Locations.findOne(this.params._id)
 )
 

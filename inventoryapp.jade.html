@@ -4,7 +4,7 @@ template(name='layout')
   body
     header
       .container
-        +nav
+        +adminNav
     .container
       .row
         +yield
@@ -12,7 +12,7 @@ template(name='layout')
 template(name='home')
   p HOME
 
-template(name='nav')
+template(name='adminNav')
   nav.collapse.navbar-collapse
     ul.nav.navbar-nav
       li
