@@ -4,7 +4,7 @@ template(name='locationAdd')
     each locations
       .location
         span.destroy &times;
-        a.location-name(href="/locations/{{_id}}") {{number}} {{name}}
+        a.location-name(href="{{pathFor 'adminLocation'}}") {{number}} {{name}}
           if vendor
             .label.label-default VENDOR
 
@@ -27,7 +27,7 @@ template(name='locationAdd')
       .form-group.col-md-9
         button#locationAdd.btn.btn-primary.btn-lg(type="button") Add Location
 
-template(name='location')
+template(name='adminLocation')
   .col-md-12
     h1 Location {{location.number}} {{location.name}}
     h3 {{location.organization}}

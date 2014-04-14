@@ -11,29 +11,28 @@ Router.map(->
     path: '/beverages'
     template: 'bevlist'
 
-  @.route 'beveragesAdd',
-    path: '/beverages/add'
-    template: 'addBeverages'
-
   @.route 'inventory',
     path: '/inventory'
     template: 'inventory'
 
+  @.route 'beveragesAdd',
+    path: '/_admin/beverages/add'
+    template: 'addBeverages'
+
   @.route 'locationAdd',
-    path: '/admin/locations/add'
+    path: '/_admin/locations/add'
     template: 'locationAdd'
 
   @.route 'locations',
     path: '/locations'
     template: 'locations'
 
-  @.route 'location',
-    path: '/locations/:_id',
-    template: 'location',
+  @.route 'adminLocation',
+    path: '/_admin/locations/:_id',
+    template: 'adminLocation',
     data: ()->
-      id = @.params._id
       templateData = {
-        location: Locations.findOne(id)
+        location: Locations.findOne(this.params._id)
       }
 )
 

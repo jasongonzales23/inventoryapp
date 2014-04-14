@@ -1,11 +1,7 @@
-#TODO use enter key to submit
+#TODO use enter key to submit?
 
 #TODO Use this when you create subs & pubs (use Deps.autorun for this too?)
 #Locations = new Meteor.Collection("locations");
-Session.setDefault('edit_location_beverages', null)
-
-Template.locationAdd.editLocationBeverages =
-  Session.get('edit_location_beverages')
 
 Template.locationAdd.events
   "click #locationAdd": (evt, templ) ->
@@ -33,7 +29,7 @@ Template.locationAdd.events
 Template.locationAdd.locations = ->
   Locations.find()
 
-Template.location.events
+Template.adminLocation.events
   "click #beverageAdd": (evt, templ) ->
     nameInput = templ.find("#bevName")
     startUnitsInput = templ.find("#startUnits")
@@ -50,7 +46,7 @@ Template.location.events
     fillToInput.value = ""
     orderWhenInput.value = ""
 
-    alreadyThere = Locations.find( {_id: this.location._id, "beverages.name": name})
+    alreadyThere = Locations.find( {_id: this.adminLocation._id, "beverages.name": name})
     if not alreadyThere.fetch().length
       Locations.update this.location._id, {$addToSet:
         beverages:
@@ -66,6 +62,4 @@ Template.location.events
   "click .destroy": (evt, templ) ->
     location = Locations.findOne({ "beverages._id": this._id})
     Locations.update( {_id: location._id}, {$pull: { "beverages": { _id: this._id }}})
-
-
 

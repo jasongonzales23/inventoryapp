@@ -1,8 +1,8 @@
-Template.bevlist.beverages = ->
+Template.addBeverages.beverages = ->
   Beverages.find()
 
 #TODO use enter key to submit
-Template.bevlist.events 
+Template.addBeverages.events 
   "click #beverageAdd": (evt, templ) ->
     nameInput = templ.find("#beverage-text")
     valueInput = templ.find("#beverage-value")
