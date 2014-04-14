@@ -3,8 +3,8 @@ template(name='layout')
     title inventoryapp
   body
     header
-      +loginButtons
-      +miniNav
+      .container
+        +nav
     .container
       .row
         +yield
@@ -12,30 +12,19 @@ template(name='layout')
 template(name='home')
   p HOME
 
-template(name='miniNav')
-  nav
-    a#home(href="{{pathFor 'home'}}") Home
-    a#bevlist(href="{{pathFor 'beverages'}}") Bev List
-    a#inventory(href="{{pathFor 'inventory'}}") Inventory
-    a#locations(href="{{pathFor 'locations'}}") Locations
-    a#bevsAdd(href="{{pathFor 'beveragesAdd'}}") Bev Add
-    a#locationsAdd(href="{{pathFor 'locationAdd'}}") Location Add
-
-template(name='bevlist')
-  h1 All Beverage Inventory
-  table
-    thead
-      tr
-        th Beverage
-        th Curr Units
-        th
-    each beverages
-      p= name
-
-template(name='bevAdd')
-  h2 Add a Beverage
-  input#beverageText(type='text')
-  input#beverageAdd(type='button', value='Add')
+template(name='nav')
+  nav.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a(href="{{pathFor 'home'}}") Home
+      li
+        a(href="{{pathFor 'inventory'}}") Inventory
+      li
+        a(href="{{pathFor 'beverages'}}") Beverage Add
+      li
+        a(href="{{pathFor 'locationAdd'}}") Location Add
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons
 
 template(name='inventory')
   h1 Inventory List

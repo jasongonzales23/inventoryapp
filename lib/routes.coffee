@@ -13,14 +13,14 @@ Router.map(->
 
   @.route 'beveragesAdd',
     path: '/beverages/add'
-    template: 'bevAdd'
+    template: 'addBeverages'
 
   @.route 'inventory',
     path: '/inventory'
     template: 'inventory'
 
   @.route 'locationAdd',
-    path: '/location/add'
+    path: '/locations/add'
     template: 'locationAdd'
 
   @.route 'locations',
@@ -28,13 +28,12 @@ Router.map(->
     template: 'locations'
 
   @.route 'location',
-    path: '/location/:number',
+    path: '/locations/:_id',
     template: 'location',
     data: ()->
-      number = @.params.number
+      id = @.params._id
       templateData = {
-        location: Locations.findOne({ number: number })
-        inventory: Inventories.find({ location: number })
+        location: Locations.findOne(id)
       }
 )
 

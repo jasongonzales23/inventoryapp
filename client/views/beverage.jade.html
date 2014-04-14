@@ -1,0 +1,13 @@
+template(name='bevlist')
+  h1 Beverage Admin
+  .new-item-box
+    .form-group
+      input.form-control(type="text" id="beverage-text" placeholder="New Beverage")
+    .form-group
+      input.form-control(type="text" id="beverage-value" placeholder="Token Value")
+    .form-group
+      button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Beverage
+  h2 Beverage List
+  .bev-list
+    each beverages
+      .beverage {{name}} -- {{value}}

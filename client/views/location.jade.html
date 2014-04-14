@@ -1,23 +1,65 @@
-template(name='locations')
-  h1 These are all the locations
-  each locations
-    p blah
-    p {{number}}-{{name}}
+template(name='locationAdd')
+  h1 Location Admin
+  .col-md-3
+    each locations
+      .location
+        span.destroy &times;
+        a.location-name(href="/locations/{{_id}}") {{number}} {{name}}
+          if vendor
+            .label.label-default VENDOR
+
+  .col-md-9
+    .new-item-box.location-info
+      h2 Location Info
+      .form-group.col-md-3
+        label(for='locationNum') Number
+        input#locationNum.form-control(type='text')
+      .form-group.col-md-9
+        label(for='locationName') Name
+        input#locationName.form-control(type='text')
+      .form-group.col-md-12
+        label(for='locationOrg') Organization
+        input#locationOrg.form-control(type='text')
+      .checkbox.col-md-3.pull-right
+        label
+          input#locationVendor(type='checkbox')
+          | Vendor
+      .form-group.col-md-9
+        button#locationAdd.btn.btn-primary.btn-lg(type="button") Add Location
 
 template(name='location')
-  h1 Location {{location.number}}
-  h2 {{location.name}}
-  each inventory
-    p {{name}}
+  .col-md-12
+    h1 Location {{location.number}} {{location.name}}
+    h3 {{location.organization}}
 
-template(name='locationAdd')
+  .col-md-12
+    .new-item-box.location-beverage
+      h2 Beverage Info
+      .form-group.col-md-6
+        label(for='bevName') Name
+        input#bevName.form-control(type='text')
+      .form-group.col-md-2
+        label(for='startUnits') Start Units
+        input#startUnits.form-control(type='text')
+      .form-group.col-md-2
+        label(for='fillTo') Fill To
+        input#fillTo.form-control(type='text')
+      .form-group.col-md-2
+        label(for='orderWhen') Order When
+        input#orderWhen.form-control(type='text')
+      .form-group.col-md-9
+        button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Location Beverage
+
+  each location.beverages
+    .bev {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
+
+template(name='locations')
   .col-md-6
-    h2 Add a Location
-    .form-group
-      label(for='locationNum') Location Number
-      input#locationNum.form-control(type='text')
-    .form-group
-      label(for='locationName') Location Name
-      input#locationName.form-control(type='text')
-    .form-group
-      input#locationAdd.btn.btn-default.btn-primary(type='button', value='Add Location')
+    h2 All Locations
+    each locations
+      .location {{number}} {{name}}
+
+template(name='bevAdd')
+  .form-group
+    label(for='beverageText') Beverage Name
+    input#beverageText.form-control(type='text')
