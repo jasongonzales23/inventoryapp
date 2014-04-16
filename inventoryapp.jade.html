@@ -1,6 +1,6 @@
 template(name='layout')
   head
-    title inventoryapp
+    title Dublin Irish Festival 2014
   body
     header
       .container
@@ -8,9 +8,6 @@ template(name='layout')
     .container
       .row
         +yield
-
-template(name='home')
-  p HOME
 
 template(name='adminNav')
   nav.collapse.navbar-collapse
@@ -25,6 +22,29 @@ template(name='adminNav')
         a(href="{{pathFor 'locationAdd'}}") Location Admin
     ul.nav.navbar-nav.navbar-right
       +loginButtons
+
+template(name='otherlayout')
+  head
+    title Dublin Irish Festival 2014
+  body
+    header
+      .container
+        +nav
+    .container
+      .row
+        +yield
+
+template(name='nav')
+  nav.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a(href="{{pathFor 'locations'}}") All Locations
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons
+
+
+template(name='home')
+  p HOME
 
 template(name='inventory')
   h1 NOT USED -- REMOVE?

@@ -23,18 +23,26 @@ Router.map(->
     path: '/_admin/locations/add'
     template: 'locationAdd'
 
-  @.route 'locations',
-    path: '/locations'
-    template: 'locations'
-
-  @.route 'location',
-    path: '/locations/:_id',
-    template: 'location',
-    data: ()-> Locations.findOne(this.params._id)
-
   @.route 'adminLocation',
     path: '/_admin/locations/:_id',
     template: 'adminLocation',
     data: ()-> Locations.findOne(this.params._id)
-)
 
+  @.route 'locations',
+    path: '/locations'
+    template: 'locations'
+    layoutTemplate: 'otherlayout'
+
+  @.route 'location',
+    path: '/locations/:_id'
+    template: 'location'
+    layoutTemplate: 'otherlayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'updateInventory',
+    path: '/locations/:_id/update-inventory'
+    template: 'updateInventory'
+    layoutTemplate: 'otherlayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+)
