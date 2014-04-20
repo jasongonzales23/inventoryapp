@@ -4,7 +4,8 @@
     "basePackages": {
       "bootstrap-3": {},
       "accounts-ui-bootstrap-3": {},
-      "jade": {}
+      "jade": {},
+      "iron-router-active": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -21,6 +22,21 @@
         "git": "https://github.com/mquandalle/meteor-jade.git",
         "tag": "v0.2.1",
         "commit": "969fc3dd0adbb15304e3e13c3e27260398d89503"
+      },
+      "iron-router-active": {
+        "git": "https://github.com/XpressiveCode/iron-router-active.git",
+        "tag": "v0.2.0",
+        "commit": "1b05aad5325c3dfdb5186b9c288aa53013d767b8"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.7.1",
+        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.4",
+        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
       }
     }
   }

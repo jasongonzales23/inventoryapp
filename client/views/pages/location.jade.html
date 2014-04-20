@@ -56,18 +56,50 @@ template(name='adminLocation')
       span {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
 
 template(name='locations')
-  .col-md-6
+  .col-md-12
     h2 All Locations
-    ul
-    each locations
-      li
-        a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
+    table.table.table-striped
+      thead
+        tr
+          th Location
+          th
+          th
+          th
+      tbody
+        each locations
+          tr
+            td
+              a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
+            td
+              a(href="{{pathFor 'updateInventory'}}") Update Inventory
+            td
+              a Record Order
+            td
+              a Add Note
 
 template(name='location')
   .col-md-12
     h1 This is the location page
     h2 {{number}} {{name}}
     h3 {{organization}}
+
+    table.table.table-striped
+      thead
+        tr
+          th Beverage Offered
+          th Units Reported
+          th Order When Below
+          th Fill To Standard
+      tbody
+        each inventories
+          tr.datetime
+            td(colspan='4') {{timestamp}}
+          each beverages
+            tr
+              td {{name}}
+              td {{units}}
+              td blah
+              td blah
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory

@@ -1,11 +1,11 @@
 Router.configure(
-  layoutTemplate: 'layout'
+  layoutTemplate: 'home'
 )
 
 Router.map(->
   @.route 'home',
     path: '/'
-    template: 'home'
+    template: 'locations'
 
   @.route 'beverages',
     path: '/beverages'
@@ -15,34 +15,50 @@ Router.map(->
     path: '/inventory'
     template: 'inventory'
 
+  @.route 'admin',
+    path: '/_admin'
+    template: '_admin'
+
   @.route 'beveragesAdd',
     path: '/_admin/beverages/add'
-    template: 'addBeverages'
+    template: '_admin'
 
   @.route 'locationAdd',
     path: '/_admin/locations/add'
-    template: 'locationAdd'
+    template: '_admin'
 
   @.route 'adminLocation',
     path: '/_admin/locations/:_id',
     template: 'adminLocation',
+    template: '_admin'
     data: ()-> Locations.findOne(this.params._id)
 
   @.route 'locations',
     path: '/locations'
     template: 'locations'
-    layoutTemplate: 'otherlayout'
+    layoutTemplate: 'home'
 
   @.route 'location',
     path: '/locations/:_id'
     template: 'location'
-    layoutTemplate: 'otherlayout'
+    layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
   @.route 'updateInventory',
     path: '/locations/:_id/update-inventory'
     template: 'updateInventory'
-    layoutTemplate: 'otherlayout'
+    layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
+  @.route 'inventoryHistory',
+    path: '/locations/:_id/inventory-history'
+    template: 'inventoryHistory'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'startingInventory',
+    path: '/locations/:_id/starting-inventory'
+    template: 'startingInventory'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
 )

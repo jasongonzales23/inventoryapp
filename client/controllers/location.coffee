@@ -46,9 +46,9 @@ Template.adminLocation.events
     fillToInput.value = ""
     orderWhenInput.value = ""
 
-    alreadyThere = Locations.find( {_id: this.location._id, "beverages.name": name})
+    alreadyThere = Locations.find( { "_id": this._id, "beverages.name": name})
     if not alreadyThere.fetch().length
-      Locations.update this.location._id, {$addToSet:
+      Locations.update this._id, {$addToSet:
         beverages:
           name: name
           startUnits: startUnits
@@ -65,6 +65,10 @@ Template.adminLocation.events
 
 Template.locations.locations = ->
   Locations.find({}, {sort: {number: 1}})
+
+Template.location.inventories = ->
+  Inventories.find({"location": this._id}, {sort: {timestamp: -1}, limit: 1})
+
 
 Template.updateInventory.events
   "click #update-inventory": (evt, templ) ->
@@ -88,3 +92,4 @@ Template.updateInventory.events
       location: location
       user_id: user
       beverages: beverages
+    Router.go('/locations')

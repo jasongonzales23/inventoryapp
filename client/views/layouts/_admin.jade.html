@@ -1,0 +1,22 @@
+template(name='_admin')
+  head
+    title Dublin Irish Festival 2014
+  body
+    header
+      .container
+        +adminNav
+    .container
+      .row
+        +yield
+
+template(name='adminNav')
+  nav.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a(href="{{pathFor 'home'}}") Home
+      li
+        a(href="{{pathFor 'beveragesAdd'}}") Beverage Admin
+      li
+        a(href="{{pathFor 'locationAdd'}}") Location Admin
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons

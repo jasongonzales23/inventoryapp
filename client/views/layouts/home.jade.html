@@ -1,0 +1,20 @@
+template(name='home')
+  head
+    title Dublin Irish Festival 2014
+  body
+    header
+      .container
+        +homeNav
+    .container
+      .row
+        +yield
+
+template(name='homeNav')
+  nav.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li
+        a(href="{{pathFor 'home'}}") Home
+      li
+        a(href="{{pathFor 'locations'}}") All Locations
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons

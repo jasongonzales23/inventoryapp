@@ -1,0 +1,24 @@
+template(name='inventoryHistory')
+  .col-md-12
+    h1 This is the location page
+    h2 {{number}} {{name}}
+    h3 {{organization}}
+
+    table.table.table-striped
+      thead
+        tr
+          th Beverage Offered
+          th Units Reported
+      tbody
+        each inventories
+          tr.datetime
+            td(colspan='4') {{timestamp}}
+          each beverages
+            tr
+              td {{name}}
+              td {{units}}
+
+    .col-md-6
+      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
+    .col-md-6
+      a.btn.btn-default.btn-block(type='button') Record Order

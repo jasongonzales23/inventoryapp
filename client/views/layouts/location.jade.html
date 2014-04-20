@@ -1,0 +1,30 @@
+template(name='locationLayout')
+  head
+    title Dublin Irish Festival 2014
+  body
+    header
+      .container
+        +locationNav
+    .container
+      .row
+        +yield
+
+template(name='locationNav')
+  nav.collapse.navbar-collapse.navbar.navbar-default
+    ul.nav.navbar-nav
+      li
+        a(href="{{pathFor 'home'}}") Home
+      li
+        a(href="{{pathFor 'locations'}}") All Locations
+      li(class="{{ isActiveRoute 'location' }}")
+        a(href="{{pathFor 'locations'}}") Last Inventory
+      li
+        a(href="{{pathFor 'locations'}}") Order History
+      li(class="{{ isActiveRoute 'inventoryHistory' }}")
+        a(href="{{pathFor 'inventoryHistory'}}") Inventory History
+      li(class="{{ isActiveRoute 'startingInventory' }}")
+        a(href="{{pathFor 'startingInventory'}}") Starting Inventory
+      li
+        a(href="{{pathFor 'locations'}}") Notes
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons
