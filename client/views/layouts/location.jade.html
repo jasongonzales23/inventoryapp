@@ -24,8 +24,8 @@ template(name='locationNav')
         a(href="{{pathFor 'locations'}}") All Locations
       li(class="{{ isActiveRoute 'location' }}")
         a(href="{{pathFor 'locations'}}") Last Inventory
-      li
-        a(href="{{pathFor 'locations'}}") Order History
+      li(class="{{ isActiveRoute 'orderHistory' }}")
+        a(href="{{pathFor 'orderHistory'}}") Order History
       li(class="{{ isActiveRoute 'inventoryHistory' }}")
         a(href="{{pathFor 'inventoryHistory'}}") Inventory History
       li(class="{{ isActiveRoute 'startingInventory' }}")

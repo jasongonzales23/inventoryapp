@@ -70,4 +70,10 @@ Router.map(->
     template: 'recordOrder'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'orderHistory',
+    path: '/locations/:_id/order-history'
+    template: 'orderHistory'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
 )
