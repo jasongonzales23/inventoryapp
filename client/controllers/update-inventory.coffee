@@ -11,6 +11,7 @@ Template.updateInventory.events
       beverages.push(bev)
     )
 
+    console.log this
     location = this._id
     user = Meteor.user()._id
     timestamp = new Date().valueOf()
