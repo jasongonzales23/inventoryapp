@@ -1,0 +1,7 @@
+template(name='showNotes')
+  each notes
+    .note
+      p {{timestamp}}
+      p {{note}}
+  .col-md-6
+    a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addNote'}}") Add Note

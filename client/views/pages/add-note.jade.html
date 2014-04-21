@@ -1,0 +1,13 @@
+template(name='addNote')
+  .col-md-12
+    h1 {{name}}
+    .col-md-6
+      .form-group
+        textarea.form-control#note
+  .col-md-12
+    .form-group
+      .col-md-6
+        button.btn.btn-default.btn-success.btn-block#add-note(type='button') Add Note
+      .col-md-6
+        a.btn.btn-default.btn-block(type='button') Cancel
+    

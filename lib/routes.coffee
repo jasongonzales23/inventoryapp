@@ -76,4 +76,16 @@ Router.map(->
     template: 'orderHistory'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'addNote',
+    path: '/locations/:_id/add-note'
+    template: 'addNote'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'showNotes',
+    path: '/locations/:_id/notes'
+    template: 'showNotes'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
 )

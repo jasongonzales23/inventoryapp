@@ -30,7 +30,7 @@ template(name='locationNav')
         a(href="{{pathFor 'inventoryHistory'}}") Inventory History
       li(class="{{ isActiveRoute 'startingInventory' }}")
         a(href="{{pathFor 'startingInventory'}}") Starting Inventory
-      li
-        a(href="{{pathFor 'locations'}}") Notes
+      li(class="{{ isActiveRoute 'showNotes' }}")
+        a(href="{{pathFor 'showNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right
       +loginButtons
