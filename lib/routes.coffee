@@ -17,20 +17,23 @@ Router.map(->
 
   @.route 'admin',
     path: '/_admin'
-    template: '_admin'
+    template: '_adminHome'
+    layoutTemplate: '_admin'
 
   @.route 'beveragesAdd',
     path: '/_admin/beverages/add'
-    template: '_admin'
+    template: 'addBeverages'
+    layoutTemplate: '_admin'
 
   @.route 'locationAdd',
     path: '/_admin/locations/add'
-    template: '_admin'
+    template: 'addLocations'
+    layoutTemplate: '_admin'
 
   @.route 'adminLocation',
     path: '/_admin/locations/:_id',
     template: 'adminLocation',
-    template: '_admin'
+    layoutTemplate: '_admin'
     data: ()-> Locations.findOne(this.params._id)
 
   @.route 'locations',
@@ -59,6 +62,12 @@ Router.map(->
   @.route 'startingInventory',
     path: '/locations/:_id/starting-inventory'
     template: 'startingInventory'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'recordOrder',
+    path: '/locations/:_id/record-order'
+    template: 'recordOrder'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 )

@@ -1,0 +1,29 @@
+template(name='adminLocation')
+  .col-md-12
+    h1 Location {{number}} {{name}}
+    h3 {{organization}}
+
+  .col-md-12
+    .new-item-box.location-beverage
+      h2 Beverage Info
+      .form-group.col-md-6
+        label(for='bevName') Name
+        input#bevName.form-control(type='text')
+      .form-group.col-md-2
+        label(for='startUnits') Start Units
+        input#startUnits.form-control(type='text')
+      .form-group.col-md-2
+        label(for='fillTo') Fill To
+        input#fillTo.form-control(type='text')
+      .form-group.col-md-2
+        label(for='orderWhen') Order When
+        input#orderWhen.form-control(type='text')
+      .form-group.col-md-9
+        button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Location Beverage
+
+  each beverages
+    .bev
+      span.destroy &times;
+      span {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
+
+

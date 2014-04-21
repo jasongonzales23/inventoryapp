@@ -1,0 +1,21 @@
+template(name='locations')
+  .col-md-12
+    h2 All Locations
+    table.table.table-striped
+      thead
+        tr
+          th Location
+          th
+          th
+          th
+      tbody
+        each locations
+          tr
+            td
+              a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
+            td
+              a(href="{{pathFor 'updateInventory'}}") Update Inventory
+            td
+              a Record Order
+            td
+              a Add Note
