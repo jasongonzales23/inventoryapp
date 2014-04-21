@@ -5,7 +5,7 @@ Template.addNote.events =
 
     user = Meteor.user()._id
     location = this._id
-    timestamp = new Date().valueOf
+    timestamp = new Date().valueOf()
     
     Notes.insert
       timestamp: timestamp
