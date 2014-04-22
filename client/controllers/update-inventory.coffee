@@ -11,14 +11,15 @@ Template.updateInventory.events
       beverages.push(bev)
     )
 
-    console.log this
     location = this._id
+    locationName = this.name
     user = Meteor.user()._id
     timestamp = new Date().valueOf()
 
     Inventories.insert
       timestamp: timestamp
       location: location
+      locationName: locationName
       user_id: user
       beverages: beverages
     Router.go('/locations')
