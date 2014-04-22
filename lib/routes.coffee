@@ -89,18 +89,18 @@ Router.map(->
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
-  @.route 'dashboard',
-    path: '/dashboard'
+  @.route 'dashboardInventory',
+    path: '/dashboard/inventory'
     template: 'dashboardInventory'
     layoutTemplate: 'dashboardLayout'
 
   @.route 'dashboardOrders',
-    path: '/dashboard'
-    template: 'dashboard'
+    path: '/dashboard/orders'
+    template: 'dashboardOrders'
     layoutTemplate: 'dashboardLayout'
 
   @.route 'dashboardNotes',
-    path: '/dashboard'
+    path: '/dashboard/notes'
     template: 'dashboard'
     layoutTemplate: 'dashboardLayout'
    

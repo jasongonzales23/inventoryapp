@@ -1,18 +1,18 @@
-template(name='dashboardInventory')
+template(name='dashboardOrders')
   h1 Dashboard
   table.table.table-striped
     thead
       tr
         th Location
-        th Last Inv Timestamp
-        th Last Inv User
-        th Time Since Last Inv
+        th Unfilled Orders
+        th Oldest Unfilled Order Time
+        th Time Since Oldest Unfilled Order
         th Location #
     tbody
       each latestInventories
         tr
           td{{locationName}}
+          td{{unfilledOrders}}
           td{{timestamp}}
-          td{{username}}
           td{{timesince}}
           td{{locationNumber}}

@@ -20,8 +20,8 @@ template(name='dashboardNav')
     ul.nav.navbar-nav
       li
         a(href="{{pathFor 'home'}}") Home
-      li(class="{{ isActiveRoute 'dashboard' }}")
-        a(href="{{pathFor 'dashboard'}}") Inventory
+      li(class="{{ isActiveRoute 'dashboardInventory' }}")
+        a(href="{{pathFor 'dashboardInventory'}}") Inventory
       li(class="{{ isActiveRoute 'dashboardOrders' }}")
         a(href="{{pathFor 'dashboardOrders'}}") Orders
       li(class="{{ isActiveRoute 'dashboardNotes' }}")
