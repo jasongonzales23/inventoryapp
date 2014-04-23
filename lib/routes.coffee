@@ -89,6 +89,10 @@ Router.map(->
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
+  @.route 'dashboard',
+    action: ->
+      @.redirect 'dashboardInventory'
+
   @.route 'dashboardInventory',
     path: '/dashboard/inventory'
     template: 'dashboardInventory'

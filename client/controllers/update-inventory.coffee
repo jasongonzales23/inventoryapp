@@ -13,7 +13,6 @@ Template.updateInventory.events
 
     location = this._id
     locationName = this.name
-    debugger
     locationNumber = this.number
     user = Meteor.user()._id
     username = Meteor.user().emails[0].address
