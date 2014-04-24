@@ -9,7 +9,7 @@ template(name='dashboardOrders')
         th Time Since Oldest Unfilled Order
         th Location #
     tbody
-      each latestInventories
+      each oldestOrders
         tr
           td{{locationName}}
           td{{unfilledOrders}}

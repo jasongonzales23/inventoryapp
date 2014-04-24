@@ -12,16 +12,19 @@ template(name='orderHistory')
           th Order Sent
       tbody
         each orders
-          tr.datetime
+          tr.datetime.order-info(data-id="{{_id}}")
             td(colspan='4') {{timestamp}}
           each beverages
-            tr
+            tr.order-beverages
               td {{name}}
               td {{units}}
-              td {{sent}}
+              td
+                +deliveredButton
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
     .col-md-6
       a.btn.btn-default.btn-block(href="{{pathFor 'recordOrder'}}") Record Order
 
+template(name='deliveredButton')
+  button.btn.btn-primary.order-sent(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}

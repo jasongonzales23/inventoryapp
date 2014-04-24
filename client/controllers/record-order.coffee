@@ -6,8 +6,10 @@ Template.recordOrder.events
       name = $(this).find('.name').text()
       number = $(this).find('.number input').val()
       bev = {}
+      bev._id = new Meteor.Collection.ObjectID()._str
       bev.name = name
       bev.units = number
+      bev.delivered = false
       beverages.push(bev)
     )
 
