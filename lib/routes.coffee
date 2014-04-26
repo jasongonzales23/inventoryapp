@@ -105,7 +105,7 @@ Router.map(->
 
   @.route 'dashboardNotes',
     path: '/dashboard/notes'
-    template: 'dashboard'
+    template: 'dashboardNotes'
     layoutTemplate: 'dashboardLayout'
    
   @.route 'dashboardVendors',

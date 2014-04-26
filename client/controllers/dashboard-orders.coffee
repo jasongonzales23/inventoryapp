@@ -1,14 +1,12 @@
-Template.dashboardOrders.helpers(
-  oldestOrders: ->
-    ###
-      locations = Inventories.find({}, {fields: {location: 1}}).map(
-        (location) -> location.location
-      )
+Template.dashboardOrders.undeliveredOrders = ->
+  Meteor.call('undeliveredOrders')
+  ###
+  locations = Orders.find({}, {fields: {location: 1}}).map(
+    (location) -> location.location
+  )
 
-      latestInventories = _.uniq( locations ).map(
-        (location) ->
-          Inventories.findOne({location: location}, {sort: {timestamp: -1}})
-      )
-    ###
-
-)
+  oldestOrders = _.uniq(locations).map(
+    (location) ->
+      Orders.findOne({location:location}, {sort: {timestamp: 1}})
+  )
+  ###

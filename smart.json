@@ -3,6 +3,7 @@
     "bootstrap-3": {},
     "accounts-ui-bootstrap-3": {},
     "jade": {},
-    "iron-router-active": {}
+    "iron-router-active": {},
+    "mongodb-aggregation": {}
   }
 }

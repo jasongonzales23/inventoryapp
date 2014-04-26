@@ -3,10 +3,7 @@ Template.orderHistory.orders = ->
 
 Template.orderHistory.events
   "click .order-sent": (evt, templ) ->
-    if this.delivered
-      delivered = false
-    else
-      delivered = true
+    delivered = !this.delivered
     Meteor.call('update_delivered_status', this._id, delivered)
 
 Template.deliveredButton.sent = ->
