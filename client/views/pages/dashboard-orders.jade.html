@@ -11,8 +11,9 @@ template(name='dashboardOrders')
     tbody
       each undeliveredOrders
         tr
-          td{{locationName}}
+          td
+            a(href="{{pathFor 'orderHistory'}}") {{locationName}}
           td{{unfilledOrders}}
-          td{{timestamp}}
-          td{{timesince}}
+          td{{ formatDate timestamp "long" }}
+          td{{ timesince timestamp }}
           td{{locationNumber}}

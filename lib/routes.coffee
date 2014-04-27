@@ -51,7 +51,7 @@ Router.map(->
     path: '/locations/:_id/update-inventory'
     template: 'updateInventory'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: -> Session.set 'location', Locations.findOne(this.params._id)
 
   @.route 'inventoryHistory',
     path: '/locations/:_id/inventory-history'
@@ -69,7 +69,7 @@ Router.map(->
     path: '/locations/:_id/record-order'
     template: 'recordOrder'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: -> Session.set 'location', Locations.findOne(this.params._id)
 
   @.route 'orderHistory',
     path: '/locations/:_id/order-history'

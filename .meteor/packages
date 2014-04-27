@@ -15,3 +15,4 @@ accounts-ui-bootstrap-3
 jade
 iron-router-active
 mongodb-aggregation
+moment

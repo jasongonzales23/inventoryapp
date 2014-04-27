@@ -8,18 +8,28 @@ template(name='location')
         tr
           th Beverage Offered
           th Units Reported
-          th Order When Below
-          th Fill To Standard
       tbody
         each inventories
           tr.datetime
-            td(colspan='4') {{timestamp}}
+            td(colspan='2') {{ formatDate timestamp "long" }}
           each beverages
             tr
               td {{name}}
               td {{units}}
-              td blah
-              td blah
+
+    table.table.table-striped
+      thead
+        tr
+          th Order When Below
+          th Fill To Standard
+      tbody
+        tr
+          td(colspan='2') Nada
+        each standards
+          each beverages
+            tr
+              td {{orderWhen}}
+              td {{fillTo}}
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory

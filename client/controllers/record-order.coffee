@@ -1,3 +1,14 @@
+Template.recordOrder.beverages = ->
+  location = Session.get('location')
+
+  unless not location?
+    console.log location.beverages
+    beverages = location.beverages
+    _.sortBy( beverages , (beverage) -> beverage.name )
+
+Template.recordOrder.location = ->
+  Session.get('location')
+
 Template.recordOrder.events
   "click #record-order": (evt, templ) ->
     beverages = []
@@ -13,18 +24,16 @@ Template.recordOrder.events
       beverages.push(bev)
     )
 
-    location = this._id
-    locationName = this.name
-    locationNumber = this.number
+    location = Session.get('location')
     user = Meteor.user()._id
     username = Meteor.user().emails[0].address
     timestamp = new Date().valueOf()
 
     Orders.insert
       timestamp: timestamp
-      location: location
-      locationName: locationName
-      locationNumber: locationNumber
+      location: location._id
+      locationName: location.name
+      locationNumber: location.number
       user_id: user
       username: username
       beverages: beverages

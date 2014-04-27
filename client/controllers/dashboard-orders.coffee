@@ -1,12 +1,9 @@
 Template.dashboardOrders.undeliveredOrders = ->
-  Meteor.call('undeliveredOrders')
-  ###
-  locations = Orders.find({}, {fields: {location: 1}}).map(
-    (location) -> location.location
-  )
-
-  oldestOrders = _.uniq(locations).map(
-    (location) ->
-      Orders.findOne({location:location}, {sort: {timestamp: 1}})
-  )
-  ###
+  undeliveredOrders = Orders.find({'beverages.delivered': false}, {
+    transform: (order) ->
+      order.unfilledOrders = 0
+      _.each order.beverages, (bev) ->
+        if not bev.delivered
+          order.unfilledOrders += 1
+      order
+  })

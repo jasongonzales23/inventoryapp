@@ -13,7 +13,7 @@ template(name='orderHistory')
       tbody
         each orders
           tr.datetime.order-info(data-id="{{_id}}")
-            td(colspan='4') {{timestamp}}
+            td(colspan='4') {{ formatDate timestamp "long" }}
           each beverages
             tr.order-beverages
               td {{name}}

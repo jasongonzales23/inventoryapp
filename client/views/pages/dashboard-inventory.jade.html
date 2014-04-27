@@ -11,8 +11,9 @@ template(name='dashboardInventory')
     tbody
       each latestInventories
         tr
-          td{{locationName}}
-          td{{timestamp}}
+          td
+            a(href="{{pathFor 'inventoryHistory'}}") {{locationName}}
+          td{{ formatDate timestamp "long" }}
           td{{username}}
-          td{{timesince}}
+          td{{ timesince timestamp }}
           td{{locationNumber}}
