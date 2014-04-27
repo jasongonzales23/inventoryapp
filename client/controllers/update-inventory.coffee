@@ -2,14 +2,11 @@ Template.updateInventory.beverages = ->
   location = Session.get('location')
 
   unless not location?
-    console.log location.beverages
     beverages = location.beverages
     _.sortBy( beverages , (beverage) -> beverage.name )
 
 Template.updateInventory.location = ->
   Session.get('location')
-
-
 
 Template.updateInventory.events
   "click #update-inventory": (evt, templ) ->
@@ -23,7 +20,6 @@ Template.updateInventory.events
       bev.units = number
       beverages.push(bev)
     )
-
 
     location = Session.get('location')
     user = Meteor.user()._id

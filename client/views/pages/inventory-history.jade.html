@@ -12,7 +12,7 @@ template(name='inventoryHistory')
       tbody
         each inventories
           tr.datetime
-            td(colspan='4') {{timestamp}}
+            td(colspan='4') {{formatDate timestamp "long"}}
           each beverages
             tr
               td {{name}}

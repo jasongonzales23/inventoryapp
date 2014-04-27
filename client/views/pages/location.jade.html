@@ -3,13 +3,13 @@ template(name='location')
     h1 {{number}} {{name}}
     h2 {{organization}}
 
-    table.table.table-striped
+    table.table.table-striped.half.clearfix
       thead
         tr
           th Beverage Offered
           th Units Reported
       tbody
-        each inventories
+        each inventory
           tr.datetime
             td(colspan='2') {{ formatDate timestamp "long" }}
           each beverages
@@ -17,19 +17,18 @@ template(name='location')
               td {{name}}
               td {{units}}
 
-    table.table.table-striped
+    table.table.table-striped.half.clearfix
       thead
         tr
           th Order When Below
           th Fill To Standard
       tbody
         tr
-          td(colspan='2') Nada
-        each standards
-          each beverages
-            tr
-              td {{orderWhen}}
-              td {{fillTo}}
+          td(colspan='2') Placeholder Placeholder
+        each beverageStandards
+          tr
+            td {{orderWhen}}
+            td {{fillTo}}
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory

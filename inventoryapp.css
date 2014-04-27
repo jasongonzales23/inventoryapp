@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+.table.half {
+  width: 50%;
+  float: left;
+}
+
