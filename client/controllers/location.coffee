@@ -1,13 +1,14 @@
-Template.locations.locations = ->
-  Locations.find({}, {sort: {number: 1}})
-
 Template.location.inventory = ->
-  Inventories.find({"location": this._id}, { sort: {timestamp: -1} , limit: 1 })
-
-Template.location.beverageStandards = ->
   location = Locations.findOne(this._id)
-
-  unless not location?
-    beverages = location.beverages
-    _.sortBy( beverages , (beverage) -> beverage.name )
-
+  inventory = Inventories.find({"location": this._id}, { sort: {timestamp: -1}, limit: 1 }).fetch()
+  unless not location? or not inventory.length > 0
+    locationbeverages = location.beverages
+    #probably don't need this anymore
+    #_.sortBy( locationbeverages , (beverage) -> beverage.name )
+    inventorybeverages = inventory[0].beverages
+    i = 0
+    while i < inventorybeverages.length
+      inventorybeverages[i].fillTo = locationbeverages[i].fillTo
+      inventorybeverages[i].orderWhen = locationbeverages[i].orderWhen
+      i++
+  inventory

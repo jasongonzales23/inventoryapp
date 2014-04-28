@@ -3,40 +3,29 @@ template(name='location')
     h1 {{number}} {{name}}
     h2 {{organization}}
 
-    table.table.table-striped.half.clearfix
+    table.table.table-striped
       thead
         tr
           th Beverage Offered
           th Units Reported
+          th Order When Below
+          th Fill To Standard
       tbody
         each inventory
           tr.datetime
-            td(colspan='2')
+            td(colspan='4')
               b Reported at: 
               {{ formatDate timestamp "long" }}
           tr.reporter
-            td(colspan='2')
+            td(colspan='4')
               b Reported by: 
               {{username}}
           each beverages
             tr
               td {{name}}
               td {{units}}
-
-    table.table.table-striped.half.clearfix
-      thead
-        tr
-          th Order When Below
-          th Fill To Standard
-      tbody
-        tr
-          td.placeholder(colspan='2') Placeholder
-        tr
-          td.placeholder(colspan='2') Placeholder
-        each beverageStandards
-          tr
-            td {{orderWhen}}
-            td {{fillTo}}
+              td {{orderWhen}}
+              td {{fillTo}}
 
   .col-md-12
     .col-sm-6
