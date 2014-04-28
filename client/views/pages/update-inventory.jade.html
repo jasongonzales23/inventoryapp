@@ -1,15 +1,15 @@
 template(name='updateInventory')
   .col-md-12
-    h1 {{location.name}}
+    h1 {{location.number}} {{location.name}}
     .beverages
       each location.beverages
         .beverage
-          .name.col-md-6 {{name}}
-          .number.col-md-6
-            span.incr.btn.btn-default.col-md-1(data-incr="down") &minus;
-            .col-md-4
+          .name.col-sm-6 {{name}}
+          .number.col-sm-6
+            span.incr.btn.btn-default.col-sm-1(data-incr="down") &minus;
+            .col-sm-4
               input.form-control(type='text', value='0')
-            span.incr.btn.btn-default.col-md-(data-incr='up') &plus;
+            span.incr.btn.btn-default.col-sm-1(data-incr='up') &plus;
 
     .col-sm-6
       button.btn.btn-default.btn-success.btn-block#update-inventory(type='button') Update Inventory
