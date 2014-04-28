@@ -1,5 +1,5 @@
 template(name='location')
-  .col-md-12
+  .col-md-12.clearfix
     h1 {{number}} {{name}}
     h2 {{organization}}
 
@@ -30,9 +30,10 @@ template(name='location')
             td {{orderWhen}}
             td {{fillTo}}
 
-    .col-md-6
+  .col-md-12
+    .col-sm-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
-    .col-md-6
+    .col-sm-6
       a.btn.btn-default.btn-block(href="{{pathFor 'recordOrder'}}") Record Order
 
 
