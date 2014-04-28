@@ -8,7 +8,7 @@ template(name='startingInventory')
       thead
         tr
           th Beverage Offered
-          th Units Reported
+          th Units
       tbody
         tr.datetime
           td(colspan='2') {{ formatDate inventory.timestamp "long" }}
@@ -20,4 +20,4 @@ template(name='startingInventory')
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
     .col-md-6
-      a.btn.btn-default.btn-block(type='button') Record Order
+      a.btn.btn-default.btn-block(href="{{pathFor 'recordOrder'}}") Record Order

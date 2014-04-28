@@ -1,15 +1,24 @@
 Template.recordOrder.beverages = ->
   location = Session.get('location')
 
-  unless not location?
-    console.log location.beverages
-    beverages = location.beverages
-    _.sortBy( beverages , (beverage) -> beverage.name )
-
 Template.recordOrder.location = ->
   Session.get('location')
 
 Template.recordOrder.events
+  "click .incr": (evt, templ) ->
+    $button = $(evt.target)
+    $input = $button.parent().find('input')
+    oldValue = $input.val()
+    btnData = $button.data()
+    if btnData.incr == 'up'
+      newVal = if oldValue == '' then 1 else parseFloat(oldValue) + 1
+    else
+      if oldValue > 0
+        newVal = parseFloat(oldValue) - 1
+      else
+        newVal = 0
+    $input.val(newVal)
+
   "click #record-order": (evt, templ) ->
     beverages = []
     $beverages = $('.beverage')

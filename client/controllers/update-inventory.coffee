@@ -1,14 +1,30 @@
 Template.updateInventory.beverages = ->
   location = Session.get('location')
 
+  ###
   unless not location?
     beverages = location.beverages
     _.sortBy( beverages , (beverage) -> beverage.name )
+  ###
 
 Template.updateInventory.location = ->
   Session.get('location')
 
 Template.updateInventory.events
+  "click .incr": (evt, templ) ->
+    $button = $(evt.target)
+    $input = $button.parent().find('input')
+    oldValue = $input.val()
+    btnData = $button.data()
+    if btnData.incr == 'up'
+      newVal = if oldValue == '' then 1 else parseFloat(oldValue) + 1
+    else
+      if oldValue > 0
+        newVal = parseFloat(oldValue) - 1
+      else
+        newVal = 0
+    $input.val(newVal)
+
   "click #update-inventory": (evt, templ) ->
     beverages = []
     $beverages = $('.beverage')
