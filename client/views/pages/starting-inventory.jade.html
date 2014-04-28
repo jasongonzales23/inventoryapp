@@ -10,13 +10,12 @@ template(name='startingInventory')
           th Beverage Offered
           th Units Reported
       tbody
-        each inventories
-          tr.datetime
-            td(colspan='4') {{timestamp}}
-          each beverages
-            tr
-              td {{name}}
-              td {{units}}
+        tr.datetime
+          td(colspan='2') {{ formatDate inventory.timestamp "long" }}
+        each beverages
+          tr
+            td {{name}}
+            td {{startUnits}}
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory

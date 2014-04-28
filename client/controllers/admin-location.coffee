@@ -18,13 +18,25 @@ Template.adminLocation.events
 
     alreadyThere = Locations.find( { "_id": this._id, "beverages.name": name})
     if not alreadyThere.fetch().length
-      Locations.update this._id, {$addToSet:
-        beverages:
+      location = Locations.findOne(this._id)
+      beverage = {
           name: name
           startUnits: startUnits
           fillTo: fillTo
           orderWhen: orderWhen
           _id: new Meteor.Collection.ObjectID()._str
+      }
+
+      beverages = location.beverages || []
+      beverages.push(beverage)
+      if beverages.length > 1
+        beverages = _.sortBy location.beverages, (bev) -> bev.name
+
+      Locations.update this._id, {
+        $unset: { beverages: '' }
+      }
+      Locations.update this._id, {
+        $set: { beverages: beverages }
       }
     else
       alert "That Beverage Already Exists for This Location"
