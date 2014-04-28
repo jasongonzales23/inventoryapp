@@ -1,14 +1,14 @@
 template(name='recordOrder')
   .col-md-12
     h1 {{location.name}}
-    .beverages
+    .beverages.clearfix
       each location.beverages
-        .beverage
+        .beverage.clearfix
           .name.col-sm-6 {{name}}
           .number.col-sm-6
             span.incr.btn.btn-default.col-sm-1(data-incr="down") &minus;
             .col-sm-4
-              input.form-control(type='text', value='0')
+              input.form-control(type='number', value='0')
             span.incr.btn.btn-default.col-sm-1(data-incr='up') &plus;
 
     .col-sm-6
