@@ -4,7 +4,7 @@ template(name='showNotes')
     .col-md-12
       each notes
         .note
-          p {{ formatDate timestamp "long" }}
+          p {{ formatDate timestamp "long" }} by {{ username }}
           p {{note}}
     .col-md-12
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addNote'}}") Add Note

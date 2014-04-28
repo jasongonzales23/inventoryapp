@@ -11,7 +11,13 @@ template(name='location')
       tbody
         each inventory
           tr.datetime
-            td(colspan='2') {{ formatDate timestamp "long" }}
+            td(colspan='2')
+              b Reported at: 
+              {{ formatDate timestamp "long" }}
+          tr.reporter
+            td(colspan='2')
+              b Reported by: 
+              {{username}}
           each beverages
             tr
               td {{name}}
@@ -24,7 +30,9 @@ template(name='location')
           th Fill To Standard
       tbody
         tr
-          td(colspan='2') Placeholder Placeholder
+          td.placeholder(colspan='2') Placeholder
+        tr
+          td.placeholder(colspan='2') Placeholder
         each beverageStandards
           tr
             td {{orderWhen}}

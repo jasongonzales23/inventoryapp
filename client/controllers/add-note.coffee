@@ -4,6 +4,7 @@ Template.addNote.events =
     note = noteInput.value
 
     user = Meteor.user()._id
+    username = Meteor.user().emails[0].address
     location = this._id
     timestamp = new Date().valueOf()
     
@@ -11,6 +12,7 @@ Template.addNote.events =
       timestamp: timestamp
       location: location
       user_id: user
+      username: username
       note: note
 
     Router.go('/locations')

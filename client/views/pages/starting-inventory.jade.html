@@ -9,8 +9,6 @@ template(name='startingInventory')
           th Beverage Offered
           th Units
       tbody
-        tr.datetime
-          td(colspan='2') {{ formatDate inventory.timestamp "long" }}
         each beverages
           tr
             td {{name}}
