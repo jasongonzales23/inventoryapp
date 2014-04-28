@@ -1,7 +1,10 @@
 template(name='showNotes')
-  each notes
-    .note
-      p {{timestamp}}
-      p {{note}}
   .col-md-6
-    a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addNote'}}") Add Note
+    h1 {{number}} {{name}}
+    .col-md-12
+      each notes
+        .note
+          p {{ formatDate timestamp "long" }}
+          p {{note}}
+    .col-md-12
+      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addNote'}}") Add Note
