@@ -12,3 +12,49 @@
   text-indent: -999px;
 }
 
+.low {
+  color: #ff5500;
+}
+
+.tableContainer {
+   overflow: hidden;
+   width: 935px;
+   clear: both;
+   border: 1px solid #ccc;
+   height: 470px;
+   border-radius: 4px;
+   margin-bottom: 40px;
+ }
+
+.tableContainer table {
+  width: 935px;
+  float: left;
+}
+
+.fixedHeader tr {
+  display: block;
+  position: relative;
+}
+
+.scrollContent {
+  display: block;
+  height: 430px;
+  overflow: auto;
+  width: 100%;
+}
+
+.scrollContent td.col-3 {
+  width: 320px;
+}
+
+.fixedHeader th.col-3 {
+  width: 320px;
+}
+
+.scrollContent td.col-4 {
+  width: 240px;
+}
+
+.fixedHeader th.col-4 {
+  width: 240px;
+}

@@ -3,28 +3,29 @@ template(name='orderHistory')
     h2 {{number}} {{name}}
     h3 {{organization}}
 
-    table.table.table-striped
-      thead
-        tr
-          th Beverage Offered
-          th Units Ordered
-          th Order Sent
-      tbody
-        each orders
-          tr.datetime.order-info(data-id="{{_id}}")
-            td(colspan='3')
-              b Reported at: 
-              {{ formatDate timestamp "long" }}
-          tr.reporter
-            td(colspan='3')
-              b Reported by: 
-              {{username}}
-          each beverages
-            tr.order-beverages
-              td {{name}}
-              td {{units}}
-              td
-                +deliveredButton
+    .tableContainer
+      table.table.table-striped
+        thead.fixedHeader
+          tr
+            th.col-3 Beverage Offered
+            th.col-3 Units Ordered
+            th.col-3 Order Sent
+        tbody.scrollContent
+          each orders
+            tr.datetime.order-info(data-id="{{_id}}")
+              td(colspan='3')
+                b Reported at: 
+                {{ formatDate timestamp "long" }}
+            tr.reporter
+              td(colspan='3')
+                b Reported by: 
+                {{username}}
+            each beverages
+              tr.order-beverages
+                td.col-3  {{name}}
+                td.col-3 {{units}}
+                td.col-3
+                  +deliveredButton
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
