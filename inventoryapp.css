@@ -43,6 +43,14 @@
   width: 100%;
 }
 
+.scrollContent td.col-2 {
+  width: 480px;
+}
+
+.fixedHeader th.col-2 {
+  width: 480px;
+}
+
 .scrollContent td.col-3 {
   width: 320px;
 }

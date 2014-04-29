@@ -3,16 +3,17 @@ template(name='startingInventory')
     h2 {{number}} {{name}}
     h3 {{organization}}
 
-    table.table.table-striped
-      thead
-        tr
-          th Beverage Offered
-          th Units
-      tbody
-        each beverages
+    .tableContainer
+      table.table.table-striped
+        thead.fixedHeader
           tr
-            td {{name}}
-            td {{startUnits}}
+            th.col-2 Beverage Offered
+            th.col-2 Units
+        tbody.scrollContent
+          each beverages
+            tr
+              td.col-2 {{name}}
+              td.col-2 {{startUnits}}
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory

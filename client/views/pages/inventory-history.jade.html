@@ -3,25 +3,26 @@ template(name='inventoryHistory')
     h2 {{number}} {{name}}
     h3 {{organization}}
 
-    table.table.table-striped
-      thead
-        tr
-          th Beverage Offered
-          th Units Reported
-      tbody
-        each inventories
-          tr.datetime
-            td(colspan='2')
-              b Reported at: 
-              {{ formatDate timestamp "long" }}
-          tr.reporter
-            td(colspan='2')
-              b Reported by: 
-              {{username}}
-          each beverages
-            tr
-              td {{name}}
-              td {{units}}
+    .tableContainer
+      table.table.table-striped
+        thead.fixedHeader
+          tr
+            th.col-2 Beverage Offered
+            th.col-2 Units Reported
+        tbody.scrollContent
+          each inventories
+            tr.datetime
+              td(colspan='2')
+                b Reported at: 
+                {{ formatDate timestamp "long" }}
+            tr.reporter
+              td(colspan='2')
+                b Reported by: 
+                {{username}}
+            each beverages
+              tr
+                td.col-2 {{name}}
+                td.col-2 {{units}}
 
     .col-md-6
       a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
