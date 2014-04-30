@@ -1,7 +1,8 @@
 template(name='showNotes')
-  .col-md-6
-    h1 {{number}} {{name}}
-    .col-md-12
+  .col-md-12
+    h2 {{number}} {{name}}
+    h3 {{organization}}
+    .col-md-6
       each notes
         .note
           p {{ formatDate timestamp "long" }} by {{ username }}
