@@ -15,11 +15,11 @@ template(name='orderHistory')
             tr.datetime.order-info(data-id="{{_id}}")
               td(colspan='3')
                 b Reported at: 
-                {{ formatDate timestamp "long" }}
+                 {{ formatDate timestamp "long" }}
             tr.reporter
               td(colspan='3')
                 b Reported by: 
-                {{username}}
+                 {{username}}
             each beverages
               tr.order-beverages
                 td.col-3  {{name}}

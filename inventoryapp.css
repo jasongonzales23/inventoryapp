@@ -66,3 +66,12 @@
 .fixedHeader th.col-4 {
   width: 240px;
 }
+
+h2 {
+  margin-top: 0;
+}
+
+.network-status {
+  float: right;
+  margin-bottom: -20px;
+}
