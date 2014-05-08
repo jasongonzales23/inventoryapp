@@ -23,14 +23,16 @@ Template.recordOrder.events
     beverages = []
     $beverages = $('.beverage')
     $.each( $beverages, (i,v) ->
-      name = $(this).find('.name').text()
-      number = $(this).find('.number input').val()
       bev = {}
-      bev._id = new Meteor.Collection.ObjectID()._str
-      bev.name = name
-      bev.units = number
-      bev.delivered = false
-      beverages.push(bev)
+      number = $(this).find('.number input').val()
+      bev.units = parseInt(number)
+
+      if bev.units > 0
+        name = $(this).find('.name').text()
+        bev._id = new Meteor.Collection.ObjectID()._str
+        bev.name = name
+        bev.delivered = false
+        beverages.push(bev)
     )
 
     location = Session.get('location')

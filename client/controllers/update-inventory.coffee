@@ -33,7 +33,7 @@ Template.updateInventory.events
       number = $(this).find('.number input').val()
       bev = {}
       bev.name = name
-      bev.units = number
+      bev.units = parseInt(number)
       beverages.push(bev)
     )
 
