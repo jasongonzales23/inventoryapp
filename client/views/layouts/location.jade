@@ -11,6 +11,7 @@ template(name='locationLayout')
       .row
         +networkStatus
         +yield
+    +modal
 
 template(name='locationNav')
   button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
@@ -37,3 +38,17 @@ template(name='locationNav')
         a(href="{{pathFor 'showNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right
       +loginButtons
+
+template(name='modal')
+  .modal.fade#confirmation
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal") &times;
+          h4 Confirmation
+        .modal-body
+          p Are you sure?
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") Close
+          button.btn.btn-success#confirm(type="button") Save Changes
+      

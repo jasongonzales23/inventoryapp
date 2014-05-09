@@ -1,3 +1,6 @@
+showModal = ->
+  $('#confirmation').modal()
+
 Template.recordOrder.beverages = ->
   location = Session.get('location')
 
@@ -20,6 +23,11 @@ Template.recordOrder.events
     $input.val(newVal)
 
   "click #record-order": (evt, templ) ->
+    showModal()
+
+Template.modal.events
+  "click #confirm": (evt, templ) ->
+    debugger
     beverages = []
     $beverages = $('.beverage')
     $.each( $beverages, (i,v) ->
