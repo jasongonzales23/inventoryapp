@@ -1,9 +1,6 @@
 showModal = ->
   $('#confirmation').modal()
 
-closeModal = ->
-  $('#confirmation').modal('hide')
-
 Template.recordOrder.beverages = ->
   location = Session.get('location')
 

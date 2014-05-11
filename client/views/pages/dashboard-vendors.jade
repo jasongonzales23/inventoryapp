@@ -1,0 +1,14 @@
+template(name='dashboardVendors')
+  h1 Dashboard
+  table.table.table-striped
+    thead
+      tr
+        th Location
+        th Location #
+    tbody
+      each vendors
+        tr
+          td
+            a(href="{{pathFor 'location'}}") {{name}}
+          td {{number}}
+
