@@ -1,3 +1,6 @@
+showModal = ->
+  $('#confirmation').modal()
+
 Template.updateInventory.beverages = ->
   location = Session.get('location')
 
@@ -26,6 +29,10 @@ Template.updateInventory.events
     $input.val(newVal)
 
   "click #update-inventory": (evt, templ) ->
+    showModal()
+
+Template.modal.events
+  "click #confirm": (evt, templ) ->
     beverages = []
     $beverages = $('.beverage')
     $.each( $beverages, (i,v) ->
@@ -50,4 +57,7 @@ Template.updateInventory.events
       user_id: user
       username: username
       beverages: beverages
-    Router.go('/locations')
+
+    $('#confirmation').modal('hide')
+    $('#confirmation').on 'hidden.bs.modal', (e) ->
+      Router.go('/locations')

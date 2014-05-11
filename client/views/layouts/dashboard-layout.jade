@@ -1,14 +1,11 @@
 template(name='dashboardLayout')
-  head
-    title Dublin Irish Festival 2014
-  body
-    header
-      .container
-        +dashboardNav
+  header
     .container
-      .row
-        +networkStatus
-        +yield
+      +dashboardNav
+  .container
+    .row
+      +networkStatus
+      +yield
 
 template(name='dashboardNav')
   button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')

@@ -1,14 +1,11 @@
 template(name='home')
-  head
-    title Dublin Irish Festival 2014
-  body
-    header
-      .container
-        +homeNav
+  header
     .container
-      .row
-        +networkStatus
-        +yield
+      +homeNav
+  .container
+    .row
+      +networkStatus
+      +yield
 
 template(name='homeNav')
   nav.collapse.navbar-collapse

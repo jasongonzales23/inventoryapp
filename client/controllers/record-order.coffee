@@ -1,6 +1,9 @@
 showModal = ->
   $('#confirmation').modal()
 
+closeModal = ->
+  $('#confirmation').modal('hide')
+
 Template.recordOrder.beverages = ->
   location = Session.get('location')
 
@@ -27,7 +30,6 @@ Template.recordOrder.events
 
 Template.modal.events
   "click #confirm": (evt, templ) ->
-    debugger
     beverages = []
     $beverages = $('.beverage')
     $.each( $beverages, (i,v) ->
@@ -56,5 +58,9 @@ Template.modal.events
       user_id: user
       username: username
       beverages: beverages
-    Router.go('/locations')
+
+    $('#confirmation').modal('hide')
+    $('#confirmation').on 'hidden.bs.modal', (e) ->
+      Router.go('/locations')
+
 
