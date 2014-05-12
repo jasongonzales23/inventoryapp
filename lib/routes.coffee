@@ -112,4 +112,19 @@ Router.map(->
     path: '/dashboard/vendors'
     template: 'dashboardVendors'
     layoutTemplate: 'dashboardLayout'
+
+  @.route 'latestInventories',
+    path: '/reports/latest-inventories'
+    template: 'latestInventories'
+    layoutTemplate: 'reportsLayout'
+
+  @.route 'latestOrders',
+    path: '/reports/latest-orders'
+    template: 'latestOrders'
+    layoutTemplate: 'reportsLayout'
+
+  @.route 'unfilledOrders',
+    path: '/reports/unfilled-orders'
+    template: 'unfilledOrders'
+    layoutTemplate: 'reportsLayout'
 )

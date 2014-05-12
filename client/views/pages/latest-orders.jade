@@ -1,0 +1,32 @@
+template(name='latestOrders')
+  .col-md-12
+
+    .tableContainer
+      table.table.table-striped
+        thead.fixedHeader
+          tr
+            th.col-3 Beverage Offered
+            th.col-3 Units Ordered
+            th.col-3 Order Delivered
+        tbody.scrollContent
+          each orders
+            tr.location-info
+              td(colspan='3')
+                b {{locationName}} {{locationNumber}}
+            tr.datetime.order-info(data-id="{{_id}}")
+              td(colspan='3')
+                b Reported at:
+                 {{ formatDate timestamp "long" }}
+            tr.reporter
+              td(colspan='3')
+                b Reported by:
+                 {{username}}
+            each beverages
+              tr.order-beverages
+                td.col-3 {{name}}
+                td.col-3 {{units}}
+                td.col-3
+                  +deliveredStatus
+
+template(name='deliveredStatus')
+  {{deliveredStatus}}
