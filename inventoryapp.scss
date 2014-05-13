@@ -75,3 +75,11 @@ h2 {
   float: right;
   margin-bottom: -20px;
 }
+
+.location-beverages {
+  .name, .start-units, .fill-to, .order-when {
+    display: inline-block;
+    width: 20%;
+    margin-right: 10px;
+  }
+}

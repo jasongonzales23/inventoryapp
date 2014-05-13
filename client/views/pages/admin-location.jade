@@ -21,9 +21,23 @@ template(name='adminLocation')
       .form-group.col-md-9
         button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Location Beverage
 
-  each beverages
-    .bev
-      span.destroy &times;
-      span {{name}} {{startUnits}} {{fillTo}} {{orderWhen}}
+  .col-md-12.location-beverages
+    h3 Beverages for this location
+    .name Beverage
+    .start-units Start Units
+    .fill-to Fill To
+    .order-when Order When
+    .list-group
+      each beverages
+        .bev.list-group-item
+          span.destroy.badge &times;
+          .name {{name}}
+          .start-units
+            if editing
+              input#start-units-input.form-control(value="{{startUnits}}")
+            else
+               {{startUnits}}
+          .fill-to {{fillTo}}
+          .order-when {{orderWhen}}
 
 

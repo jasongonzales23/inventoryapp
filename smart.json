@@ -5,6 +5,7 @@
     "jade": {},
     "iron-router-active": {},
     "mongodb-aggregation": {},
-    "moment": {}
+    "moment": {},
+    "sass": {}
   }
 }

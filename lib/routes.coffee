@@ -31,8 +31,8 @@ Router.map(->
     layoutTemplate: '_admin'
 
   @.route 'adminLocation',
-    path: '/_admin/locations/:_id',
-    template: 'adminLocation',
+    path: '/_admin/locations/:_id'
+    template: 'adminLocation'
     layoutTemplate: '_admin'
     data: ()-> Locations.findOne(this.params._id)
 
