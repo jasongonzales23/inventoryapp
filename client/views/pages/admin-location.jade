@@ -30,14 +30,21 @@ template(name='adminLocation')
     .list-group
       each beverages
         .bev.list-group-item
-          span.destroy.badge &times;
           .name {{name}}
-          .start-units
+          .start-units.editable
             if editing
-              input#start-units-input.form-control(value="{{startUnits}}")
+              input#edit-bev.form-control(data-target="startUnits", value="{{startUnits}}")
             else
-               {{startUnits}}
-          .fill-to {{fillTo}}
-          .order-when {{orderWhen}}
-
-
+              {{startUnits}}
+          .fill-to.editable
+            if editing
+              input#edit-bev.form-control(data-target="fillTo", value="{{fillTo}}")
+            else
+              {{fillTo}}
+          .order-when
+              if editing
+                input#edit-bev.form-control(data-target="orderWhen", value="{{orderWhen}}")
+              else
+                {{orderWhen}}
+          button.btn.btn-default.edit Edit
+          span.destroy.badge &times;
