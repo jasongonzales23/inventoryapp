@@ -9,7 +9,9 @@
       "mongodb-aggregation": {},
       "moment": {},
       "sass": {},
-      "fastclick": {}
+      "fastclick": {},
+      "roles": {},
+      "accounts-admin-ui-bootstrap-3": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -51,6 +53,16 @@
         "git": "https://github.com/percolatestudio/meteor-fastclick",
         "tag": "v0.6.7",
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
+      },
+      "roles": {
+        "git": "https://github.com/alanning/meteor-roles.git",
+        "tag": "v1.2.8",
+        "commit": "68844ba216c348d332bdb840825850f497f515bb"
+      },
+      "accounts-admin-ui-bootstrap-3": {
+        "git": "https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3.git",
+        "tag": "v0.2.5",
+        "commit": "381d4ca347f16d2ca2e1e6ca5f51c3f2e9c6c5cd"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",

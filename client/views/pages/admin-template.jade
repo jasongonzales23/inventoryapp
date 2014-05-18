@@ -1,0 +1,19 @@
+template(name='adminLayout')
+  head
+    title Accounts Admin
+    body
+      .navbar.navbar-default(role='navigation')
+        .navbar-header
+          .navbar-header
+            a.navbar-brand(href='/') Accounts Admin
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+          ul.nav.navbar-nav.navbar-right
+            +loginButtons
+      .container +adminTemplate
+
+template(name='adminTemplate')
+   if isAdminUser
+     +accountsAdmin
+   else
+    h1 Must be admin to see this...

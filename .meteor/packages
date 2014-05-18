@@ -4,8 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
 coffeescript
 underscore
 iron-router
@@ -18,3 +16,5 @@ mongodb-aggregation
 moment
 sass
 fastclick
+roles
+accounts-admin-ui-bootstrap-3

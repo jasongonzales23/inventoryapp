@@ -127,4 +127,14 @@ Router.map(->
     path: '/reports/unfilled-orders'
     template: 'unfilledOrders'
     layoutTemplate: 'reportsLayout'
+
+  @.route 'admin',
+    path: '/admin'
+    template: 'accountsAdmin'
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
 )

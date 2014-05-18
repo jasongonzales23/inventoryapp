@@ -7,6 +7,8 @@
     "mongodb-aggregation": {},
     "moment": {},
     "sass": {},
-    "fastclick": {}
+    "fastclick": {},
+    "roles": {},
+    "accounts-admin-ui-bootstrap-3": {}
   }
 }
