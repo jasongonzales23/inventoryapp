@@ -18,6 +18,24 @@ if Meteor.isServer
     Orders.find()
   Meteor.publish "notes", () ->
     Notes.find()
+  Meteor.publish "users", () ->
+    Meteor.users.find()
+
+  Beverages.allow
+    insert: (user, bev) ->
+      true
+  Inventories.allow
+    insert: (user, inventory) ->
+      true
+  Locations.allow
+    insert: (user, location) ->
+      true
+  Orders.allow
+    insert: (user, order) ->
+      true
+  Notes.allow
+    insert: (user, note) ->
+      true
 
 if Meteor.isClient
   Meteor.subscribe("beverages")
@@ -25,3 +43,4 @@ if Meteor.isClient
   Meteor.subscribe("locations")
   Meteor.subscribe("orders")
   Meteor.subscribe("notes")
+  Meteor.subscribe("users")

@@ -47,7 +47,7 @@ Template.modal.events
 
       location = Session.get('location')
       user = Meteor.user()._id
-      username = Meteor.user().emails[0].address
+      username = Meteor.user().username
       timestamp = new Date().valueOf()
 
       Orders.insert

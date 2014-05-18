@@ -4,7 +4,7 @@ Template.addNote.events =
     note = noteInput.value
 
     user = Meteor.user()._id
-    username = Meteor.user().emails[0].address
+    username = Meteor.user().username
     location = this._id
     locationName = this.name
     locationNumber = this.number
