@@ -9,7 +9,7 @@ Template.dashboardNotes.locations = ->
     unless locations[doc.location]?
       locations[doc.location] =
         locationName: doc.locationName
-        #locationNumber: doc.locationNumber
+        locationNumber: doc.locationNumber
         notes: []
         notesCount: 0
         newestNote: null

@@ -7,12 +7,14 @@ Template.addNote.events =
     username = Meteor.user().emails[0].address
     location = this._id
     locationName = this.name
+    locationNumber = this.number
     timestamp = new Date().valueOf()
 
     Notes.insert
       timestamp: timestamp
       location: location
       locationName: locationName
+      locationNumber: locationNumber
       user_id: user
       username: username
       note: note
