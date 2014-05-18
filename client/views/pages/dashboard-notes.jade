@@ -9,11 +9,11 @@ template(name='dashboardNotes')
         th Time Since Last Note
         th Location #
     tbody
-      each notes
+      each locations
         tr
           td {{locationName}}
-          td {{noteCount}}
-          td {{timestamp}}
-          td {{timesince}}
+          td {{notesCount}}
+          td {{ formatDate newestNote.timestamp "long" }}
+          td {{ timesince newestNote.timestamp }}
           td {{locationNumber}}
 

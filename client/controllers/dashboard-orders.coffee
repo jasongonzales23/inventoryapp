@@ -18,7 +18,7 @@ Template.dashboardOrders.undeliveredOrders = ->
     locations[doc.location].unfilledOrders.push doc
     locations[doc.location].unfilledOrdersCount++
     if locations[doc.location].unfilledOrders.length > 0
-      locations[doc.location].oldestOrder = _.max(locations[doc.location].unfilledOrders,
+      locations[doc.location].oldestOrder = _.min(locations[doc.location].unfilledOrders,
           (order) ->
             order.timestamp
         )
