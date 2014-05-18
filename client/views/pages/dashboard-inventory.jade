@@ -10,7 +10,7 @@ template(name='dashboardInventory')
         th Location #
     tbody
       each latestInventories
-        tr
+        tr(class="{{ timeWarning timestamp 45 }}")
           td
             a(href="{{pathFor 'inventoryHistory'}}") {{locationName}}
           td {{ formatDate timestamp "long" }}

@@ -4,8 +4,10 @@ Template.dashboardInventory.helpers(
       (location) -> location.location
     )
 
-    latestInventories = _.uniq( locations ).map(
+    latestInventories = _.uniq(locations).map(
       (location) ->
         Inventories.findOne({location: location}, {sort: {timestamp: -1}})
     )
+    _.sortBy latestInventories, (inv) ->
+      inv.timestamp
   )
