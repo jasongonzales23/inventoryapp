@@ -17,3 +17,4 @@ iron-router-active
 mongodb-aggregation
 moment
 sass
+fastclick

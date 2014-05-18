@@ -6,6 +6,7 @@
     "iron-router-active": {},
     "mongodb-aggregation": {},
     "moment": {},
-    "sass": {}
+    "sass": {},
+    "fastclick": {}
   }
 }

@@ -8,7 +8,8 @@
       "iron-router-active": {},
       "mongodb-aggregation": {},
       "moment": {},
-      "sass": {}
+      "sass": {},
+      "fastclick": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/particle4dev/meteor-sass.git",
         "tag": "v0.1.4",
         "commit": "7f43b08e9726c953bbbda5974d09cfca89f45086"
+      },
+      "fastclick": {
+        "git": "https://github.com/percolatestudio/meteor-fastclick",
+        "tag": "v0.6.7",
+        "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
