@@ -1,7 +1,14 @@
 template(name='adminLocation')
   .col-md-12
-    h1 Location {{number}} {{name}}
-    h3 {{organization}}
+    if editing
+      input#number(value="{{number}}")
+      input#name(value="{{name}}")
+      input#organization(value="{{organization}}")
+      h1 Some Old Bullshit
+    else
+      h1 Location {{number}} {{name}}
+      h3 {{organization}}
+      button.btn.btn-default.pull-right.edit Edit Location Info
 
   .col-md-12
     .new-item-box.location-beverage
@@ -31,20 +38,7 @@ template(name='adminLocation')
       each beverages
         .bev.list-group-item
           .name {{name}}
-          .start-units.editable
-            if editing
-              input#edit-bev.form-control(data-target="startUnits", value="{{startUnits}}")
-            else
-              {{startUnits}}
-          .fill-to.editable
-            if editing
-              input#edit-bev.form-control(data-target="fillTo", value="{{fillTo}}")
-            else
-              {{fillTo}}
-          .order-when
-              if editing
-                input#edit-bev.form-control(data-target="orderWhen", value="{{orderWhen}}")
-              else
-                {{orderWhen}}
-          button.btn.btn-default.edit Edit
+          .start-units.editable {{startUnits}}
+          .fill-to.editable {{fillTo}}
+          .order-when {{orderWhen}}
           span.destroy.badge &times;

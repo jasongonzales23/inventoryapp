@@ -1,9 +1,28 @@
 Template.dashboardOrders.undeliveredOrders = ->
-  undeliveredOrders = Orders.find({'beverages.delivered': false}, {
-    transform: (order) ->
-      order.unfilledOrders = 0
-      _.each order.beverages, (bev) ->
-        if not bev.delivered
-          order.unfilledOrders += 1
-      order
-  })
+  orders = Orders.find( {'beverages.delivered': false},
+    sort:
+      location: 1
+      timestamp: 1
+  )
+
+  locations = {}
+  orders.forEach (doc) ->
+    unless locations[doc.location]?
+      locations[doc.location] =
+        unfilledOrders: []
+        unfilledOrdersCount: 0
+        location: doc.location
+        locationName: doc.locationName
+        locationNumber: doc.locationNumber
+        oldestOrder: null
+
+    locations[doc.location].unfilledOrders.push doc
+    locations[doc.location].unfilledOrdersCount++
+    if locations[doc.location].unfilledOrders.length > 0
+      locations[doc.location].oldestOrder = _.max(locations[doc.location].unfilledOrders,
+          (order) ->
+            order.timestamp
+        )
+
+  return _.values(locations)
+
