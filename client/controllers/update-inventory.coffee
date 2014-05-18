@@ -1,5 +1,6 @@
 showModal = ->
   $('#confirmation').modal()
+  Session.set('modal_type', 'updateInventory')
 
 Template.updateInventory.beverages = ->
   location = Session.get('location')
@@ -33,31 +34,33 @@ Template.updateInventory.events
 
 Template.modal.events
   "click #confirm": (evt, templ) ->
-    beverages = []
-    $beverages = $('.beverage')
-    $.each( $beverages, (i,v) ->
-      name = $(this).find('.name').text()
-      number = $(this).find('.number input').val()
-      bev = {}
-      bev.name = name
-      bev.units = parseInt(number)
-      beverages.push(bev)
-    )
+    modalType = Session.get('modal_type')
+    if modalType is 'updateInventory'
+      beverages = []
+      $beverages = $('.beverage')
+      $.each( $beverages, (i,v) ->
+        name = $(this).find('.name').text()
+        number = $(this).find('.number input').val()
+        bev = {}
+        bev.name = name
+        bev.units = parseInt(number)
+        beverages.push(bev)
+      )
 
-    location = Session.get('location')
-    user = Meteor.user()._id
-    username = Meteor.user().emails[0].address
-    timestamp = new Date().valueOf()
+      location = Session.get('location')
+      user = Meteor.user()._id
+      username = Meteor.user().emails[0].address
+      timestamp = new Date().valueOf()
 
-    Inventories.insert
-      timestamp: timestamp
-      location: location._id
-      locationName: location.name
-      locationNumber: location.number
-      user_id: user
-      username: username
-      beverages: beverages
+      Inventories.insert
+        timestamp: timestamp
+        location: location._id
+        locationName: location.name
+        locationNumber: location.number
+        user_id: user
+        username: username
+        beverages: beverages
 
-    $('#confirmation').modal('hide')
-    $('#confirmation').on 'hidden.bs.modal', (e) ->
-      Router.go('/locations')
+      $('#confirmation').modal('hide')
+      $('#confirmation').on 'hidden.bs.modal', (e) ->
+        Router.go('/locations')

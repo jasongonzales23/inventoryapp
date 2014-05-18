@@ -1,5 +1,6 @@
 showModal = ->
   $('#confirmation').modal()
+  Session.set('modal_type', 'recordOrder')
 
 Template.recordOrder.beverages = ->
   location = Session.get('location')
@@ -27,37 +28,39 @@ Template.recordOrder.events
 
 Template.modal.events
   "click #confirm": (evt, templ) ->
-    beverages = []
-    $beverages = $('.beverage')
-    $.each( $beverages, (i,v) ->
-      bev = {}
-      number = $(this).find('.number input').val()
-      bev.units = parseInt(number)
+    modalType = Session.get('modal_type')
+    if modalType is 'recordOrder'
+      beverages = []
+      $beverages = $('.beverage')
+      $.each( $beverages, (i,v) ->
+        bev = {}
+        number = $(this).find('.number input').val()
+        bev.units = parseInt(number)
 
-      if bev.units > 0
-        name = $(this).find('.name').text()
-        bev._id = new Meteor.Collection.ObjectID()._str
-        bev.name = name
-        bev.delivered = false
-        beverages.push(bev)
-    )
+        if bev.units > 0
+          name = $(this).find('.name').text()
+          bev._id = new Meteor.Collection.ObjectID()._str
+          bev.name = name
+          bev.delivered = false
+          beverages.push(bev)
+      )
 
-    location = Session.get('location')
-    user = Meteor.user()._id
-    username = Meteor.user().emails[0].address
-    timestamp = new Date().valueOf()
+      location = Session.get('location')
+      user = Meteor.user()._id
+      username = Meteor.user().emails[0].address
+      timestamp = new Date().valueOf()
 
-    Orders.insert
-      timestamp: timestamp
-      location: location._id
-      locationName: location.name
-      locationNumber: location.number
-      user_id: user
-      username: username
-      beverages: beverages
+      Orders.insert
+        timestamp: timestamp
+        location: location._id
+        locationName: location.name
+        locationNumber: location.number
+        user_id: user
+        username: username
+        beverages: beverages
 
-    $('#confirmation').modal('hide')
-    $('#confirmation').on 'hidden.bs.modal', (e) ->
-      Router.go('/locations')
+      $('#confirmation').modal('hide')
+      $('#confirmation').on 'hidden.bs.modal', (e) ->
+        Router.go('/locations')
 
 
