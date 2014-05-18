@@ -16,6 +16,12 @@
   color: #ff5500;
 }
 
+.too-old {
+  td {
+    background: #ff5500 !important;
+  }
+}
+
 .tableContainer {
    overflow: hidden;
    width: 935px;

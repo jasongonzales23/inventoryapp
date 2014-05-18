@@ -15,18 +15,15 @@ template(name='latestOrders')
                 b {{locationName}} {{locationNumber}}
             tr.datetime.order-info(data-id="{{_id}}")
               td(colspan='3')
-                b Reported at:
-                 {{ formatDate timestamp "long" }}
+                b Reported at: {{ formatDate timestamp "long" }}
             tr.reporter
               td(colspan='3')
-                b Reported by:
-                 {{username}}
+                b Reported by: {{username}}
             each beverages
               tr.order-beverages
                 td.col-3 {{name}}
                 td.col-3 {{units}}
-                td.col-3
-                  +deliveredStatus
+                td.col-3 +deliveredStatus
 
 template(name='deliveredStatus')
-  {{deliveredStatus}}
+   {{deliveredStatus}}

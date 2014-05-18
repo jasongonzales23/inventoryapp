@@ -15,12 +15,10 @@ template(name='location')
           each inventory
             tr.datetime
               td(colspan='4')
-                b Reported at: 
-                {{ formatDate timestamp "long" }}
+                b Reported at: {{ formatDate timestamp "long" }}
             tr.reporter
               td(colspan='4')
-                b Reported by: 
-                {{username}}
+                b Reported by: {{username}}
             each beverages
               tr
                 td.col-4 {{name}}

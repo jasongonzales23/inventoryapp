@@ -1,7 +1,6 @@
 Template.dashboardOrders.undeliveredOrders = ->
   orders = Orders.find( {'beverages.delivered': false},
     sort:
-      location: 1
       timestamp: 1
   )
 
