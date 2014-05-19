@@ -1,4 +1,4 @@
-template(name='_admin')
+template(name='admin')
   header
     .container
       +adminNav
@@ -16,5 +16,9 @@ template(name='adminNav')
         a(href="{{pathFor 'beveragesAdd'}}") Beverage Admin
       li
         a(href="{{pathFor 'locationAdd'}}") Location Admin
+      li
+        a(href="{{pathFor 'adminUsersCreate'}}") Add Users
+      li
+        a(href="{{pathFor 'adminUsersManage'}}") Manage Roles
     ul.nav.navbar-nav.navbar-right
       +loginButtons

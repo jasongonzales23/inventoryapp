@@ -110,27 +110,52 @@ Router.map(->
   @.route 'admin',
     path: '/admin'
     template: '_adminHome'
-    layoutTemplate: '_admin'
+    layoutTemplate: 'admin'
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
 
   @.route 'beveragesAdd',
     path: '/admin/beverages/add'
     template: 'addBeverages'
-    layoutTemplate: '_admin'
+    layoutTemplate: 'admin'
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
 
   @.route 'locationAdd',
     path: '/admin/locations/add'
     template: 'addLocations'
-    layoutTemplate: '_admin'
+    layoutTemplate: 'admin'
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
 
   @.route 'adminLocation',
     path: '/admin/locations/:_id'
     template: 'adminLocation'
-    layoutTemplate: '_admin'
+    layoutTemplate: 'admin'
     data: ()-> Locations.findOne(this.params._id)
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
 
   @.route 'adminUsersCreate',
     path: '/admin/users/create'
     template: 'usersAdmin'
+    layoutTemplate: 'admin'
     onBeforeAction: ->
       if Meteor.loggingIn()
         this.render this.loadingTemplate
@@ -141,6 +166,7 @@ Router.map(->
   @.route 'adminUsersManage',
     path: '/admin/users/manage'
     template: 'accountsAdmin'
+    layoutTemplate: 'admin'
     onBeforeAction: ->
       if Meteor.loggingIn()
         this.render this.loadingTemplate
