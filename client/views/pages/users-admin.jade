@@ -1,2 +1,17 @@
 template(name='usersAdmin')
   h1 Create a user
+
+  .form-group.col-md-6
+    label(for='username') Username
+    input#username.form-control(type='text')
+
+  .form-group.col-md-6
+    label(for='password') Password
+    input#password.form-control(type='password')
+
+  .form-group.col-md-9
+    button.add-user.btn.btn-primary.btn-lg(type="button") Add User
+
+  .users-list.col-md-9
+    each users
+      .user Username: {{username}}
