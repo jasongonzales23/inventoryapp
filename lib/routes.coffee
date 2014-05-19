@@ -15,27 +15,6 @@ Router.map(->
     path: '/inventory'
     template: 'inventory'
 
-  @.route 'admin',
-    path: '/_admin'
-    template: '_adminHome'
-    layoutTemplate: '_admin'
-
-  @.route 'beveragesAdd',
-    path: '/_admin/beverages/add'
-    template: 'addBeverages'
-    layoutTemplate: '_admin'
-
-  @.route 'locationAdd',
-    path: '/_admin/locations/add'
-    template: 'addLocations'
-    layoutTemplate: '_admin'
-
-  @.route 'adminLocation',
-    path: '/_admin/locations/:_id'
-    template: 'adminLocation'
-    layoutTemplate: '_admin'
-    data: ()-> Locations.findOne(this.params._id)
-
   @.route 'locations',
     path: '/locations'
     template: 'locations'
@@ -128,7 +107,28 @@ Router.map(->
     template: 'unfilledOrders'
     layoutTemplate: 'reportsLayout'
 
-  @.route 'userAdmin',
+  @.route 'admin',
+    path: '/admin'
+    template: '_adminHome'
+    layoutTemplate: '_admin'
+
+  @.route 'beveragesAdd',
+    path: '/admin/beverages/add'
+    template: 'addBeverages'
+    layoutTemplate: '_admin'
+
+  @.route 'locationAdd',
+    path: '/admin/locations/add'
+    template: 'addLocations'
+    layoutTemplate: '_admin'
+
+  @.route 'adminLocation',
+    path: '/admin/locations/:_id'
+    template: 'adminLocation'
+    layoutTemplate: '_admin'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'adminUsersCreate',
     path: '/admin/users/create'
     template: 'usersAdmin'
     onBeforeAction: ->
@@ -138,7 +138,7 @@ Router.map(->
         console.log 'redirecting'
         this.redirect '/'
 
-  @.route 'roleAdmin',
+  @.route 'adminUsersManage',
     path: '/admin/users/manage'
     template: 'accountsAdmin'
     onBeforeAction: ->

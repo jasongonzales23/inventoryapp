@@ -25,10 +25,7 @@ template(name='orderHistory')
                 td.col-3
                   +deliveredButton
 
-    .col-md-6
-      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
-    .col-md-6
-      a.btn.btn-default.btn-block(href="{{pathFor 'recordOrder'}}") Record Order
+  +invOrdButtons
 
 template(name='deliveredButton')
   button.btn.btn-primary.order-sent(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}

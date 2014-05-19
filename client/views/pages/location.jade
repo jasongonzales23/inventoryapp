@@ -26,10 +26,4 @@ template(name='location')
                 td.col-4 {{orderWhen}}
                 td.col-4 {{fillTo}}
 
-  .col-md-12
-    .col-sm-6
-      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
-    .col-sm-6
-      a.btn.btn-default.btn-block(href="{{pathFor 'recordOrder'}}") Record Order
-
-
+  +invOrdButtons

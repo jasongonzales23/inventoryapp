@@ -22,7 +22,4 @@ template(name='inventoryHistory')
                 td.col-2 {{name}}
                 td.col-2 {{units}}
 
-    .col-md-6
-      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'updateInventory'}}") Update Inventory
-    .col-md-6
-      a.btn.btn-default.btn-block(type='button') Record Order
+    +invOrdButtons
