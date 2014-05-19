@@ -1,14 +1,12 @@
-###
 Accounts.config
   forbidClientAccountCreation: true
-###
 
 if Meteor.isServer
   Meteor.startup ->
     if Meteor.users.findOne "XByGMdGpCcZhxfask"
       Roles.addUsersToRoles "XByGMdGpCcZhxfask", ["admin"]
-    if Meteor.users.findOne "koCBNkXkuKT8oScX6"
-      Roles.addUsersToRoles "koCBNkXkuKT8oScX6", ["admin"]
+    if Meteor.users.findOne "8u54qnNyk9GotXGEj"
+      Roles.addUsersToRoles "8u54qnNyk9GotXGEj", ["admin"]
 
 if Meteor.isClient
   Template.adminTemplate.helpers
