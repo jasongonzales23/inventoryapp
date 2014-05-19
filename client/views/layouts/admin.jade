@@ -1,24 +1,23 @@
 template(name='admin')
   header
-    .container
-      +adminNav
+    +adminNav
   .container
     .row
       +networkStatus
       +yield
 
 template(name='adminNav')
-  nav.collapse.navbar-collapse
+  nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
       li
         a(href="{{pathFor 'home'}}") Home
-      li
+      li(class="{{ isActiveRoute 'beveragesAdd' }}")
         a(href="{{pathFor 'beveragesAdd'}}") Beverage Admin
-      li
+      li(class="{{ isActiveRoute 'locationAdd' }}")
         a(href="{{pathFor 'locationAdd'}}") Location Admin
-      li
+      li(class="{{ isActiveRoute 'adminUsersCreate' }}")
         a(href="{{pathFor 'adminUsersCreate'}}") Add Users
-      li
+      li(class="{{ isActiveRoute 'adminUsersManage' }}")
         a(href="{{pathFor 'adminUsersManage'}}") Manage Roles
     ul.nav.navbar-nav.navbar-right
       +loginButtons
