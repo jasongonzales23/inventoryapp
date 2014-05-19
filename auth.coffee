@@ -3,9 +3,10 @@ Accounts.config
 
 if Meteor.isServer
   Meteor.startup ->
-    debugger
     if Meteor.users.findOne "XByGMdGpCcZhxfask"
       Roles.addUsersToRoles "XByGMdGpCcZhxfask", ["admin"]
+    if Meteor.users.findOne "koCBNkXkuKT8oScX6"
+      Roles.addUsersToRoles "koCBNkXkuKT8oScX6", ["admin"]
 
 if Meteor.isClient
   Template.adminTemplate.helpers
