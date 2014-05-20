@@ -14,8 +14,10 @@ template(name='locations')
             td
               a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
             td
-              a(href="{{pathFor 'updateInventory'}}") Update Inventory
+              +if isInRole 'admin, inventory'
+                a(href="{{pathFor 'updateInventory'}}") Update Inventory
             td
-              a(href="{{pathFor 'recordOrder'}}") Record Order
+              +if isInRole 'admin, order'
+                a(href="{{pathFor 'recordOrder'}}") Record Order
             td
               a(href="{{pathFor 'addNote'}}") Add Note
