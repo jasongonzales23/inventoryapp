@@ -5,12 +5,6 @@ showModal = ->
 Template.updateInventory.beverages = ->
   location = Session.get('location')
 
-  ###
-  unless not location?
-    beverages = location.beverages
-    _.sortBy( beverages , (beverage) -> beverage.name )
-  ###
-
 Template.updateInventory.location = ->
   Session.get('location')
 
