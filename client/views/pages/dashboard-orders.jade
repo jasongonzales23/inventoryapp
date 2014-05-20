@@ -12,7 +12,7 @@ template(name='dashboardOrders')
       each undeliveredOrders
         tr(class="{{ timeWarning oldestOrder.timestamp 45 }}")
           td
-            a(href="{{pathFor 'orderHistory'}}") {{locationName}}
+            a(href="/locations/{{location}}/order-history") {{locationName}}
           td {{unfilledOrdersCount}}
           td {{ formatDate oldestOrder.timestamp "long" }}
           td {{ timesince oldestOrder.timestamp }}
