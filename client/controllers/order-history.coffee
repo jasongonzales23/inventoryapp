@@ -11,4 +11,3 @@ Template.orderHistory.events
 
 Template.deliveredButton.sent = ->
   if @delivered then "true" else "false"
-

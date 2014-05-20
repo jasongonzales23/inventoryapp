@@ -28,4 +28,7 @@ template(name='orderHistory')
   +invOrdButtons
 
 template(name='deliveredButton')
-  button.btn.btn-primary.order-sent(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}
+  +if isInRole 'order, admin'
+    button.btn.btn-primary.order-sent(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}
+  +else
+    .label.label-default(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}

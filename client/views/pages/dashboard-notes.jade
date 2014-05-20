@@ -11,7 +11,8 @@ template(name='dashboardNotes')
     tbody
       each locations
         tr
-          td {{locationName}}
+          td
+            a(href="/locations/{{newestNote.location}}/notes") {{locationName}}
           td {{notesCount}}
           td {{ formatDate newestNote.timestamp "long" }}
           td {{ timesince newestNote.timestamp }}
