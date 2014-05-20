@@ -1,6 +1,10 @@
+#TODO add error and success callbacks
 Meteor.methods({
   create_user: (username, password) ->
     Accounts.createUser({username: username, password: password, profile: {name: username} })
 })
 
-#TODO add error and success callbacks
+Meteor.methods
+  removeOrders: ->
+    Orders.remove({})
+

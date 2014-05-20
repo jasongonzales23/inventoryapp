@@ -55,6 +55,7 @@ Template.modal.events
         location: location._id
         locationName: location.name
         locationNumber: location.number
+        vendor: location.vendor
         user_id: user
         username: username
         beverages: beverages
