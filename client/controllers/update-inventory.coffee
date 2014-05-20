@@ -2,12 +2,6 @@ showModal = ->
   $('#confirmation').modal()
   Session.set('modal_type', 'updateInventory')
 
-Template.updateInventory.beverages = ->
-  location = Session.get('location')
-
-Template.updateInventory.location = ->
-  Session.get('location')
-
 Template.updateInventory.events
   "click .incr": (evt, templ) ->
     $button = $(evt.target)
@@ -41,7 +35,7 @@ Template.modal.events
         beverages.push(bev)
       )
 
-      location = Session.get('location')
+      location = @
       user = Meteor.user()._id
       username = Meteor.user().username
       timestamp = new Date().valueOf()

@@ -2,12 +2,6 @@ showModal = ->
   $('#confirmation').modal()
   Session.set('modal_type', 'recordOrder')
 
-Template.recordOrder.beverages = ->
-  location = Session.get('location')
-
-Template.recordOrder.location = ->
-  Session.get('location')
-
 Template.recordOrder.events
   "click .incr": (evt, templ) ->
     $button = $(evt.target)
@@ -45,7 +39,7 @@ Template.modal.events
           beverages.push(bev)
       )
 
-      location = Session.get('location')
+      location = @
       user = Meteor.user()._id
       username = Meteor.user().username
       timestamp = new Date().valueOf()
@@ -63,5 +57,3 @@ Template.modal.events
       $('#confirmation').modal('hide')
       $('#confirmation').on 'hidden.bs.modal', (e) ->
         Router.go('/locations')
-
-
