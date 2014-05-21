@@ -68,6 +68,18 @@ Router.map(->
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
+  @.route 'showTokenCollections',
+    path: '/locations/:_id/tokens/show-collections'
+    template: 'showTokenCollections'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'addTokenCollection',
+    path: '/locations/:_id/tokens/add-collection'
+    template: 'addTokenCollection'
+    layoutTemplate: 'locationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
   @.route 'dashboard',
     action: ->
       @.redirect 'dashboardInventory'
