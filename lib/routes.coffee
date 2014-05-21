@@ -69,13 +69,13 @@ Router.map(->
     data: ()-> Locations.findOne(this.params._id)
 
   @.route 'showTokenCollections',
-    path: '/locations/:_id/tokens/show-collections'
+    path: '/locations/:_id/tokens/show'
     template: 'showTokenCollections'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
   @.route 'addTokenCollection',
-    path: '/locations/:_id/tokens/add-collection'
+    path: '/locations/:_id/tokens/add'
     template: 'addTokenCollection'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)

@@ -1,2 +1,22 @@
 template(name='showTokenCollections')
-  h1 {{number}} {{name}}
+  .col-md-12
+    h2 {{number}} {{name}}
+    h3 {{organization}}
+
+    .tableContainer
+      table.table.table-striped
+        thead.fixedHeader
+          tr
+            th.col-3 Tokens Collected
+            th.col-3 Date/Time Collected
+            th.col-3 Reporter
+        tbody.scrollContent
+          each collections
+            tr.token-collections
+              td.col-3 {{tokens}}
+              td.col-3 {{ formatDate timestamp "long" }}
+              td.col-3 {{username}}
+
+  .col-md-6
+    +if isInRole 'token, admin'
+      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addTokenCollection'}}") Add Token Collection

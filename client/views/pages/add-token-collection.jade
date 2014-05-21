@@ -1,0 +1,18 @@
+template(name='addTokenCollection')
+  .col-md-12
+    h2 {{number}} {{name}}
+    h3 {{organization}}
+    h4 Add Token Collection
+
+  .col-md-6
+    .form-group
+      .col-md-12
+        .form-group
+          label(for='add-tokens') Tokens
+          input.form-control#tokens(type='number')
+      .col-md-12
+        .form-group
+          button.btn.btn-default.btn-success.btn-block#add-tokens(type='button') Add Token Collection
+      .col-md-12
+        .form-group
+          a.btn.btn-default.btn-block(type='button') Cancel
