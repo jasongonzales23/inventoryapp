@@ -4,6 +4,7 @@
 @.Orders = new Meteor.Collection("Orders")
 @.Notes = new Meteor.Collection("Notes")
 @.TokenCollections = new Meteor.Collection("TokenCollections")
+@.TokenDeliveries = new Meteor.Collection("TokenDeliveries")
 
 
 if Meteor.isServer
@@ -23,6 +24,8 @@ if Meteor.isServer
     Meteor.users.find()
   Meteor.publish "tokencollections", () ->
     TokenCollections.find()
+  Meteor.publish "tokendeliveries", () ->
+    TokenDeliveries.find()
 
   Beverages.allow
     insert: (user, bev) ->
@@ -66,6 +69,13 @@ if Meteor.isServer
       true
     remove: (user, tokencollection) ->
       true
+  TokenDeliveries.allow
+    insert: (user, tokendelivery) ->
+      true
+    update: (user, tokendelivery, fieldNames, modifier) ->
+      true
+    remove: (user, tokendelivery) ->
+      true
 
 if Meteor.isClient
   Meteor.subscribe("beverages")
@@ -75,3 +85,4 @@ if Meteor.isClient
   Meteor.subscribe("notes")
   Meteor.subscribe("users")
   Meteor.subscribe("tokencollections")
+  Meteor.subscribe("tokendeliveries")

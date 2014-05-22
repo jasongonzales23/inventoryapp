@@ -1,22 +1,22 @@
 showModal = ->
   $('#confirmation').modal()
-  Session.set('modal_type', 'addTokenCollection')
+  Session.set('modal_type', 'addTokenDelivery')
 
-Template.addTokenCollection.events
+Template.addTokenDelivery.events
   "click #add-tokens": (evt, templ) ->
     showModal()
 
 Template.modal.events
   "click #confirm": (evt, templ) ->
     modalType = Session.get('modal_type')
-    if modalType is 'addTokenCollection'
+    if modalType is 'addTokenDelivery'
       location = @
       user = Meteor.user()._id
       username = Meteor.user().username
       timestamp = new Date().valueOf()
       tokens = parseInt $('#tokens').val()
 
-      TokenCollections.insert
+      TokenDeliveries.insert
         timestamp: timestamp
         location: location._id
         locationName: location.name
@@ -28,5 +28,4 @@ Template.modal.events
 
       $('#confirmation').modal('hide')
       $('#confirmation').on 'hidden.bs.modal', (e) ->
-        Router.go("/locations/#{location._id}/tokens/collections/show")
-
+        Router.go("/locations/#{location._id}/tokens/deliveries/show")
