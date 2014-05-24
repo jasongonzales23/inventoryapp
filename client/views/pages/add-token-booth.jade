@@ -1,0 +1,20 @@
+template(name='tokenBoothAdd')
+  h1 Token Booth Admin
+  .col-md-3
+    each booths
+      .booth
+        span.destroy &times;
+        a.booth-name(href="{{pathFor 'adminTokenBooth'}}") {{number}} {{name}}
+
+  .col-md-9
+    .new-item-box.location-info
+      h2 Location Info
+      .form-group.col-md-3
+        label(for='locationNum') Number
+        input#locationNum.form-control(type='text')
+      .form-group.col-md-9
+        label(for='locationName') Name
+        input#locationName.form-control(type='text')
+      .form-group.col-md-9
+        button#tokenBoothAdd.btn.btn-primary.btn-lg(type="button") Add Location
+

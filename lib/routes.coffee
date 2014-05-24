@@ -68,17 +68,31 @@ Router.map(->
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
+  @.route 'tokenLocations',
+    path: '/token-locations'
+    template: 'tokenLocations'
+    layoutTemplate: 'home'
+
   @.route 'showTokenCollections',
     path: '/locations/:_id/tokens/collections/show'
     template: 'showTokenCollections'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
+    onBeforeAction: ->
+      if not Roles.userIsInRole Meteor.user(), ['admin', 'token']
+        console.log 'redirecting'
+        this.redirect '/'
 
   @.route 'addTokenCollection',
     path: '/locations/:_id/tokens/collections/add'
     template: 'addTokenCollection'
     layoutTemplate: 'locationLayout'
     data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'tokenBooths',
+    path: '/token-booths'
+    template: 'tokenBooths'
+    layoutTemplate: 'home'
 
   @.route 'showTokenDeliveries',
     path: '/locations/:_id/tokens/deliveries/show'
@@ -190,6 +204,17 @@ Router.map(->
   @.route 'adminUsersManage',
     path: '/admin/users/manage'
     template: 'accountsAdmin'
+    layoutTemplate: 'admin'
+    onBeforeAction: ->
+      if Meteor.loggingIn()
+        this.render this.loadingTemplate
+      else if not Roles.userIsInRole Meteor.user(), ['admin']
+        console.log 'redirecting'
+        this.redirect '/'
+
+  @.route 'tokenBoothAdd',
+    path: '/admin/token-booths/add'
+    template: 'tokenBoothAdd'
     layoutTemplate: 'admin'
     onBeforeAction: ->
       if Meteor.loggingIn()

@@ -1,5 +1,3 @@
-#TODO Use this when you create subs & pubs (use Deps.autorun for this too?)
-#Locations = new Meteor.Collection("locations");
 Template.addLocations.events
   "click #locationAdd": (evt, templ) ->
     numInput = templ.find("#locationNum")

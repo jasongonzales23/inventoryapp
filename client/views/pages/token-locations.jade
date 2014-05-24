@@ -1,0 +1,21 @@
+template(name='tokenLocations')
+  .col-md-12
+    h2 All Token Locations
+    table.table.table-striped
+      thead
+        tr
+          th Location
+          th
+          th
+      tbody
+        each locations
+          tr
+            td
+              a.location(href="{{pathFor 'showTokenCollections'}}") {{number}} {{name}}
+            td
+              +if isInRole 'admin, token'
+                a(href="{{pathFor 'addTokenCollection'}}") Add Token Collection
+            td
+              +if isInRole 'admin, token'
+                a(href="{{pathFor 'addNote'}}") Add Note
+
