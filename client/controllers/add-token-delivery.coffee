@@ -14,7 +14,7 @@ Template.modal.events
       user = Meteor.user()._id
       username = Meteor.user().username
       timestamp = new Date().valueOf()
-      tokens = parseInt $('#tokens').val()
+      tokens = parseInt $('#tokens-delivered').val()
 
       TokenDeliveries.insert
         timestamp: timestamp

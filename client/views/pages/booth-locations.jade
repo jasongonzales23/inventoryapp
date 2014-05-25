@@ -1,0 +1,22 @@
+template(name='boothLocations')
+  .col-md-12
+    h2 All Token Booth Locations
+    table.table.table-striped
+      thead
+        tr
+          th Location
+          th
+          th
+      tbody
+        each locations
+          tr
+            td
+              a.location(href="{{pathFor 'showTokenDeliveries'}}") {{number}} {{name}}
+            td
+              +if isInRole 'admin, token'
+                a(href="{{pathFor 'addTokenDelivery'}}") Record Token Delivery
+            td
+              +if isInRole 'admin, token'
+                a(href="{{pathFor 'addNote'}}") Add Note
+
+
