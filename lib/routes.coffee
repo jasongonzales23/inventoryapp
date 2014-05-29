@@ -1,24 +1,16 @@
 Router.configure(
-  layoutTemplate: 'home'
+  layoutTemplate: 'homeLayout'
 )
 
 Router.map(->
   @.route 'home',
     path: '/'
-    template: 'locations'
-
-  @.route 'beverages',
-    path: '/beverages'
-    template: 'bevlist'
-
-  @.route 'inventory',
-    path: '/inventory'
-    template: 'inventory'
+    template: 'home'
 
   @.route 'locations',
     path: '/locations'
     template: 'locations'
-    layoutTemplate: 'home'
+    layoutTemplate: 'homeLayout'
 
   @.route 'location',
     path: '/locations/:_id'
@@ -71,7 +63,7 @@ Router.map(->
   @.route 'tokenLocations',
     path: '/token-locations'
     template: 'tokenLocations'
-    layoutTemplate: 'home'
+    layoutTemplate: 'homeLayout'
 
   @.route 'showTokenCollections',
     path: '/locations/:_id/tokens/collections/show'
@@ -92,7 +84,7 @@ Router.map(->
   @.route 'tokenBooths',
     path: '/token-booths'
     template: 'tokenBooths'
-    layoutTemplate: 'home'
+    layoutTemplate: 'homeLayout'
 
   @.route 'showTokenDeliveries',
     path: '/locations/:_id/tokens/deliveries/show'
@@ -226,6 +218,6 @@ Router.map(->
   @.route 'boothLocations',
     path: '/booth-locations'
     template: 'boothLocations'
-    layoutTemplate: 'home'
+    layoutTemplate: 'homeLayout'
 
 )

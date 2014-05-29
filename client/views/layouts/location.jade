@@ -17,8 +17,6 @@ template(name='locationNav')
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
       li
-        a(href="{{pathFor 'home'}}") Home
-      li
         a(href="{{pathFor 'locations'}}") All Locations
       li(class="{{ isActiveRoute 'location' }}")
         a(href="{{pathFor 'location'}}") Last Inventory

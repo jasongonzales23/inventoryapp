@@ -4,7 +4,7 @@ head
   meta(name="apple-mobile-web-app-capable" content="yes")
   meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
 
-template(name='home')
+template(name='homeLayout')
   header
     +homeNav
   .container
@@ -21,15 +21,17 @@ template(name='homeNav')
 
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
-      li
-        a(href="{{pathFor 'home'}}") Home
-      li
-        a(href="{{pathFor 'locations'}}") All Locations
-      li
-        a(href="{{pathFor 'tokenLocations'}}") Token Locations
-      li
-        a(href="{{pathFor 'boothLocations'}}") Booth Locations
-      li
-        a(href="{{pathFor 'dashboard'}}") Dashboard
+      +if isInRole 'inventory, order, admin'
+        li(class="{{ isActiveRoute 'locations' }}")
+          a(href="{{pathFor 'locations'}}") All Locations
+      +if isInRole 'token, admin'
+        li(class="{{ isActiveRoute 'tokenLocations' }}")
+          a(href="{{pathFor 'tokenLocations'}}") Token Locations
+      +if isInRole 'token, admin'
+        li(class="{{ isActiveRoute 'boothLocations' }}")
+          a(href="{{pathFor 'boothLocations'}}") Booth Locations
+      +if isInRole 'admin'
+        li(class="{{ isActiveRoute 'dashboard' }}")
+          a(href="{{pathFor 'dashboard'}}") Dashboard
     ul.nav.navbar-nav.navbar-right
       +loginButtons
