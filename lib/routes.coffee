@@ -6,6 +6,7 @@ Router.map(->
   @.route 'home',
     path: '/'
     template: 'home'
+    layoutTemplate: 'homeLayout'
 
   @.route 'locations',
     path: '/locations'
@@ -139,7 +140,7 @@ Router.map(->
 
   @.route 'admin',
     path: '/admin'
-    template: '_adminHome'
+    template: 'adminHome'
     layoutTemplate: 'admin'
     onBeforeAction: ->
       if Meteor.loggingIn()
