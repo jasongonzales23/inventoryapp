@@ -8,7 +8,7 @@ Router.map(->
     template: 'home'
     layoutTemplate: 'homeLayout'
 
-  @.route 'locations',
+  @.route 'allLocations',
     path: '/locations'
     template: 'locations'
     layoutTemplate: 'homeLayout'

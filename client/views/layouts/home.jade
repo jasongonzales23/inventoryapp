@@ -22,8 +22,8 @@ template(name='homeNav')
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
       +if isInRole 'inventory, order, admin'
-        li(class="{{ isActiveRoute 'locations' }}")
-          a(href="{{pathFor 'locations'}}") All Locations
+        li(class="{{ isActiveRoute 'allLocations' }}")
+          a(href="{{pathFor 'allLocations'}}") All Locations
       +if isInRole 'token, admin'
         li(class="{{ isActiveRoute 'tokenLocations' }}")
           a(href="{{pathFor 'tokenLocations'}}") Token Locations
