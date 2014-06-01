@@ -1,13 +1,13 @@
-template(name='tokenLocationLayout')
+template(name='tokenBoothLayout')
   header
-    +tokenLocationNav
+    +tokenBoothNav
   .container
     .row
       +networkStatus
       +yield
   +modal
 
-template(name='tokenLocationNav')
+template(name='tokenBoothNav')
   button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
     span.sr-only Toggle navigation
       span.icon-bar
@@ -20,8 +20,8 @@ template(name='tokenLocationNav')
         a(href="{{pathFor 'tokenLocations'}}") Token Locations
       li(class="{{ isActiveRoute 'boothLocations' }}")
         a(href="{{pathFor 'boothLocations'}}") Booth Locations
-      li(class="{{ isActiveRoute 'showTokenCollections' }}")
-        a(href="{{pathFor 'showTokenCollections'}}") Tokens Collected
+      li(class="{{ isActiveRoute 'showTokenDeliveries' }}")
+        a(href="{{pathFor 'showTokenDeliveries'}}") Tokens Delivered
       li(class="{{ isActiveRoute 'showTokenNotes' }}")
         a(href="{{pathFor 'showTokenNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right

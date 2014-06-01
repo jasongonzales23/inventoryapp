@@ -85,13 +85,13 @@ Router.map(->
   @.route 'showTokenDeliveries',
     path: '/locations/:_id/tokens/deliveries/show'
     template: 'showTokenDeliveries'
-    layoutTemplate: 'locationLayout'
+    layoutTemplate: 'tokenBoothLayout'
     data: ()-> TokenBooths.findOne(this.params._id)
 
   @.route 'addTokenDelivery',
     path: '/locations/:_id/tokens/deliveries/add'
     template: 'addTokenDelivery'
-    layoutTemplate: 'locationLayout'
+    layoutTemplate: 'tokenBoothLayout'
     data: ()-> TokenBooths.findOne(this.params._id)
 
   @.route 'dashboard',
