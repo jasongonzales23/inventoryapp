@@ -69,7 +69,7 @@ Router.map(->
   @.route 'showTokenCollections',
     path: '/locations/:_id/tokens/collections/show'
     template: 'showTokenCollections'
-    layoutTemplate: 'locationLayout'
+    layoutTemplate: 'tokenLocationLayout'
     data: ()-> Locations.findOne(this.params._id)
     onBeforeAction: ->
       if not Roles.userIsInRole Meteor.user(), ['admin', 'token']
@@ -79,13 +79,8 @@ Router.map(->
   @.route 'addTokenCollection',
     path: '/locations/:_id/tokens/collections/add'
     template: 'addTokenCollection'
-    layoutTemplate: 'locationLayout'
+    layoutTemplate: 'tokenLocationLayout'
     data: ()-> Locations.findOne(this.params._id)
-
-  @.route 'tokenBooths',
-    path: '/token-booths'
-    template: 'tokenBooths'
-    layoutTemplate: 'homeLayout'
 
   @.route 'showTokenDeliveries',
     path: '/locations/:_id/tokens/deliveries/show'

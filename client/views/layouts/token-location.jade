@@ -1,13 +1,13 @@
-template(name='locationLayout')
+template(name='tokenLocationLayout')
   header
-    +locationNav
+    +tokenLocationNav
   .container
     .row
       +networkStatus
       +yield
   +modal
 
-template(name='locationNav')
+template(name='tokenLocationNav')
   button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
     span.sr-only Toggle navigation
       span.icon-bar
@@ -16,22 +16,18 @@ template(name='locationNav')
 
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
-      li
-        a(href="{{pathFor 'allLocations'}}") All Locations
-      li(class="{{ isActiveRoute 'location' }}")
-        a(href="{{pathFor 'location'}}") Last Inventory
-      li(class="{{ isActiveRoute 'orderHistory' }}")
-        a(href="{{pathFor 'orderHistory'}}") Order History
-      li(class="{{ isActiveRoute 'inventoryHistory' }}")
-        a(href="{{pathFor 'inventoryHistory'}}") Inventory History
-      li(class="{{ isActiveRoute 'startingInventory' }}")
-        a(href="{{pathFor 'startingInventory'}}") Starting Inventory
-      li(class="{{ isActiveRoute 'showNotes' }}")
-        a(href="{{pathFor 'showNotes'}}") Notes
+      li(class="{{ isActiveRoute 'tokenLocations' }}")
+        a(href="{{pathFor 'tokenLocations'}}") Token Locations
+      li(class="{{ isActiveRoute 'boothLocations' }}")
+        a(href="{{pathFor 'boothLocations'}}") Booth Locations
+      li(class="{{ isActiveRoute 'showTokenCollections' }}")
+        a(href="{{pathFor 'showTokenCollections'}}") Tokens Collected
+      li(class="{{ isActiveRoute 'showTokenNotes' }}")
+        a(href="{{pathFor 'showTokenNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 
-template(name='modal')
+template(name='tokenModal')
   .modal.fade#confirmation
     .modal-dialog
       .modal-content
