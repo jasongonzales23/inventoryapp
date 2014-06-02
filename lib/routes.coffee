@@ -71,14 +71,22 @@ Router.map(->
     template: 'showTokenCollections'
     layoutTemplate: 'tokenLocationLayout'
     data: ()-> Locations.findOne(this.params._id)
-    onBeforeAction: ->
-      if not Roles.userIsInRole Meteor.user(), ['admin', 'token']
-        console.log 'redirecting'
-        this.redirect '/'
 
   @.route 'addTokenCollection',
     path: '/locations/:_id/tokens/collections/add'
     template: 'addTokenCollection'
+    layoutTemplate: 'tokenLocationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'showTokenLocationNotes',
+    path: '/locations/:_id/tokens/notes/show'
+    template: 'showTokenLocationNotes'
+    layoutTemplate: 'tokenLocationLayout'
+    data: ()-> Locations.findOne(this.params._id)
+
+  @.route 'addTokenLocationNote',
+    path: '/locations/:_id/tokens/notes/add'
+    template: 'addTokenLocationNote'
     layoutTemplate: 'tokenLocationLayout'
     data: ()-> Locations.findOne(this.params._id)
 

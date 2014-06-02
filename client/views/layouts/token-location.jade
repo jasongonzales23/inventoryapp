@@ -22,8 +22,8 @@ template(name='tokenLocationNav')
         a(href="{{pathFor 'boothLocations'}}") Booth Locations
       li(class="{{ isActiveRoute 'showTokenCollections' }}")
         a(href="{{pathFor 'showTokenCollections'}}") Tokens Collected
-      li(class="{{ isActiveRoute 'showTokenNotes' }}")
-        a(href="{{pathFor 'showTokenNotes'}}") Notes
+      li(class="{{ isActiveRoute 'showTokenLocationNotes' }}")
+        a(href="{{pathFor 'showTokenLocationNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 
