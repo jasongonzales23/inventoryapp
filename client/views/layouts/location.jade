@@ -28,6 +28,8 @@ template(name='locationNav')
         a(href="{{pathFor 'startingInventory'}}") Starting Inventory
       li(class="{{ isActiveRoute 'showNotes' }}")
         a(href="{{pathFor 'showNotes'}}") Notes
+      li(class="{{ isActiveRoute 'dashboard' }}")
+        a(href="{{pathFor 'dashboard'}}") Dashboard
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 
