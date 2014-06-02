@@ -29,6 +29,6 @@ template(name='orderHistory')
 
 template(name='deliveredButton')
   +if isInRole 'order, admin'
-    button.btn.btn-primary.order-sent(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}
+    button.btn.order-sent(data-sent="{{sent}}", data-id="{{_id}}", class="{{ styleDeliveredBtn sent}}") {{sent}}
   +else
     .label.label-default(data-sent="{{sent}}", data-id="{{_id}}") {{sent}}
