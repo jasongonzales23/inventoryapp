@@ -9,8 +9,8 @@ template(name='admin')
 template(name='adminNav')
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
-      li
-        a(href="{{pathFor 'home'}}") Home
+      li(class="{{ isActiveRoute 'allLocations' }}")
+        a(href="{{pathFor 'allLocations'}}") All Locations
       li(class="{{ isActiveRoute 'beveragesAdd' }}")
         a(href="{{pathFor 'beveragesAdd'}}") Beverage Admin
       li(class="{{ isActiveRoute 'locationAdd' }}")
