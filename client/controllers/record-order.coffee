@@ -31,7 +31,7 @@ Template.modal.events
         number = $(this).find('.number input').val()
         bev.units = parseInt(number)
 
-        if bev.units > 0
+        if bev.units > 0 or bev.units < 0
           name = $(this).find('.name').text()
           bev._id = new Meteor.Collection.ObjectID()._str
           bev.name = name
@@ -56,4 +56,4 @@ Template.modal.events
 
       $('#confirmation').modal('hide')
       $('#confirmation').on 'hidden.bs.modal', (e) ->
-        Router.go("/locations/#{location}")
+        Router.go("/locations/#{location._id}")
