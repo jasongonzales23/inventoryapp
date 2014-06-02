@@ -23,7 +23,7 @@ template(name='tokenBoothNav')
       li(class="{{ isActiveRoute 'showTokenDeliveries' }}")
         a(href="{{pathFor 'showTokenDeliveries'}}") Tokens Delivered
       li(class="{{ isActiveRoute 'showTokenNotes' }}")
-        a(href="{{pathFor 'showTokenNotes'}}") Notes
+        a(href="{{pathFor 'showBoothNotes'}}") Notes
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 

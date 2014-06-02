@@ -1,0 +1,13 @@
+template(name='showBoothNotes')
+  .col-md-12
+    h2 {{number}} {{name}}
+    h3 {{organization}}
+    .col-md-6
+      each notes
+        .note
+          p {{ formatDate timestamp "long" }} by {{ username }}
+          p {{note}}
+    .col-md-12
+      a.btn.btn-default.btn-success.btn-block(href="{{pathFor 'addBoothNote'}}") Add Note
+
+

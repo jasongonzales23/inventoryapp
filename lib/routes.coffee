@@ -90,16 +90,33 @@ Router.map(->
     layoutTemplate: 'tokenLocationLayout'
     data: ()-> Locations.findOne(this.params._id)
 
+  @.route 'boothLocations',
+    path: '/booth-locations'
+    template: 'boothLocations'
+    layoutTemplate: 'homeLayout'
+
   @.route 'showTokenDeliveries',
-    path: '/locations/:_id/tokens/deliveries/show'
+    path: '/booth-locations/:_id/tokens/deliveries/show'
     template: 'showTokenDeliveries'
     layoutTemplate: 'tokenBoothLayout'
     data: ()-> TokenBooths.findOne(this.params._id)
 
   @.route 'addTokenDelivery',
-    path: '/locations/:_id/tokens/deliveries/add'
+    path: '/booth-locations/:_id/tokens/deliveries/add'
     template: 'addTokenDelivery'
     layoutTemplate: 'tokenBoothLayout'
+    data: ()-> TokenBooths.findOne(this.params._id)
+
+  @.route 'showBoothNotes',
+    path: '/booth-locations/:_id/tokens/notes/show'
+    template: 'showBoothNotes'
+    layoutTemplate: 'tokenLocationLayout'
+    data: ()-> TokenBooths.findOne(this.params._id)
+
+  @.route 'addBoothNote',
+    path: '/booth-locations/:_id/tokens/notes/add'
+    template: 'addBoothNote'
+    layoutTemplate: 'tokenLocationLayout'
     data: ()-> TokenBooths.findOne(this.params._id)
 
   @.route 'dashboard',
@@ -218,10 +235,5 @@ Router.map(->
       else if not Roles.userIsInRole Meteor.user(), ['admin']
         console.log 'redirecting'
         this.redirect '/'
-
-  @.route 'boothLocations',
-    path: '/booth-locations'
-    template: 'boothLocations'
-    layoutTemplate: 'homeLayout'
 
 )

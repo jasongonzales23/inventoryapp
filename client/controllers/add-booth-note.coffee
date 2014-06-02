@@ -1,4 +1,4 @@
-Template.addTokenLocationNote.events =
+Template.addBoothNote.events =
   "click #add-note": (evt, templ) ->
     noteInput = templ.find("#note")
     note = noteInput.value
@@ -10,7 +10,7 @@ Template.addTokenLocationNote.events =
     locationNumber = this.number
     timestamp = new Date().valueOf()
 
-    TokenLocationNotes.insert
+    TokenBoothNotes.insert
       timestamp: timestamp
       location: location
       locationName: locationName
@@ -19,5 +19,6 @@ Template.addTokenLocationNote.events =
       username: username
       note: note
 
-    Router.go("/locations/#{location}/tokens/collections/show")
+    Router.go("/booth-locations/#{location}/tokens/deliveries/show")
+
 

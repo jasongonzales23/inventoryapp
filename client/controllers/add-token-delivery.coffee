@@ -28,4 +28,4 @@ Template.modal.events
 
       $('#confirmation').modal('hide')
       $('#confirmation').on 'hidden.bs.modal', (e) ->
-        Router.go("/locations/#{location._id}/tokens/deliveries/show")
+        Router.go("/booth-locations/#{location._id}/tokens/deliveries/show")
