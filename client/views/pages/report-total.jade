@@ -1,0 +1,17 @@
+template(name='reportTotal')
+  h1 Festival Totals
+
+  table.table.table-striped
+    thead
+      tr
+        th
+        each locations
+          th {{number}}
+    tbody
+      each bevTable
+        tr
+          td {{name}}
+          each locationTotals
+            td {{this}}
+
+

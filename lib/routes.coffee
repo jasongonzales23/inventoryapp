@@ -236,4 +236,8 @@ Router.map(->
         console.log 'redirecting'
         this.redirect '/'
 
+  @.route 'reportTotal',
+    path: '/report/total'
+    template: 'reportTotal'
+
 )
