@@ -1,9 +1,3 @@
-###
-# get all the bevs
-# then loop through all the locations in order 
-# then get all the orders that have the location and bev
-###
-
 Template.reportTotal.bevTable = ->
   beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
   locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
@@ -25,9 +19,12 @@ Template.reportTotal.bevTable = ->
           bevObj.locationTotals[i] = _.reduce totalsArr, (memo, num) ->
             memo + num
       else
-        bevObj.locationTotals[i] = [0]
+        bevObj.locationTotals[i] = 0
       totalsArr = []
 
+    total = _.reduce bevObj.locationTotals, (memo, num) ->
+      memo + num
+    bevObj.locationTotals.push total
     bevTable.push bevObj
   bevTable
 

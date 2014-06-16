@@ -7,11 +7,10 @@ template(name='reportTotal')
         th
         each locations
           th {{number}}
+        th Totals
     tbody
       each bevTable
         tr
           td {{name}}
           each locationTotals
             td {{this}}
-
-
