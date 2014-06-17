@@ -240,4 +240,8 @@ Router.map(->
     path: '/report/total'
     template: 'reportTotal'
 
+  @.route 'dailyTotal',
+    path: '/report/total/:year/:month/:day'
+    template: 'dailyTotal'
+    data: ()-> this.params
 )
