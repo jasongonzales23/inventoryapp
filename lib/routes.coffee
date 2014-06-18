@@ -236,12 +236,15 @@ Router.map(->
         console.log 'redirecting'
         this.redirect '/'
 
+  @.route 'dailyTotal',
+    path: '/report/:year/:month/:day'
+    template: 'dailyTotal'
+    layoutTemplate: 'report'
+    data: ()-> this.params
+
   @.route 'reportTotal',
     path: '/report/total'
     template: 'reportTotal'
+    layoutTemplate: 'report'
 
-  @.route 'dailyTotal',
-    path: '/report/total/:year/:month/:day'
-    template: 'dailyTotal'
-    data: ()-> this.params
 )
