@@ -1,5 +1,7 @@
 Router.configure(
   layoutTemplate: 'homeLayout'
+  templateNameConverter: 'upperCamelCase'
+  routeControllerNameConverter: 'upperCamelCase'
 )
 
 Router.map(->
@@ -236,15 +238,19 @@ Router.map(->
         console.log 'redirecting'
         this.redirect '/'
 
-  @.route 'dailyTotal',
+  @.route 'daily',
     path: '/report/:year/:month/:day'
-    template: 'dailyTotal'
+    template: 'Daily'
     layoutTemplate: 'report'
-    data: ()-> this.params
+    data: ->
+      dailyParams = {}
+      dailyParams.year = this.params.year
+      dailyParams.month = this.params.month
+      dailyParams.day = this.params.day
+      Session.set 'dailyParams', dailyParams
 
   @.route 'reportTotal',
     path: '/report/total'
     template: 'reportTotal'
     layoutTemplate: 'report'
-
 )
