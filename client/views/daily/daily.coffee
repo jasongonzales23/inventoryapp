@@ -6,7 +6,6 @@ Template.Daily.helpers({
     day = parseInt(dailyParams.day)
     start = Date.UTC(year, month, day + 1)
     end = Date.UTC(year, month, day + 2)
-    console.log start, end
 
     beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
     locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
