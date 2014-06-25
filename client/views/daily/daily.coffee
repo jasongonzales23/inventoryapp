@@ -30,10 +30,11 @@ Template.Daily.helpers({
           bevObj.locationTotals[i] = 0
         totalsArr = []
 
-      total = _.reduce bevObj.locationTotals, (memo, num) ->
-        memo + num
-      bevObj.locationTotals.push total
-      bevTable.push bevObj
+      if bevObj.locationTotals.length > 0
+        total = _.reduce bevObj.locationTotals, (memo, num) ->
+          memo + num
+        bevObj.locationTotals.push total
+        bevTable.push bevObj
     bevTable
 
   locations: ->
