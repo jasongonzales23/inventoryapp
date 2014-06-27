@@ -2,8 +2,8 @@ Template.Daily.helpers({
   bevTable: ->
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
-    month = parseInt dailyParams.month - 1
-    day = parseInt(dailyParams.day)
+    month = parseInt(dailyParams.month) - 1
+    day = parseInt dailyParams.day
     start = Date.UTC(year, month, day + 1)
     end = Date.UTC(year, month, day + 2)
 
@@ -35,6 +35,8 @@ Template.Daily.helpers({
           memo + num
         bevObj.locationTotals.push total
         bevTable.push bevObj
+    console.log bevTable
+
     bevTable
 
   locations: ->
