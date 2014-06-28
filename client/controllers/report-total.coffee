@@ -8,6 +8,8 @@ Template.reportTotal.bevTable = ->
     bevObj.locationTotals = []
     totalsArr = []
     _.each locations, (location, i) =>
+      bevObj.locationTotals[i] = {}
+      bevObj.locationTotals[i].location = location
       orders = Orders.find({ 'beverages.name': bev.name , 'location': location._id }).fetch()
       if orders.length > 0
         _.each orders, (order) ->
@@ -16,16 +18,19 @@ Template.reportTotal.bevTable = ->
             if b.name == bev.name
               totalsArr.push b.units
 
-          bevObj.locationTotals[i] = _.reduce totalsArr, (memo, num) ->
+          bevObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
             memo + num
       else
-        bevObj.locationTotals[i] = 0
+        bevObj.locationTotals[i].total = 0
       totalsArr = []
 
     if bevObj.locationTotals.length > 0
-      total = _.reduce bevObj.locationTotals, (memo, num) ->
+      grandTotalObj = {}
+      grandTotalObj.title = "grand total"
+      tArr = _.pluck bevObj.locationTotals, "total"
+      grandTotalObj.total = _.reduce tArr, (memo, num) ->
         memo + num
-      bevObj.locationTotals.push total
+      bevObj.locationTotals.push grandTotalObj
       bevTable.push bevObj
   bevTable
 
