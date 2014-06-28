@@ -2,17 +2,20 @@ Template.reportNav.days = ->
   orders = Orders.find({}, {sort: {timestamp: 1}}).fetch()
   if orders.length > 0
     timestamps = _.pluck(orders, 'timestamp')
-    days = []
-    _.each timestamps, (timestamp,i) ->
+
+    days = _.map timestamps, (timestamp, i) ->
       m = moment(timestamp)
-      dayObj = {}
-      day = m.format("ddd")
-      inDays = _.where(days, {dayName: day})
-      unless inDays.length > 0
-        year = m.format("YYYY")
-        month = m.format("MM")
-        d = m.format("DD")
-        dayObj.href = "/#{year}/#{month}/#{d}"
-        dayObj.dayName = day
-        days.push dayObj
-    days
+
+    _.each days, (day, i) ->
+      if day.isSame(days[i + 1], 'day')
+        days.splice(i, 1)
+
+   navDays = _.map days, (day) ->
+     dayObj = {}
+     dayWord = day.format("ddd")
+     year = day.format("YYYY")
+     month = day.format("MM")
+     d = day.format("DD")
+     dayObj.href = "/#{year}/#{month}/#{d}"
+     dayObj.dayName = dayWord
+     dayObj
