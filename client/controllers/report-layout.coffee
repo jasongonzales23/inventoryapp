@@ -4,18 +4,18 @@ Template.reportNav.days = ->
     timestamps = _.pluck(orders, 'timestamp')
 
     days = _.map timestamps, (timestamp, i) ->
-      m = moment(timestamp)
+      m = moment(timestamp).dayOfYear()
 
-    _.each days, (day, i) ->
-      if day.isSame(days[i + 1], 'day')
-        days.splice(i, 1)
+    uniqDays = _.uniq days
 
-   navDays = _.map days, (day) ->
-     dayObj = {}
-     dayWord = day.format("ddd")
-     year = day.format("YYYY")
-     month = day.format("MM")
-     d = day.format("DD")
-     dayObj.href = "/#{year}/#{month}/#{d}"
-     dayObj.dayName = dayWord
-     dayObj
+    navDays = _.map uniqDays, (day) ->
+      dayObj = {}
+      m = moment().dayOfYear(day)
+
+      year = m.format("YYYY")
+      month = m.format("MM")
+      d = m.format("DD")
+
+      dayObj.dayName = m.format("ddd")
+      dayObj.href = "/#{year}/#{month}/#{d}"
+      dayObj
