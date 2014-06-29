@@ -4,8 +4,8 @@ Template.Daily.helpers({
     year = parseInt dailyParams.year
     month = parseInt(dailyParams.month) - 1
     day = parseInt dailyParams.day
-    start = Date.UTC(year, month, day + 1)
-    end = Date.UTC(year, month, day + 2)
+    start = new Date(year, month, day).valueOf()
+    end = new Date(year, month, day + 1).valueOf()
 
     beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
     locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
