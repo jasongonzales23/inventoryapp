@@ -42,12 +42,6 @@ Template.reportTotal.locations = ->
 
 Template.reportTotal.events
   "click .download": (evt, templ) ->
-    ###
-    arr = [
-      { "name": 'beer', "101": 1, "102": 2, "grand-total": 3}
-      { "name": 'wine', "101": 3, "102": 4, "grand-total": 7 }
-    ]
-    ###
     arr = ->
       beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
       locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
