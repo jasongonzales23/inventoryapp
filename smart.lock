@@ -12,7 +12,8 @@
       "fastclick": {},
       "roles": {},
       "accounts-admin-ui-bootstrap-3": {},
-      "event-hooks": {}
+      "event-hooks": {},
+      "json2csv": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -57,18 +58,23 @@
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
-        "tag": "v1.2.9",
-        "commit": "969b17fac5dfec66b6b12bfce4e37471d1a241d4"
+        "tag": "v1.2.10",
+        "commit": "7ccb35de0a6cb0c9a0c3666badd04757e39c09a6"
       },
       "accounts-admin-ui-bootstrap-3": {
         "git": "https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3.git",
-        "tag": "v0.2.5",
-        "commit": "381d4ca347f16d2ca2e1e6ca5f51c3f2e9c6c5cd"
+        "tag": "v0.2.6",
+        "commit": "fe74692303daf73d440f2729010bcf1557af62ca"
       },
       "event-hooks": {
         "git": "https://github.com/BenjaminRH/meteor-event-hooks.git",
         "tag": "v1.4.3",
         "commit": "ba4f3d7887748458618d29615492906f0c88d31c"
+      },
+      "json2csv": {
+        "git": "https://github.com/axwaxw/json2csv",
+        "tag": "v0.1.0",
+        "commit": "75d11564d845bab9c42c03c26529c4c3c2286849"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
