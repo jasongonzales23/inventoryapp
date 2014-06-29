@@ -1,2 +1,2 @@
 Template.tokenLocations.locations = ->
-  Locations.find({}, {sort: {number: 1}})
+  Locations.find({'vendor': false}, {sort: {number: 1}})
