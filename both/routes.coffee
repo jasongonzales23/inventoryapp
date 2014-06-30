@@ -2,7 +2,11 @@ Router.configure(
   layoutTemplate: 'homeLayout'
   templateNameConverter: 'upperCamelCase'
   routeControllerNameConverter: 'upperCamelCase'
+  loadingTemplate: 'loading'
+  #notFoundTemplate: 'notFound'
 )
+
+Router.onBeforeAction('loading')
 
 Router.map(->
   @.route 'home',
