@@ -7,6 +7,8 @@ if Meteor.isServer
       Roles.addUsersToRoles "XByGMdGpCcZhxfask", ["admin"]
     if Meteor.users.findOne "8u54qnNyk9GotXGEj"
       Roles.addUsersToRoles "8u54qnNyk9GotXGEj", ["admin"]
+    if Meteor.users.findOne "wpx9kEjXDX98J7khE"
+      Roles.addUsersToRoles "wpx9kEjXDX98J7khE", ["admin"]
 
 if Meteor.isClient
   Template.adminTemplate.helpers
