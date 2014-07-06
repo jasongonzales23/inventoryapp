@@ -18,7 +18,7 @@ template(name='reportNav')
       li(class="{{ isActiveRoute 'reportTotal' }}")
         a(href="{{pathFor 'reportTotal'}}") Festival Total
       each days
-        li(class="{{ isActiveRoute 'dailyReport' }}")
+        li(class="{{ isActiveRoute 'dailyReport' }} daily-report")
           a(href="/report{{href}}") {{dayName}}
     ul.nav.navbar-nav.navbar-right
       +loginButtons

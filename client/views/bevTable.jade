@@ -1,0 +1,9 @@
+template(name='bevTable')
+  each bevTable
+    tr
+      td {{name}}
+      {{> locationTotals}}
+
+template(name='locationTotals')
+  each locationTotals
+    td {{total}}

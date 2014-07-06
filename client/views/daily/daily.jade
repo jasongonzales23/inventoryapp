@@ -11,11 +11,8 @@ template(name='Daily')
           th {{number}}
         th Totals
     tbody
-      if bevTable
-        each bevTable
-          tr
-            td {{name}}
-            each locationTotals
-              td {{total}}
-      else
-        h1 Rendering...
+      +bevTable
+      +busy
+
+template(name='busy')
+  .blocker(class="{{busyClass}}")

@@ -1,5 +1,17 @@
-Template.Daily.helpers({
+Session.setDefault 'busy', true
+
+Template.busy.helpers(
+  busyClass: ->
+    busy = Session.get('busy')
+    if busy
+      'busy'
+    else
+      'hidden'
+)
+
+Template.bevTable.helpers(
   bevTable: ->
+    Session.set('busy', true)
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
     month = parseInt(dailyParams.month) - 1
@@ -41,17 +53,23 @@ Template.Daily.helpers({
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 
+    Session.set 'busy', false
     bevTable
+)
 
+Template.Daily.helpers(
   locations: ->
     Locations.find({vendor: false}, {sort: {number: 1}})
 
   dateParams: ->
     dailyParams = Session.get('dailyParams')
     "#{dailyParams.month} #{dailyParams.day}, #{dailyParams.year}"
-})
+)
 
-Template.Daily.events
+Template.reportNav.events
+  "click .daily-report": (evt, templ) ->
+    #Session.set('busy', true)
+
   "click .download": (evt, templ) ->
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
