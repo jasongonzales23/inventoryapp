@@ -11,8 +11,11 @@ template(name='Daily')
           th {{number}}
         th Totals
     tbody
-      each bevTable
-        tr
-          td {{name}}
-          each locationTotals
-            td {{total}}
+      if bevTable
+        each bevTable
+          tr
+            td {{name}}
+            each locationTotals
+              td {{total}}
+      else
+        h1 Rendering...
