@@ -1,5 +1,14 @@
+removeUpdating = ->
+  cells = $('.cell')
+  cells.removeClass('updating')
+
+addUpdating = ->
+  cells = $('.cell')
+  cells.addClass('updating')
+
 Template.bevTable.helpers(
   bevTable: ->
+    addUpdating()
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
     month = parseInt(dailyParams.month) - 1
@@ -41,6 +50,7 @@ Template.bevTable.helpers(
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 
+    _.delay removeUpdating, 300
     bevTable
 )
 
@@ -54,9 +64,6 @@ Template.Daily.helpers(
 )
 
 Template.reportNav.events
-  "click .daily-report": (evt, templ) ->
-    #Session.set('busy', true)
-
   "click .download": (evt, templ) ->
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
