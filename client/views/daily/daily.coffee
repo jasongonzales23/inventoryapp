@@ -6,8 +6,6 @@ Template.bevTable.helpers(
     day = parseInt dailyParams.day
     start = new Date(year, month, day).valueOf()
     end = new Date(year, month, day + 1).valueOf()
-    debugger
-    $('.blocker').removeClass('hidden')
 
     beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
     locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
@@ -43,7 +41,6 @@ Template.bevTable.helpers(
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 
-    $('.blocker').addClass('hidden')
     bevTable
 )
 
