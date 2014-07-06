@@ -1,4 +1,8 @@
+template(name='busy')
+  .blocker
+
 template(name='report')
+  +busy
   header
     +reportNav
   .container
