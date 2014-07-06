@@ -41,6 +41,7 @@ Template.bevTable.helpers(
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 
+    $('.blocker').addClass('hidden')
     bevTable
 )
 
