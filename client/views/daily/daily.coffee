@@ -50,7 +50,7 @@ Template.bevTable.helpers(
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 
-    _.delay removeUpdating, 300
+    _.delay removeUpdating, 500
     bevTable
 )
 

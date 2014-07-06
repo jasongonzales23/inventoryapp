@@ -100,6 +100,9 @@ h2 {
   opacity: .3;
 }
 
+.cell {
+  transition: all .5s;
+}
 .updating {
-  background: yellow !important;
+  background: #ff5500 !important;
 }
