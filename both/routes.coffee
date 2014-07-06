@@ -244,6 +244,8 @@ Router.map(->
 
   @.route 'daily',
     path: '/report/:year/:month/:day'
+    waitOn: ->
+      Meteor.subscribe 'orders'
     template: 'Daily'
     layoutTemplate: 'report'
     data: ->
@@ -255,6 +257,9 @@ Router.map(->
 
   @.route 'reportTotal',
     path: '/report/total'
+    waitOn: ->
+      Meteor.subscribe 'orders'
     template: 'reportTotal'
     layoutTemplate: 'report'
+
 )
