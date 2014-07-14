@@ -1,6 +1,7 @@
 template(name='locationLayout')
   header
-    +backToMap
+    if backMenu.available
+      +backToMap
     +locationNav
   .container
     .row

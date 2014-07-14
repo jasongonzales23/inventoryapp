@@ -1,6 +1,7 @@
 template(name='tokenLocationLayout')
   header
-    +backToMap
+    if backMenu.available
+      +backToMap
     +tokenLocationNav
   .container
     .row

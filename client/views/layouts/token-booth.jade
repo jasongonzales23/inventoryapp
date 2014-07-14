@@ -1,7 +1,8 @@
 template(name='tokenBoothLayout')
   header
+    if backMenu.available
+      +backToMap
     +tokenBoothNav
-    +backToMap
   .container
     .row
       +networkStatus

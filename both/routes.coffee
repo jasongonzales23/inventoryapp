@@ -23,49 +23,65 @@ Router.map(->
     path: '/locations/:_id'
     template: 'location'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'updateInventory',
     path: '/locations/:_id/update-inventory'
     template: 'updateInventory'
     layoutTemplate: 'locationLayout'
-    data: -> Locations.findOne(this.params._id)
+    data: -> 
+      Session.set 'backMenu', false
+      Locations.findOne(this.params._id)
 
   @.route 'inventoryHistory',
     path: '/locations/:_id/inventory-history'
     template: 'inventoryHistory'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'startingInventory',
     path: '/locations/:_id/starting-inventory'
     template: 'startingInventory'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'recordOrder',
     path: '/locations/:_id/record-order'
     template: 'recordOrder'
     layoutTemplate: 'locationLayout'
-    data: -> Locations.findOne(this.params._id)
+    data: -> 
+      Session.set 'backMenu', false
+      Locations.findOne(this.params._id)
 
   @.route 'orderHistory',
     path: '/locations/:_id/order-history'
     template: 'orderHistory'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'addNote',
     path: '/locations/:_id/add-note'
     template: 'addNote'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', false
+      Locations.findOne(this.params._id)
 
   @.route 'showNotes',
     path: '/locations/:_id/notes'
     template: 'showNotes'
     layoutTemplate: 'locationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'tokenLocations',
     path: '/token-locations'
@@ -76,25 +92,33 @@ Router.map(->
     path: '/locations/:_id/tokens/collections/show'
     template: 'showTokenCollections'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()->
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'addTokenCollection',
     path: '/locations/:_id/tokens/collections/add'
     template: 'addTokenCollection'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()->
+      Session.set 'backMenu', false
+      Locations.findOne(this.params._id)
 
   @.route 'showTokenLocationNotes',
     path: '/locations/:_id/tokens/notes/show'
     template: 'showTokenLocationNotes'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()->
+      Session.set 'backMenu', true
+      Locations.findOne(this.params._id)
 
   @.route 'addTokenLocationNote',
     path: '/locations/:_id/tokens/notes/add'
     template: 'addTokenLocationNote'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> Locations.findOne(this.params._id)
+    data: ()->
+      Session.set 'backMenu', false
+      Locations.findOne(this.params._id)
 
   @.route 'boothLocations',
     path: '/booth-locations'
@@ -105,25 +129,33 @@ Router.map(->
     path: '/booth-locations/:_id/tokens/deliveries/show'
     template: 'showTokenDeliveries'
     layoutTemplate: 'tokenBoothLayout'
-    data: ()-> TokenBooths.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      TokenBooths.findOne(this.params._id)
 
   @.route 'addTokenDelivery',
     path: '/booth-locations/:_id/tokens/deliveries/add'
     template: 'addTokenDelivery'
     layoutTemplate: 'tokenBoothLayout'
-    data: ()-> TokenBooths.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', false
+      TokenBooths.findOne(this.params._id)
 
   @.route 'showBoothNotes',
     path: '/booth-locations/:_id/tokens/notes/show'
     template: 'showBoothNotes'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> TokenBooths.findOne(this.params._id)
+    data: ()-> 
+      Session.set 'backMenu', true
+      TokenBooths.findOne(this.params._id)
 
   @.route 'addBoothNote',
     path: '/booth-locations/:_id/tokens/notes/add'
     template: 'addBoothNote'
     layoutTemplate: 'tokenLocationLayout'
-    data: ()-> TokenBooths.findOne(this.params._id)
+    data: ()->
+      Session.set 'backMenu', false
+      TokenBooths.findOne(this.params._id)
 
   @.route 'dashboard',
     action: ->

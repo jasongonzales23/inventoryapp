@@ -6,3 +6,11 @@ UI.registerHelper "backToMap", ->
   else
     backToMap =
       class: "hidden"
+
+UI.registerHelper "backMenu", ->
+  if Session.get 'backMenu'
+    backMenu =
+      available: true
+  else
+    backMenu =
+      available: false
