@@ -79,8 +79,9 @@ Template.tokenCollectionReport.reportTable = ->
         reportObj.locationTotals[i].total = 0
 
     allTotals = _.pluck reportObj.locationTotals, "total"
-    grandTotal = _.reduce allTotals, (memo, num) -> memo + num
-    reportObj.locationTotals.push {total: grandTotal}
+    if allTotals.length > 0
+      grandTotal = _.reduce allTotals, (memo, num) -> memo + num
+      reportObj.locationTotals.push {total: grandTotal}
     reportTable.push reportObj
 
   reportTable

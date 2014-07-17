@@ -299,4 +299,14 @@ Router.map(->
     template: 'tokenCollectionReport'
     layoutTemplate: 'tokenReport'
 
+  @.route 'tokenDeliveryReport',
+    path: '/report/token/delivery'
+    template: 'tokenDeliveryReport'
+    layoutTemplate: 'tokenReport'
+
+  @.route 'tokenReconciliationReport',
+    path: '/report/token/reconcilation'
+    template: 'tokenReconciliationReport'
+    layoutTemplate: 'tokenReport'
+
 )

@@ -18,9 +18,9 @@ template(name='tokenReportNav')
       li(class="{{ isActiveRoute 'tokenCollectionReport' }}")
         a(href="{{pathFor 'tokenCollectionReport'}}") Token Collection Report
       li(class="{{ isActiveRoute 'tokenDeliveryReport' }}")
-        a(href="{{pathFor ''}}") Token Delivery Report
+        a(href="{{pathFor 'tokenDeliveryReport'}}") Token Delivery Report
       li(class="{{ isActiveRoute 'tokenReconciliationReport' }}")
-        a(href="{{pathFor ''}}") Reconciliation Report
+        a(href="{{pathFor 'tokenReconciliationReport'}}") Reconciliation Report
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 
