@@ -294,4 +294,9 @@ Router.map(->
     template: 'reportTotal'
     layoutTemplate: 'report'
 
+  @.route 'tokenCollectionReport',
+    path: '/report/token/collection'
+    template: 'tokenCollectionReport'
+    layoutTemplate: 'tokenReport'
+
 )

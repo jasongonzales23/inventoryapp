@@ -1,0 +1,18 @@
+template(name='tokenCollectionReport')
+  h1 Hello
+  .download
+    a(href='#') Download csv
+
+  table.table.table-striped
+    thead
+      tr
+        th Beverage Station
+        each collectionDates
+          th {{date}}
+        th Total
+    tbody
+      each reportTable
+        tr
+          td {{name}}
+          each locationTotals
+            td {{total}}

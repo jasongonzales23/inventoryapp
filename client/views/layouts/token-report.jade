@@ -1,0 +1,26 @@
+template(name='tokenReport')
+  header
+    +tokenReportNav
+  .container
+    .row
+      +networkStatus
+      +yield
+
+template(name='tokenReportNav')
+  button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+    span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+
+  nav.collapse.navbar-collapse.navbar.navbar-default
+    ul.nav.navbar-nav
+      li(class="{{ isActiveRoute 'tokenCollectionReport' }}")
+        a(href="{{pathFor 'tokenCollectionReport'}}") Token Collection Report
+      li(class="{{ isActiveRoute 'tokenDeliveryReport' }}")
+        a(href="{{pathFor ''}}") Token Delivery Report
+      li(class="{{ isActiveRoute 'tokenReconciliationReport' }}")
+        a(href="{{pathFor ''}}") Reconciliation Report
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons
+
