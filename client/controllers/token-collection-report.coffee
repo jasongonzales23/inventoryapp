@@ -34,25 +34,6 @@ getCollectionDates = (collections) ->
     years: uniqYears
   }
 
-###
-  navDays = _.map uniqDays, (day) ->
-    dayObj = {}
-    m = moment().dayOfYear(day)
-
-    year = m.format("YYYY")
-    month = m.format("MM")
-    d = m.format("DD")
-
-    dayObj.dayName = m.format("ddd")
-    dayObj.href = "/#{year}/#{month}/#{d}"
-    dayObj
-
-  _.each locations, (location) ->
-    reportObj = {}
-    reportObj.name = location.name
-    reportObj.locationTotals = []
-  ###
-
 Template.tokenCollectionReport.collectionDates = ->
   collections = TokenCollections.find({}, {sort: {timestamp: 1}}).fetch()
   collectionTimes = getCollectionDates(collections)
@@ -83,11 +64,23 @@ Template.tokenCollectionReport.reportTable = ->
     reportObj = {}
     reportObj.name = location.name
 
+    reportObj.locationTotals = []
     _.each formattedTimes, (time, i) ->
       start = time
-      end = formattedTimes[i + 1]
+      end = moment(start).add('days', 1).toDate().valueOf()
       locationCollections = TokenCollections.find({'location': location._id, 'timestamp':{'$gte': start, '$lt': end}}).fetch()
+      tokensCollectedArr = _.pluck locationCollections, "tokens"
 
+      reportObj.locationTotals[i] = {}
+
+      if tokensCollectedArr.length > 0
+        reportObj.locationTotals[i].total = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+      else
+        reportObj.locationTotals[i].total = 0
+
+    allTotals = _.pluck reportObj.locationTotals, "total"
+    grandTotal = _.reduce allTotals, (memo, num) -> memo + num
+    reportObj.locationTotals.push {total: grandTotal}
     reportTable.push reportObj
 
   reportTable
