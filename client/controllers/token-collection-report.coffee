@@ -1,20 +1,3 @@
-thing =
-
-  [
-    {
-      name: 'foo'
-      locationTotals: [ {total: 22}, {total: 23}, {total: 24} ]
-    }
-    {
-      name: 'foo'
-      locationTotals: [ {total: 22}, {total: 23}, {total: 24} ]
-    }
-    {
-      name: 'foo'
-      locationTotals: [ {total: 22}, {total: 23}, {total: 24} ]
-    }
-  ]
-
 getCollectionDates = (collections) ->
   #what days are we working with here?
   timestamps = _.pluck(collections, 'timestamp')
