@@ -19,7 +19,7 @@ getFestivalTotal = ->
               totalsArr.push b.units
 
           bevObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
-            memo + num
+            parseInt(memo) + parseInt(num)
       else
         bevObj.locationTotals[i].total = 0
       totalsArr = []

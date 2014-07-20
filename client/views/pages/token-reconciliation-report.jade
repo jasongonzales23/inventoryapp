@@ -1,0 +1,21 @@
+template(name='tokenReconciliationReport')
+  h1 Token Collection Report
+  .download
+    a(href='#') Download csv
+
+  table.table.table-striped
+    thead
+      tr
+        th Beverage Station
+        each collectionDates
+          th {{date}}
+        th Token Total
+        th Inventory Delivered
+        th Token Delta
+
+    tbody
+      each reportTable
+        tr
+          td {{name}}
+          each locationTotals
+            td {{total}}

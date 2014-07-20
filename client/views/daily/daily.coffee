@@ -36,7 +36,7 @@ Template.bevTable.helpers(
                 totalsArr.push b.units
 
             bevObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
-              memo + num
+              parseInt(memo) + parseInt(num)
         else
           bevObj.locationTotals[i].total = 0
         totalsArr = []
@@ -46,7 +46,7 @@ Template.bevTable.helpers(
         grandTotalObj.title = "grand total"
         tArr = _.pluck bevObj.locationTotals, "total"
         grandTotalObj.total = _.reduce tArr, (memo, num) ->
-          memo + num
+          parseInt(memo) + parseInt(num)
         bevObj.locationTotals.push grandTotalObj
         bevTable.push bevObj
 

@@ -29,7 +29,6 @@ Template.tokenDeliveryReport.deliveryDates = ->
 
   deliveryDays
 
-
 Template.tokenDeliveryReport.reportTable = ->
   reportTable = []
   locations = TokenBooths.find({}, {sort: {number: 1}}).fetch()
