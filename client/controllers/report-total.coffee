@@ -29,7 +29,7 @@ getFestivalTotal = ->
       grandTotalObj.title = "grand total"
       tArr = _.pluck bevObj.locationTotals, "total"
       grandTotalObj.total = _.reduce tArr, (memo, num) ->
-        memo + num
+        parseInt(memo) + parseInt(num)
       bevObj.locationTotals.push grandTotalObj
       bevTable.push bevObj
   bevTable
