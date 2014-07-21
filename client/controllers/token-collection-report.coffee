@@ -68,3 +68,57 @@ Template.tokenCollectionReport.reportTable = ->
     reportTable.push reportObj
 
   reportTable
+
+[
+  {
+    locationName: 'Ladies Garden'
+    "Friday": 110
+    Saturday: 447
+    Total: 557
+  }
+]
+
+Template.tokenCollectionReport.events
+  "click .download": (evt, templ) ->
+    arr = ->
+      reportTable = []
+      locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
+      collections = TokenCollections.find({}, {sort: {timestamp: 1}}).fetch()
+      collectionTimes = getCollectionDates collections
+      formattedTimes = _.map collectionTimes.days, (time) ->
+        m = moment().set("dayOfYear", time)
+        year = m.year()
+        month = m.month()
+        date = m.date()
+        day = new Date(year, month, date).valueOf()
+
+      _.each locations, (location) ->
+        #get the name of each location in there
+        reportObj = {}
+        reportObj.Beverage_Station = location.name
+
+        rowTotalArr = []
+        _.each formattedTimes, (time, i) ->
+          start = time
+          end = moment(start).add('days', 1).toDate().valueOf()
+          locationCollections = TokenCollections.find({'location': location._id, 'timestamp':{'$gte': start, '$lt': end}}).fetch()
+          tokensCollectedArr = _.pluck locationCollections, "tokens"
+
+          timeName = moment(start).format('dddd')
+
+          if tokensCollectedArr.length > 0
+            reportObj[timeName] = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+          else
+            reportObj[timeName] = 0
+          rowTotalArr.push reportObj[timeName]
+
+        allTotals = _.reduce rowTotalArr, (memo, num) -> memo + num
+        reportObj.Total = allTotals
+        reportTable.push reportObj
+
+      reportTable
+
+    console.log arr()
+    csv = json2csv(arr(), true, true )
+    evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
+    evt.target.download = "token_collection_report.csv"

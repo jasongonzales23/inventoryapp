@@ -63,7 +63,7 @@ Template.Daily.helpers(
     "#{dailyParams.month} #{dailyParams.day}, #{dailyParams.year}"
 )
 
-Template.reportNav.events
+Template.Daily.events
   "click .download": (evt, templ) ->
     dailyParams = Session.get('dailyParams')
     year = parseInt dailyParams.year
@@ -90,7 +90,7 @@ Template.reportNav.events
                   totalsArr.push b.units
 
               bevObj[location.number] = _.reduce totalsArr, (memo, num) ->
-                memo + num
+                parseInt(memo) + parseInt(num)
           else
             bevObj[location.number] = 0
           totalsArr = []
@@ -98,10 +98,11 @@ Template.reportNav.events
         noName = _.omit bevObj, "name"
         preTotal = _.values noName
         bevObj.total = _.reduce preTotal, (memo, num) ->
-          memo + num
+          parseInt(memo) + parseInt(num)
         bevTable.push bevObj
       bevTable
 
+    console.log arr()
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
     evt.target.download = "daily_total.csv"

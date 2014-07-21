@@ -60,7 +60,7 @@ Template.reportTotal.events
                   totalsArr.push b.units
 
               bevObj[location.number] = _.reduce totalsArr, (memo, num) ->
-                memo + num
+                parseInt(memo) + parseInt(num)
           else
             bevObj[location.number] = 0
           totalsArr = []
@@ -68,7 +68,7 @@ Template.reportTotal.events
         noName = _.omit bevObj, "name"
         preTotal = _.values noName
         bevObj.total = _.reduce preTotal, (memo, num) ->
-          memo + num
+          parseInt(memo) + parseInt(num)
         bevTable.push bevObj
       bevTable
 
