@@ -122,29 +122,27 @@ Template.tokenReconciliationReport.events
         _.map beverages, (bev) ->
           bevMap[bev.name] = bev.value
 
-      _.each locations, (location) -> 
-        #get the name of each location in there
+      _.each locations, (location) ->
         reportObj = {}
-        reportObj.name = location.name
+        reportObj.Beverage_Station = location.name
 
-        reportObj.locationTotals = []
+        rowTotalArr = []
         _.each formattedTimes, (time, i) ->
           start = time
           end = moment(start).add('days', 1).toDate().valueOf()
           locationCollections = TokenCollections.find({'location': location._id, 'timestamp':{'$gte': start, '$lt': end}}).fetch()
           tokensCollectedArr = _.pluck locationCollections, "tokens"
 
-          reportObj.locationTotals[i] = {}
+          timeName = moment(start).format('dddd')
 
           if tokensCollectedArr.length > 0
-            reportObj.locationTotals[i].total = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+            reportObj[timeName] = _.reduce tokensCollectedArr, (memo, num) -> memo + num
           else
-            reportObj.locationTotals[i].total = 0
+            reportObj[timeName] = 0
+          rowTotalArr.push reportObj[timeName]
 
-        allTotals = _.pluck reportObj.locationTotals, "total"
-        if allTotals.length > 0
-          rowTotal = _.reduce allTotals, (memo, num) -> memo + num
-          reportObj.locationTotals.push {total: rowTotal}
+        allTotals = _.reduce rowTotalArr, (memo, num) -> memo + num
+        reportObj.Token_Total = allTotals
 
         #get Inventory Delivered value
         orders = Orders.find({ 'location': location._id }).fetch()
@@ -163,11 +161,11 @@ Template.tokenReconciliationReport.events
           invTotal = _.reduce preTotal, (memo, num) ->
             memo + num
           invTotal = invTotal * TOKEN_VAL
-          reportObj.locationTotals.push {total: invTotal}
+          reportObj.Inventory_Delivered = invTotal
 
           #get Token Delta
-          tokenDelta = Math.round10 100 * ((invTotal - (rowTotal * TOKEN_VAL)) / invTotal), -2
-          reportObj.locationTotals.push {total: tokenDelta}
+          tokenDelta = Math.round10 100 * ((invTotal - (allTotals * TOKEN_VAL)) / invTotal), -2
+          reportObj.Token_Delta = tokenDelta
 
         reportTable.push reportObj
       reportTable
@@ -175,4 +173,3 @@ Template.tokenReconciliationReport.events
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
     evt.target.download = "reconciliation_report.csv"
-
