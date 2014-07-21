@@ -95,7 +95,9 @@ Template.tokenReconciliationReport.reportTable = ->
       reportObj.locationTotals.push {total: invTotal}
 
       #get Token Delta
-      tokenDelta = Math.round10 100 * ((invTotal - (rowTotal * TOKEN_VAL)) / invTotal), -2
+      tokensCollected = rowTotal * TOKEN_VAL
+      preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
+      tokenDelta = Math.round10((100 * preDelta), -2)
       reportObj.locationTotals.push {total: tokenDelta}
 
     reportTable.push reportObj
@@ -164,7 +166,9 @@ Template.tokenReconciliationReport.events
           reportObj.Inventory_Delivered = invTotal
 
           #get Token Delta
-          tokenDelta = Math.round10 100 * ((invTotal - (allTotals * TOKEN_VAL)) / invTotal), -2
+          tokensCollected = allTotals * TOKEN_VAL
+          preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
+          tokenDelta = Math.round10 100 * preDelta, -2
           reportObj.Token_Delta = tokenDelta
 
         reportTable.push reportObj
