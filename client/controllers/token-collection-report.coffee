@@ -118,7 +118,6 @@ Template.tokenCollectionReport.events
 
       reportTable
 
-    console.log arr()
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
     evt.target.download = "token_collection_report.csv"
