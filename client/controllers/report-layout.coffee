@@ -19,3 +19,7 @@ Template.reportNav.days = ->
       dayObj.dayName = m.format("ddd")
       dayObj.href = "/#{year}/#{month}/#{d}"
       dayObj
+
+Template.reportNav.activeClass = ->
+  Session.get 'locationPathname'
+

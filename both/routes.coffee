@@ -281,6 +281,7 @@ Router.map(->
     template: 'Daily'
     layoutTemplate: 'report'
     data: ->
+      Session.set 'locationPathname', window.location.pathname
       dailyParams = {}
       dailyParams.year = this.params.year
       dailyParams.month = this.params.month
