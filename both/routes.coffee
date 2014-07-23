@@ -287,6 +287,8 @@ Router.map(->
       dailyParams.month = this.params.month
       dailyParams.day = this.params.day
       Session.set 'dailyParams', dailyParams
+    onStop: ->
+      Session.set 'locationPathname', ''
 
   @.route 'reportTotal',
     path: '/report/total'
