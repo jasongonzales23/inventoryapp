@@ -17,7 +17,7 @@ Template.modal.events
       tokens = parseInt $('#tokens').val()
 
       TokenCollections.insert
-        timestamp: timestamp
+        timestamp: Meteor.myFunctions.assignFiscalDay timestamp
         location: location._id
         locationName: location.name
         locationNumber: location.number
