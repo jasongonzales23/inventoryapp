@@ -19,4 +19,4 @@ Template.addNote.events =
       username: username
       note: note
 
-    Router.go('/locations')
+    Router.go("/locations/#{location._id}")
