@@ -11,10 +11,7 @@ Template.recordOrder.events
     if btnData.incr == 'up'
       newVal = if oldValue == '' then 1 else parseFloat(oldValue) + 1
     else
-      if oldValue > 0
-        newVal = parseFloat(oldValue) - 1
-      else
-        newVal = 0
+      newVal = parseFloat(oldValue) - 1
     $input.val(newVal)
 
   "click #record-order": (evt, templ) ->
