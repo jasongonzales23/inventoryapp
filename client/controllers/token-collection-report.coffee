@@ -68,7 +68,6 @@ Template.tokenCollectionReport.reportTable = ->
       reportObj.locationTotals.push {total: grandTotal}
     reportTable.push reportObj
 
-
   grandTotalObj = {}
   grandTotalObj.name = "Grand Total"
   grandTotalObj.locationTotals = []
@@ -91,17 +90,6 @@ Template.tokenCollectionReport.reportTable = ->
 
   reportTable.push grandTotalObj
   reportTable
-
-[
-  {
-    name: 'Grand Total'
-    locationTotals: [
-      {
-        total: 165
-      }
-    ]
-  }
-]
 
 Template.tokenCollectionReport.events
   "click .download": (evt, templ) ->
@@ -141,6 +129,26 @@ Template.tokenCollectionReport.events
         reportObj.Total = allTotals
         reportTable.push reportObj
 
+      grandTotalObj = {}
+      grandTotalObj.Beverage_Station = "Grand Total"
+      rowTotalArr = []
+      _.each formattedTimes, (time, i) ->
+        start = time
+        end = moment(start).add('days', 1).toDate().valueOf()
+        locationCollections = TokenCollections.find({'timestamp':{'$gte': start, '$lt': end}}).fetch()
+        tokensCollectedArr = _.pluck locationCollections, "tokens"
+        timeName = moment(start).format('dddd')
+
+        if tokensCollectedArr.length > 0
+          grandTotalObj[timeName] = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+        else
+          grandTotalObj[timeName] = 0
+        rowTotalArr.push grandTotalObj[timeName]
+
+      allTotals = _.reduce rowTotalArr, (memo, num) -> memo + num
+      grandTotalObj.Total = allTotals
+
+      reportTable.push grandTotalObj
       reportTable
 
     csv = json2csv(arr(), true, true )
