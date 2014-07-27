@@ -102,6 +102,53 @@ Template.tokenReconciliationReport.reportTable = ->
       reportObj.locationTotals.push {total: tokenDelta}
 
     reportTable.push reportObj
+
+  grandTotalObj = {}
+  grandTotalObj.name = "Grand Total"
+  grandTotalObj.locationTotals = []
+  _.each formattedTimes, (time, i) ->
+    start = time
+    end = moment(start).add('days', 1).toDate().valueOf()
+    locationCollections = TokenCollections.find({'timestamp':{'$gte': start, '$lt': end}}).fetch()
+    tokensCollectedArr = _.pluck locationCollections, "tokens"
+    grandTotalObj.locationTotals[i] = {}
+
+    if tokensCollectedArr.length > 0
+      grandTotalObj.locationTotals[i].total = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+    else
+      grandTotalObj.locationTotals[i].total = 0
+
+  allTotals = _.pluck grandTotalObj.locationTotals, "total"
+  if allTotals.length > 0
+    grandTotal = _.reduce allTotals, (memo, num) -> memo + num
+    grandTotalObj.locationTotals.push {total: grandTotal}
+
+  #get Inventory Delivered value
+  orders = Orders.find().fetch()
+  if orders.length > 0
+    bigArr = []
+    _.each orders, (order) ->
+      bevArr = order.beverages
+      _.each bevArr, (bev) ->
+        bevObj = {}
+        bevObj.name = bev.name
+        bevObj.units = parseInt bev.units
+        bigArr.push bevObj
+
+    preTotal = _.map bigArr, (orderBev) ->
+      orderBev.units * bevMap[orderBev.name]
+    invTotal = _.reduce preTotal, (memo, num) ->
+      memo + num
+    invTotal = invTotal * TOKEN_VAL
+    grandTotalObj.locationTotals.push {total: invTotal}
+
+    #get Token Delta
+    tokensCollected = grandTotal * TOKEN_VAL
+    preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
+    tokenDelta = Math.round10((100 * preDelta), -2)
+    grandTotalObj.locationTotals.push {total: tokenDelta}
+
+  reportTable.push grandTotalObj
   reportTable
 
 Template.tokenReconciliationReport.events
@@ -173,6 +220,53 @@ Template.tokenReconciliationReport.events
           reportObj.Token_Delta = tokenDelta
 
         reportTable.push reportObj
+
+      grandTotalObj = {}
+      grandTotalObj.Beverage_Station = "Grand Total"
+      rowTotalArr = []
+      _.each formattedTimes, (time, i) ->
+        start = time
+        end = moment(start).add('days', 1).toDate().valueOf()
+        locationCollections = TokenCollections.find({'timestamp':{'$gte': start, '$lt': end}}).fetch()
+        tokensCollectedArr = _.pluck locationCollections, "tokens"
+        timeName = moment(start).format('dddd')
+
+        if tokensCollectedArr.length > 0
+          grandTotalObj[timeName] = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+        else
+          grandTotalObj[timeName] = 0
+        rowTotalArr.push grandTotalObj[timeName]
+
+      allTotals = _.reduce rowTotalArr, (memo, num) -> memo + num
+      grandTotalObj.Token_Total = allTotals
+
+      #get Inventory Delivered value
+      orders = Orders.find().fetch()
+      if orders.length > 0
+        bigArr = []
+        _.each orders, (order) ->
+          bevArr = order.beverages
+          _.each bevArr, (bev) ->
+            bevObj = {}
+            bevObj.name = bev.name
+            bevObj.units = parseInt bev.units
+            bigArr.push bevObj
+
+        preTotal = _.map bigArr, (orderBev) ->
+          orderBev.units * bevMap[orderBev.name]
+        invTotal = _.reduce preTotal, (memo, num) ->
+          memo + num
+        invTotal = invTotal * TOKEN_VAL
+        grandTotalObj.Inventory_Delivered = invTotal
+
+        #get Token Delta
+        tokensCollected = allTotals * TOKEN_VAL
+        preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
+        tokenDelta = Math.round10((100 * preDelta), -2)
+        grandTotalObj.Token_Delta = tokenDelta
+
+      reportTable.push grandTotalObj
+
       reportTable
 
     csv = json2csv(arr(), true, true )

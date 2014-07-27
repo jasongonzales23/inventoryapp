@@ -29,7 +29,6 @@ Template.tokenCollectionReport.collectionDates = ->
 
   collectionDays
 
-
 Template.tokenCollectionReport.reportTable = ->
   reportTable = []
   locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
