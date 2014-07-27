@@ -93,13 +93,13 @@ Template.tokenReconciliationReport.reportTable = ->
       invTotal = _.reduce preTotal, (memo, num) ->
         memo + num
       invTotal = invTotal * TOKEN_VAL
-      reportObj.locationTotals.push {total: invTotal}
+      reportObj.locationTotals.push {total: "$#{invTotal}"}
 
       #get Token Delta
       tokensCollected = rowTotal * TOKEN_VAL
       preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
       tokenDelta = Math.round10((100 * preDelta), -2)
-      reportObj.locationTotals.push {total: tokenDelta}
+      reportObj.locationTotals.push {total: "#{tokenDelta}%"}
 
     reportTable.push reportObj
 
@@ -140,13 +140,13 @@ Template.tokenReconciliationReport.reportTable = ->
     invTotal = _.reduce preTotal, (memo, num) ->
       memo + num
     invTotal = invTotal * TOKEN_VAL
-    grandTotalObj.locationTotals.push {total: invTotal}
+    grandTotalObj.locationTotals.push {total: "$#{invTotal}"}
 
     #get Token Delta
     tokensCollected = grandTotal * TOKEN_VAL
     preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
     tokenDelta = Math.round10((100 * preDelta), -2)
-    grandTotalObj.locationTotals.push {total: tokenDelta}
+    grandTotalObj.locationTotals.push {total: "#{tokenDelta}%"}
 
   reportTable.push grandTotalObj
   reportTable
@@ -211,13 +211,13 @@ Template.tokenReconciliationReport.events
           invTotal = _.reduce preTotal, (memo, num) ->
             memo + num
           invTotal = invTotal * TOKEN_VAL
-          reportObj.Inventory_Delivered = invTotal
+          reportObj.Inventory_Delivered = "$#{invTotal}"
 
           #get Token Delta
           tokensCollected = allTotals * TOKEN_VAL
           preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
           tokenDelta = Math.round10 100 * preDelta, -2
-          reportObj.Token_Delta = tokenDelta
+          reportObj.Token_Delta = "#{tokenDelta}%"
 
         reportTable.push reportObj
 
@@ -257,13 +257,13 @@ Template.tokenReconciliationReport.events
         invTotal = _.reduce preTotal, (memo, num) ->
           memo + num
         invTotal = invTotal * TOKEN_VAL
-        grandTotalObj.Inventory_Delivered = invTotal
+        grandTotalObj.Inventory_Delivered = "$#{invTotal}"
 
         #get Token Delta
         tokensCollected = allTotals * TOKEN_VAL
         preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
         tokenDelta = Math.round10((100 * preDelta), -2)
-        grandTotalObj.Token_Delta = tokenDelta
+        grandTotalObj.Token_Delta = "#{tokenDelta}%"
 
       reportTable.push grandTotalObj
 
