@@ -11,7 +11,8 @@ template(name='recordOrder')
               input.form-control(type='number', value='0')
             span.incr.btn.btn-default.col-sm-1(data-incr='up') &plus;
 
-    .col-sm-6
-      button.btn.btn-default.btn-success.btn-block#record-order(type='button') Record Order
-    .col-sm-6
-      a.btn.btn-default.btn-block(href="{{pathFor 'location'}}") Cancel
+    .buttons.clearfix
+      .col-sm-6
+        button.btn.btn-default.btn-success.btn-block#record-order(type='button') Record Order
+      .col-sm-6
+        a.btn.btn-default.btn-block(href="{{pathFor 'location'}}") Cancel
