@@ -42,12 +42,13 @@ Template.tokenCollectionReport.reportTable = ->
     date = m.date()
     day = new Date(year, month, date).valueOf()
 
+
   _.each locations, (location) -> 
     #get the name of each location in there
     reportObj = {}
     reportObj.name = location.name
-
     reportObj.locationTotals = []
+
     _.each formattedTimes, (time, i) ->
       start = time
       end = moment(start).add('days', 1).toDate().valueOf()
@@ -67,14 +68,38 @@ Template.tokenCollectionReport.reportTable = ->
       reportObj.locationTotals.push {total: grandTotal}
     reportTable.push reportObj
 
+
+  grandTotalObj = {}
+  grandTotalObj.name = "Grand Total"
+  grandTotalObj.locationTotals = []
+  _.each formattedTimes, (time, i) ->
+    start = time
+    end = moment(start).add('days', 1).toDate().valueOf()
+    locationCollections = TokenCollections.find({'timestamp':{'$gte': start, '$lt': end}}).fetch()
+    tokensCollectedArr = _.pluck locationCollections, "tokens"
+    grandTotalObj.locationTotals[i] = {}
+
+    if tokensCollectedArr.length > 0
+      grandTotalObj.locationTotals[i].total = _.reduce tokensCollectedArr, (memo, num) -> memo + num
+    else
+      grandTotalObj.locationTotals[i].total = 0
+
+  allTotals = _.pluck grandTotalObj.locationTotals, "total"
+  if allTotals.length > 0
+    grandTotal = _.reduce allTotals, (memo, num) -> memo + num
+    grandTotalObj.locationTotals.push {total: grandTotal}
+
+  reportTable.push grandTotalObj
   reportTable
 
 [
   {
-    locationName: 'Ladies Garden'
-    "Friday": 110
-    Saturday: 447
-    Total: 557
+    name: 'Grand Total'
+    locationTotals: [
+      {
+        total: 165
+      }
+    ]
   }
 ]
 
