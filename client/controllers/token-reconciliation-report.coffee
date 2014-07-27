@@ -55,6 +55,7 @@ Template.tokenReconciliationReport.reportTable = ->
     #get the name of each location in there
     reportObj = {}
     reportObj.name = location.name
+    rowTotal = 0
 
     reportObj.locationTotals = []
     _.each formattedTimes, (time, i) ->
