@@ -1,4 +1,4 @@
-TOKEN_VAL = 1
+TOKEN_VAL = 2
 
 getCollectionDates = (collections) ->
   #what days are we working with here?
