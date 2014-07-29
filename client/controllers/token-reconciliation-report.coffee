@@ -92,7 +92,7 @@ Template.tokenReconciliationReport.reportTable = ->
         orderBev.units * bevMap[orderBev.name]
       invTotal = _.reduce preTotal, (memo, num) ->
         memo + num
-      invTotal = invTotal * TOKEN_VAL
+      invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
       reportObj.locationTotals.push {total: "$#{invTotal}"}
 
       #get Token Delta
