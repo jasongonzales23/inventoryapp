@@ -139,7 +139,7 @@ Template.tokenReconciliationReport.reportTable = ->
       orderBev.units * bevMap[orderBev.name]
     invTotal = _.reduce preTotal, (memo, num) ->
       memo + num
-    invTotal = invTotal * TOKEN_VAL
+    invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
     grandTotalObj.locationTotals.push {total: "$#{invTotal}"}
 
     #get Token Delta
@@ -210,7 +210,7 @@ Template.tokenReconciliationReport.events
             orderBev.units * bevMap[orderBev.name]
           invTotal = _.reduce preTotal, (memo, num) ->
             memo + num
-          invTotal = invTotal * TOKEN_VAL
+          invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
           reportObj.Inventory_Delivered = "$#{invTotal}"
 
           #get Token Delta
@@ -256,7 +256,7 @@ Template.tokenReconciliationReport.events
           orderBev.units * bevMap[orderBev.name]
         invTotal = _.reduce preTotal, (memo, num) ->
           memo + num
-        invTotal = invTotal * TOKEN_VAL
+        invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
         grandTotalObj.Inventory_Delivered = "$#{invTotal}"
 
         #get Token Delta
