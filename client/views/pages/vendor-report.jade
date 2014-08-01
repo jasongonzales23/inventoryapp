@@ -1,0 +1,19 @@
+template(name='vendorReport')
+  h1 Vendor Totals
+  .download
+    a(href='#') Download csv
+
+  table.table.table-striped
+    thead
+      tr
+        th
+        each locations
+          th {{number}}
+        th Totals
+    tbody
+      each bevTable
+        tr
+          td {{name}}
+          each locationTotals
+            td {{total}}
+

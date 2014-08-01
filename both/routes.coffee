@@ -312,4 +312,9 @@ Router.map(->
     template: 'tokenReconciliationReport'
     layoutTemplate: 'tokenReport'
 
+  @.route 'vendorReport',
+    path: '/report/vendors'
+    template: 'vendorReport'
+    layoutTemplate: 'report'
+
 )

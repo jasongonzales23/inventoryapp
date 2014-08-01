@@ -20,6 +20,8 @@ template(name='reportNav')
       each days
         li(class="{{highlightNav href}} daily-report")
           a(href="/report{{href}}") {{dayName}}
+      li(class="{{ isActiveRoute 'vendorReport' }}")
+        a(href="{{pathFor 'vendorReport'}}") Vendors
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 
