@@ -54,7 +54,6 @@ getFestivalTotal = ->
     grandTotalObj.locationTotals.push sumObj
 
   bevTable.push grandTotalObj
-  console.log bevTable
   bevTable
 
 Template.vendorReport.bevTable = ->
