@@ -70,7 +70,7 @@ Template.vendorReport.events
       bevTable = []
       _.each beverages, (bev) ->
         bevObj = {}
-        bevObj.Beverage = bev.name
+        bevObj.name = bev.name
         totalsArr = []
         _.each locations, (location, i) =>
           orders = Orders.find({ 'beverages.name': bev.name , 'location': location._id }).fetch()
@@ -87,36 +87,31 @@ Template.vendorReport.events
             bevObj[location.number] = 0
           totalsArr = []
 
-        noName = _.omit bevObj, "Beverage"
+        noName = _.omit bevObj, "name"
         preTotal = _.values noName
         bevObj.Total = _.reduce preTotal, (memo, num) ->
           parseInt(memo) + parseInt(num)
         bevTable.push bevObj
 
       grandTotalObj = {}
-      grandTotalObj.Beverage = "Grand Total"
+      grandTotalObj.name = "Grand Total"
       rowTotalArr = []
-      _.each formattedTimes, (time, i) ->
-        start = time
-        end = moment(start).add('days', 1).toDate().valueOf()
-        locationCollections = TokenCollections.find({'timestamp':{'$gte': start, '$lt': end}}).fetch()
-        tokensCollectedArr = _.pluck locationCollections, "tokens"
-        timeName = moment(start).format('dddd')
+      totalsArr = []
+      _.each locations, (location, i) ->
+        orders = Orders.find({ 'location': location._id }).fetch()
+        _.each orders, (order) ->
+          bevArr = order.beverages
+          _.each bevArr, (b) ->
+            totalsArr.push b.units
+        grandTotalObj[location.number] = _.reduce totalsArr, (memo, num) ->
+          parseInt(memo) + parseInt(num)
+        rowTotalArr.push grandTotalObj[location.number]
+        totalsArr = []
 
-        if tokensCollectedArr.length > 0
-          grandTotalObj[timeName] = _.reduce tokensCollectedArr, (memo, num) -> memo + num
-        else
-          grandTotalObj[timeName] = 0
-        rowTotalArr.push grandTotalObj[timeName]
-
-      allTotals = _.reduce rowTotalArr, (memo, num) -> memo + num
-      grandTotalObj.Total = allTotals
-
+      grandTotalObj.Total = _.reduce rowTotalArr, (memo, num) -> parseInt(memo) + parseInt(num)
       bevTable.push grandTotalObj
       bevTable
 
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
-    evt.target.download = "festival_totals.csv"
-
-
+    evt.target.download = "vendor_totals.csv"
