@@ -38,17 +38,18 @@ getFestivalTotal = ->
   _.each locations, (location, i) ->
     grandTotalObj.locationTotals[i] = {}
     orders = Orders.find({ 'location': location._id }).fetch()
-    _.each orders, (order) ->
-      bevArr = order.beverages
-      _.each bevArr, (b) ->
-        if b.units
+    if orders.length > 0
+      _.each orders, (order) ->
+        bevArr = order.beverages
+        _.each bevArr, (b) ->
           totalsArr.push b.units
-        else
-          totalsArr.push 0
-      grandTotalObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
-        parseInt(memo) + parseInt(num)
+        grandTotalObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
+          parseInt(memo) + parseInt(num)
 
-    totalsArr = []
+      totalsArr = []
+    else
+      grandTotalObj.locationTotals[i].total = 0
+
   if grandTotalObj.locationTotals.length > 0
     sumObj = {}
     tArr = _.pluck grandTotalObj.locationTotals, "total"
