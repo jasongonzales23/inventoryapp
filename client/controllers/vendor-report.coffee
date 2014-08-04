@@ -102,7 +102,8 @@ Template.vendorReport.events
         _.each orders, (order) ->
           bevArr = order.beverages
           _.each bevArr, (b) ->
-            totalsArr.push b.units
+            if b.units
+              totalsArr.push b.units
         grandTotalObj[location.number] = _.reduce totalsArr, (memo, num) ->
           parseInt(memo) + parseInt(num)
         rowTotalArr.push grandTotalObj[location.number]
