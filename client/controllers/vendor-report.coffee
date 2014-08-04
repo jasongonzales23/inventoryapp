@@ -41,7 +41,10 @@ getFestivalTotal = ->
     _.each orders, (order) ->
       bevArr = order.beverages
       _.each bevArr, (b) ->
-        totalsArr.push b.units
+        if b.units
+          totalsArr.push b.units
+        else
+          totalsArr.push 0
       grandTotalObj.locationTotals[i].total = _.reduce totalsArr, (memo, num) ->
         parseInt(memo) + parseInt(num)
 
