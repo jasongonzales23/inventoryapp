@@ -103,15 +103,18 @@ Template.vendorReport.events
       totalsArr = []
       _.each locations, (location, i) ->
         orders = Orders.find({ 'location': location._id }).fetch()
-        _.each orders, (order) ->
-          bevArr = order.beverages
-          _.each bevArr, (b) ->
-            if b.units
-              totalsArr.push b.units
-        grandTotalObj[location.number] = _.reduce totalsArr, (memo, num) ->
-          parseInt(memo) + parseInt(num)
-        rowTotalArr.push grandTotalObj[location.number]
-        totalsArr = []
+        if orders.length > 0
+          _.each orders, (order) ->
+            bevArr = order.beverages
+            _.each bevArr, (b) ->
+              if b.units
+                totalsArr.push b.units
+          grandTotalObj[location.number] = _.reduce totalsArr, (memo, num) ->
+            parseInt(memo) + parseInt(num)
+          rowTotalArr.push grandTotalObj[location.number]
+          totalsArr = []
+        else
+          grandTotalObj[location.number] = 0
 
       grandTotalObj.Total = _.reduce rowTotalArr, (memo, num) -> parseInt(memo) + parseInt(num)
       bevTable.push grandTotalObj
@@ -120,4 +123,3 @@ Template.vendorReport.events
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
     evt.target.download = "vendor_totals.csv"
-
