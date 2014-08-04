@@ -115,3 +115,4 @@ Template.vendorReport.events
     csv = json2csv(arr(), true, true )
     evt.target.href = "data:text/csv;charset=utf-8," + escape(csv)
     evt.target.download = "vendor_totals.csv"
+
