@@ -16,6 +16,14 @@ if Meteor.isServer
     Meteor.methods(
       removeAllInventories: () ->
         Inventories.remove({})
+      removeAllOrders: () ->
+        Orders.remove({})
+      removeAllTokenCollections: () ->
+        TokenCollections.remove({})
+      removeAllTokenDeliveries: () ->
+        TokenDeliveries.remove({})
+      removeAllNotes: () ->
+        Notes.remove({})
     )
   Meteor.publish "beverages", () ->
     Beverages.find()
