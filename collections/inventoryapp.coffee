@@ -13,6 +13,10 @@
 if Meteor.isServer
   Meteor.startup ->
     # code to run on server at startup
+    Meteor.methods(
+      removeAllInventories: () ->
+        Inventories.remove({})
+    )
   Meteor.publish "beverages", () ->
     Beverages.find()
   Meteor.publish "inventories", () ->
