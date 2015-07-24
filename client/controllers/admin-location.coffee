@@ -1,26 +1,11 @@
 Session.setDefault('editing_location_beverage', null)
 
-activateInput = (input) ->
-  input.focus()
-  input.select()
-
-okCancelEvents = (selector, callbacks) ->
-  ok = callbacks.ok or ->
-  cancel = callbacks.cancel or ->
-  events = {}
-  events["keyup " + selector + ", keydown " + selector + ", focusout " + selector] = (evt) ->
-    if evt.type is "keydown" and evt.which is 27
-      escape = cancel
-      cancel.call this, evt
-    else if evt.type is "keyup" and evt.which is 13 or evt.type is "focusout"
-      # blur/return/enter = ok/submit if non-empty
-      value = String(evt.target.value or "")
-      if value
-        ok.call this, value, evt
-      else
-        cancel.call this, evt
-    return
-  events
+Template.adminLocation.isBeingEdited = () ->
+  bevId = Session.get 'editing_location_beverage'
+  if this._id == bevId
+    return true
+  else
+    return false
 
 Template.adminLocation.events
   "click #beverageAdd": (evt, templ) ->
@@ -67,28 +52,45 @@ Template.adminLocation.events
   "click .destroy": (evt, templ) ->
     location = Locations.findOne({ "beverages._id": this._id})
     Locations.update( {_id: location._id}, {$pull: { "beverages": { _id: this._id }}})
-
-  "dblclick .editable": (evt, templ) ->
+  "click .edit-bev": (evt) ->
     Session.set('editing_location_beverage', this._id)
-    Deps.flush() # update DOM before focus
-    activateInput(templ.find("#edit-bev"))
+    Deps.flush()
 
-Template.adminLocation.editing = ->
-  Session.equals('editing_location_beverage', this._id)
+  "click .save-bev": (evt, templ) ->
+    nameInput = templ.find("#editBevName")
+    startUnitsInput = templ.find("#editStartUnits")
+    fillToInput = templ.find("#editFillTo")
+    orderWhenInput = templ.find("#editOrderWhen")
 
-Template.adminLocation.events(okCancelEvents(
-  '#edit-bev',
-    ok: (value, evt) ->
-      currentLocation = Locations.findOne('beverages._id': @_id)
-      bevId = @_id
-      beverages = currentLocation.beverages
-      match = _.find beverages, (bev) -> bev._id == bevId
-      if match
-        target = evt.target.dataset.target
-        match[target] = value
-      Locations.update(currentLocation._id, {$set: {beverages: beverages}})
-      Session.set('editing_location_beverage', null)
+    name = nameInput.value
+    startUnits = startUnitsInput.value
+    fillTo = fillToInput.value
+    orderWhen = orderWhenInput.value
 
-    cancel: () ->
-      Session.set('editing_location_beverage', null)
-  ))
+    beverage = {
+        name: name
+        startUnits: startUnits
+        fillTo: fillTo
+        orderWhen: orderWhen
+        _id: this._id
+    }
+
+    location = Locations.findOne({ "beverages._id": this._id})
+    beverages = location.beverages
+
+    newBeverages = _.map(beverages, (bev) =>
+      if bev._id == beverage._id
+        return beverage
+      else
+        return bev
+    )
+
+    Locations.update location._id, {
+      $unset: { beverages: '' }
+    }
+    Locations.update location._id, {
+      $set: { beverages: newBeverages }
+    }
+
+    Session.set('editing_location_beverage', null)
+    Deps.flush()
