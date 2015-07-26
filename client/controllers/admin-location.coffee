@@ -1,9 +1,25 @@
 Session.setDefault('editing_location_beverage', null)
+Session.setDefault('editing_location', null)
 
 Template.adminLocation.isBeingEdited = () ->
   bevId = Session.get 'editing_location_beverage'
   if this._id == bevId
     return true
+  else
+    return false
+
+Template.adminLocation.editingLocation = () ->
+  Session.get('editing_location')
+
+Template.adminLocation.locationColor = () ->
+  if this.color and this.color != "none"
+    return "<span class='color #{this.color}'></span>"
+  else
+    return "<span>#{this.color}</span>"
+
+Template.adminLocation.colorChecked = (color) ->
+  if this.color
+    return this.color == color
   else
     return false
 
@@ -94,3 +110,38 @@ Template.adminLocation.events
 
     Session.set('editing_location_beverage', null)
     Deps.flush()
+
+  "click .edit-location": (evt) ->
+    Session.set('editing_location', this._id)
+    Deps.flush()
+
+  "click .save-edit-location": (evt, templ) ->
+    numberInput = templ.find("#number")
+    nameInput = templ.find("#name")
+    organizationInput = templ.find("#organization")
+    vendorInput = templ.find("#locationVendor")
+    colorInput = templ.find("input:radio[name=locationColor]:checked")
+
+    number = numberInput.value
+    name = nameInput.value
+    organization = organizationInput.value
+    color = colorInput && colorInput.value or "none"
+    vendor = vendorInput.checked
+
+    if not color then color = 'none'
+
+    location = Session.get('editing_location')
+    locationData =
+      name: name
+      number: number
+      organization: organization
+      vendor: vendor
+      color: color
+
+    Locations.update location, {
+      $set: locationData
+    }
+
+    Session.set('editing_location', null)
+    Deps.flush()
+

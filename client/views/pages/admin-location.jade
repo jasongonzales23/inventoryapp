@@ -1,7 +1,51 @@
 template(name='adminLocation')
   .col-md-12
-    h1 Location {{number}} {{name}}
-    h3 {{organization}}
+    if editingLocation
+      .form-group.col-md-3
+        label(for="number") Location #
+        input#number.form-control(value='{{number}}')
+      .form-group.col-md-9
+        label(for="name") Name
+        input#name.form-control(value='{{name}}')
+      .form-group.col-md-12
+        label(for="organization") Organization
+        input#organization.form-control(value='{{organization}}')
+      .form-group.col-md-12.colors
+        h5 Colors
+        label(class="radio-inline")
+          input(type="radio" value="none" name="locationColor" checked="{{colorChecked 'none'}}")
+          span None
+        label(class="radio-inline")
+          input(type="radio" value="green" name="locationColor" checked="{{colorChecked 'green'}}")
+          span.color.green
+        label(class="radio-inline")
+          input(type="radio" value="blue" name="locationColor" checked="{{colorChecked 'blue'}}")
+          span.color.blue
+        label(class="radio-inline")
+          input(type="radio" value="black" name="locationColor" checked="{{colorChecked 'black'}}")
+          span.color.black
+        label(class="radio-inline")
+          input(type="radio" value="white" name="locationColor" checked="{{colorChecked 'white'}}")
+          span.color.white
+        label(class="radio-inline")
+          input(type="radio" value="purple" name="locationColor" checked="{{colorChecked 'purple'}}")
+          span.color.purple
+        label(class="radio-inline")
+          input(type="radio" value="red" name="locationColor" checked="{{colorChecked 'red'}}")
+          span.color.red
+      .form-group.col-md-12
+        label
+          input(id="locationVendor" type="checkbox" checked="{{vendor}}")
+          | Vendor
+      .form-group.col-md-12
+        button.btn.btn-primary.pull-right.save-edit-location Save
+
+    else
+      h1 Location {{number}} {{name}}
+      h3 {{organization}}
+      button.btn.btn-default.pull-right.edit-location Edit Location Info
+      h3 Color:
+        {{{locationColor}}}
 
   .col-md-12
     .new-item-box.location-beverage
