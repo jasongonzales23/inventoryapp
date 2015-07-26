@@ -117,3 +117,30 @@ h2 {
 .save-bev {
   background: #5bc0de;
 }
+
+.color {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #909090;
+  margin-top: -5px;
+  border-radius: 4px;
+  &.green {
+    background-color: green;
+  }
+  &.blue {
+    background-color: blue;
+  }
+  &.black {
+    background-color: black;
+  }
+  &.white {
+    background-color: white;
+  }
+  &.purple {
+    background-color: purple;
+  }
+  &.red {
+    background-color: red;
+  }
+}
