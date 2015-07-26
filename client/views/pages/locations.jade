@@ -10,15 +10,16 @@ template(name='locations')
           th
       tbody
         each locations
-          tr
-            td
-              span.color(class="{{color}}")
-              a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
-            td
-              +if isInRole 'admin, inventory'
-                a(href="{{pathFor 'updateInventory'}}") Update Inventory
-            td
-              +if isInRole 'admin, order'
-                a(href="{{pathFor 'recordOrder'}}") Record Order
-            td
-              a(href="{{pathFor 'addNote'}}") Add Note
+          if viewableByRole
+            tr
+              td
+                span.color(class="{{color}}")
+                a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
+              td
+                +if isInRole 'admin, inventory'
+                  a(href="{{pathFor 'updateInventory'}}") Update Inventory
+              td
+                +if isInRole 'admin, order'
+                  a(href="{{pathFor 'recordOrder'}}") Record Order
+              td
+                a(href="{{pathFor 'addNote'}}") Add Note

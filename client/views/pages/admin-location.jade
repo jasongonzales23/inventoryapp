@@ -35,6 +35,14 @@ template(name='adminLocation')
           span.color.red
       .form-group.col-md-12
         label
+          input(id="viewableByOrder" type="checkbox" checked="{{orderPermission}}")
+          | Viewable By Order
+      .form-group.col-md-12
+        label
+          input(id="viewableByInventory" type="checkbox" checked="{{inventoryPermission}}")
+          | Viewable By Inventory
+      .form-group.col-md-12
+        label
           input(id="locationVendor" type="checkbox" checked="{{vendor}}")
           | Vendor
       .form-group.col-md-12
@@ -44,8 +52,14 @@ template(name='adminLocation')
       h1 Location {{number}} {{name}}
       h3 {{organization}}
       button.btn.btn-default.pull-right.edit-location Edit Location Info
-      h3 Color:
+      h4 Color:
         {{{locationColor}}}
+      if orderPermission
+        h4 Viewable By Order
+      if inventoryPermission
+        h4 Viewable by Inventory
+      if vendor
+        h4 Vendor
 
   .col-md-12
     .new-item-box.location-beverage

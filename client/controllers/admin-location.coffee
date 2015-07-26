@@ -121,12 +121,16 @@ Template.adminLocation.events
     organizationInput = templ.find("#organization")
     vendorInput = templ.find("#locationVendor")
     colorInput = templ.find("input:radio[name=locationColor]:checked")
+    orderInput = templ.find("#viewableByOrder")
+    inventoryInput = templ.find("#viewableByInventory")
 
     number = numberInput.value
     name = nameInput.value
     organization = organizationInput.value
     color = colorInput && colorInput.value or "none"
     vendor = vendorInput.checked
+    orderPermission = orderInput.checked
+    inventoryPermission = inventoryInput.checked
 
     if not color then color = 'none'
 
@@ -137,6 +141,8 @@ Template.adminLocation.events
       organization: organization
       vendor: vendor
       color: color
+      orderPermission: orderPermission
+      inventoryPermission: inventoryPermission
 
     Locations.update location, {
       $set: locationData
