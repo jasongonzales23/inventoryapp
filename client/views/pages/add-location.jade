@@ -43,7 +43,15 @@ template(name='addLocations')
         label(class="radio-inline")
           input(type="radio" value="red" name="locationColor" )
           span.color.red
-      .checkbox.col-md-3.pull-right
+      .form-group.col-md-12
+        label
+          input(id="viewableByOrder" type="checkbox" checked="{{orderPermission}}")
+          | Viewable By Order
+      .form-group.col-md-12
+        label
+          input(id="viewableByInventory" type="checkbox" checked="{{inventoryPermission}}")
+          | Viewable By Inventory
+      .form-group.col-md-12
         label
           input#locationVendor(type='checkbox')
           | Vendor
