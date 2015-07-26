@@ -44,6 +44,7 @@ Template.modal.events
       Orders.insert
         timestamp: timestamp
         location: location._id
+        color: location.color
         locationName: location.name
         locationNumber: location.number
         vendor: location.vendor

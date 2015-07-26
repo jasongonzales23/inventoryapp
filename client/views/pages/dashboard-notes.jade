@@ -12,6 +12,7 @@ template(name='dashboardNotes')
       each locations
         tr
           td
+            span.color(class="{{color}}")
             a(href="/locations/{{newestNote.location}}/notes") {{locationName}}
           td {{notesCount}}
           td {{ formatDate newestNote.timestamp "long" }}

@@ -12,6 +12,7 @@ template(name='dashboardOrders')
       each undeliveredOrders
         tr(class="{{ timeWarning oldestOrder.timestamp 45 }}")
           td
+            span.color(class="{{color}}")
             a(href="/locations/{{location}}/order-history") {{locationName}}
           td {{unfilledOrdersCount}}
           td {{ formatDate oldestOrder.timestamp "long" }}

@@ -10,6 +10,7 @@ Template.dashboardNotes.locations = ->
       locations[doc.location] =
         locationName: doc.locationName
         locationNumber: doc.locationNumber
+        color: doc.color
         notes: []
         notesCount: 0
         newestNote: null

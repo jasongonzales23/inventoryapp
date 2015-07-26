@@ -11,6 +11,7 @@ Template.dashboardOrders.undeliveredOrders = ->
         locations[doc.location] =
           unfilledOrders: []
           unfilledOrdersCount: 0
+          color: doc.color
           location: doc.location
           locationName: doc.locationName
           locationNumber: doc.locationNumber

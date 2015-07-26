@@ -8,11 +8,13 @@ Template.addNote.events =
     location = this._id
     locationName = this.name
     locationNumber = this.number
+    color = this.color
     timestamp = new Date().valueOf()
 
     Notes.insert
       timestamp: timestamp
       location: location
+      color: color
       locationName: locationName
       locationNumber: locationNumber
       user_id: user
