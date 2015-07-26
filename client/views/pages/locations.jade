@@ -12,6 +12,7 @@ template(name='locations')
         each locations
           tr
             td
+              span.color(class="{{color}}")
               a.location(href="{{pathFor 'location'}}") {{number}} {{name}}
             td
               +if isInRole 'admin, inventory'
