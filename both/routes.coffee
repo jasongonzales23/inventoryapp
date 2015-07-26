@@ -317,4 +317,11 @@ Router.map(->
     template: 'vendorReport'
     layoutTemplate: 'report'
 
+  @.route 'tokenMap',
+    path: '/tokenMap'
+    template: 'tokenMap'
+
+  @.route 'rotaryMap',
+    path: '/rotaryMap'
+    template: 'rotaryMap'
 )

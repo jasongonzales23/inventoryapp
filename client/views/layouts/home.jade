@@ -33,5 +33,9 @@ template(name='homeNav')
       +if isInRole 'admin'
         li(class="{{ isActiveRoute 'dashboard' }}")
           a(href="{{pathFor 'dashboard'}}") Dashboard
+      li(class="{{ is ActiveRoute 'tokenMap' }}")
+        a(href="{{pathFor 'tokenMap'}}") Token Map
+      li(class="{{ is ActiveRoute 'rotaryMap' }}")
+        a(href="{{pathFor 'rotaryMap'}}") Rotary Map
     ul.nav.navbar-nav.navbar-right
       +loginButtons
