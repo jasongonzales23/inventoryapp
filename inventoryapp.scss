@@ -122,25 +122,41 @@ h2 {
   display: inline-block;
   width: 30px;
   height: 30px;
-  border: 1px solid #909090;
   margin-top: -5px;
   border-radius: 4px;
   &.green {
     background-color: green;
+    border: 1px solid #909090;
   }
   &.blue {
     background-color: blue;
+    border: 1px solid #909090;
   }
   &.black {
     background-color: black;
+    border: 1px solid #909090;
   }
   &.white {
     background-color: white;
+    border: 1px solid #909090;
   }
   &.purple {
     background-color: purple;
+    border: 1px solid #909090;
   }
   &.red {
     background-color: red;
+    border: 1px solid #909090;
   }
 }
+
+.table {
+  .color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-top: 0;
+    border-radius: 4px;
+  }
+}
+

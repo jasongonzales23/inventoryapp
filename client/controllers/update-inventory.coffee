@@ -43,6 +43,7 @@ Template.modal.events
       Inventories.insert
         timestamp: timestamp
         location: location._id
+        color: location.color
         locationName: location.name
         locationNumber: location.number
         user_id: user

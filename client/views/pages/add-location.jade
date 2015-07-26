@@ -20,6 +20,29 @@ template(name='addLocations')
       .form-group.col-md-12
         label(for='locationOrg') Organization
         input#locationOrg.form-control(type='text')
+      .form-group.col-md-12.colors
+        h5 Colors
+        label(class="radio-inline")
+          input#defaultColor(type="radio" value="none" name="locationColor" checked="true")
+          span None
+        label(class="radio-inline")
+          input(type="radio" value="green" name="locationColor")
+          span.color.green
+        label(class="radio-inline")
+          input(type="radio" value="blue" name="locationColor")
+          span.color.blue
+        label(class="radio-inline")
+          input(type="radio" value="black" name="locationColor" )
+          span.color.black
+        label(class="radio-inline")
+          input(type="radio" value="white" name="locationColor" )
+          span.color.white
+        label(class="radio-inline")
+          input(type="radio" value="purple" name="locationColor" )
+          span.color.purple
+        label(class="radio-inline")
+          input(type="radio" value="red" name="locationColor" )
+          span.color.red
       .checkbox.col-md-3.pull-right
         label
           input#locationVendor(type='checkbox')
