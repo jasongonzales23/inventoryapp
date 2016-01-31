@@ -51,7 +51,7 @@ Template.tokenReconciliationReport.reportTable = ->
     _.map beverages, (bev) ->
       bevMap[bev.name] = bev.value
 
-  _.each locations, (location) -> 
+  _.each locations, (location) ->
     #get the name of each location in there
     reportObj = {}
     reportObj.name = location.name
@@ -72,9 +72,13 @@ Template.tokenReconciliationReport.reportTable = ->
         reportObj.locationTotals[i].total = 0
 
     allTotals = _.pluck reportObj.locationTotals, "total"
+
     if allTotals.length > 0
       rowTotal = _.reduce allTotals, (memo, num) -> memo + num
       reportObj.locationTotals.push {total: rowTotal}
+    else 
+      reportObj.locationTotals.push {total: 0}
+
 
     #get Inventory Delivered value
     orders = Orders.find({ 'location': location._id }).fetch()
@@ -89,9 +93,11 @@ Template.tokenReconciliationReport.reportTable = ->
           bigArr.push bevObj
 
       preTotal = _.map bigArr, (orderBev) ->
-        orderBev.units * bevMap[orderBev.name]
+        orderBev.units * bevMap[orderBev.name.toLowerCase()]
       invTotal = _.reduce preTotal, (memo, num) ->
-        memo + num
+        m = if Number.isInteger(memo) then memo else 0
+        n = if Number.isInteger(num) then num else 0
+        m + n
       invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
       reportObj.locationTotals.push {total: "$#{invTotal}"}
 
@@ -100,6 +106,10 @@ Template.tokenReconciliationReport.reportTable = ->
       preDelta = 1 - ((invTotal - tokensCollected) / invTotal)
       tokenDelta = Math.round10((100 * preDelta), -2)
       reportObj.locationTotals.push {total: "#{tokenDelta}%"}
+
+    else
+      reportObj.locationTotals.push {total: "$#{0}"}
+      reportObj.locationTotals.push {total: "#{0}%"}
 
     reportTable.push reportObj
 
@@ -121,7 +131,9 @@ Template.tokenReconciliationReport.reportTable = ->
   allTotals = _.pluck grandTotalObj.locationTotals, "total"
   if allTotals.length > 0
     grandTotal = _.reduce allTotals, (memo, num) -> memo + num
-    grandTotalObj.locationTotals.push {total: grandTotal}
+  else
+    grandTotal = 0
+  grandTotalObj.locationTotals.push {total: grandTotal}
 
   #get Inventory Delivered value
   orders = Orders.find().fetch()
@@ -136,7 +148,7 @@ Template.tokenReconciliationReport.reportTable = ->
         bigArr.push bevObj
 
     preTotal = _.map bigArr, (orderBev) ->
-      orderBev.units * bevMap[orderBev.name]
+      orderBev.units * bevMap[orderBev.name.toLowerCase()]
     invTotal = _.reduce preTotal, (memo, num) ->
       memo + num
     invTotal = Math.round10((invTotal * TOKEN_VAL), -2)

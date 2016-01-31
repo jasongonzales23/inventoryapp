@@ -30,7 +30,7 @@ template(name='homeNav')
       +if isInRole 'token, admin'
         li(class="{{ isActiveRoute 'boothLocations' }}")
           a(href="{{pathFor 'boothLocations'}}") Booth Locations
-      li(class="{{ isActiveRoute 'dashboard' }}")
+      li(class="{{ isActiveRoute 'dashboard' }}") 
         a(href="{{pathFor 'dashboard'}}") Dashboard
       li(class="{{ is ActiveRoute 'tokenMap' }}")
         a(href="{{pathFor 'tokenMap'}}") Token Map
