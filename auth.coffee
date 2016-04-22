@@ -15,6 +15,8 @@ if Meteor.isServer
       Roles.addUsersToRoles "vRpfz8hePJNPMqWSt", ["admin"]
     if Meteor.users.findOne "KDnvhXoEtqbHpcPzo"
       Roles.addUsersToRoles "KDnvhXoEtqbHpcPzo", ["admin"]
+    if Meteor.users.findOne "QxDN9skK8zP5xbbpX"
+      Roles.addUsersToRoles "QxDN9skK8zP5xbbpX", ["admin"]
 
 if Meteor.isClient
   Template.adminTemplate.helpers

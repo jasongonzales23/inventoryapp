@@ -12,7 +12,7 @@ Template.reportNav.days = ->
       dayObj = {}
       m = moment().dayOfYear(day)
 
-      year = m.format("YYYY")
+      year = moment(timestamps[0]).year()
       month = m.format("MM")
       d = m.format("DD")
 
