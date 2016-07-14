@@ -4,7 +4,7 @@ Template.reportNav.days = ->
     timestamps = _.pluck(orders, 'timestamp')
 
     days = _.map timestamps, (timestamp, i) ->
-      m = moment(timestamp).dayOfYear()
+      m = moment(timestamp).startOf('day')
 
     uniqDays = _.uniq days
 
