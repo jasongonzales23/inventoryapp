@@ -5,12 +5,13 @@ Template.reportNav.days = ->
 
     days = _.map timestamps, (timestamp, i) ->
       m = moment(timestamp).startOf('day')
+      return m.valueOf()
 
     uniqDays = _.uniq days
 
     navDays = _.map uniqDays, (day) ->
       dayObj = {}
-      m = moment().dayOfYear(day)
+      m = moment(day)
 
       year = moment(timestamps[0]).year()
       month = m.format("MM")
