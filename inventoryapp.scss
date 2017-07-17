@@ -94,6 +94,14 @@ h2 {
   }
 }
 
+.beverage-admin {
+  .name, .start-units, .token-value {
+    display: inline-block;
+    width: 25%;
+    margin-right: 10px;
+  }
+}
+
 .blocker {
   position: absolute;
   top: 0;
