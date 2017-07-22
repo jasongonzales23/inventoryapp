@@ -23,4 +23,5 @@ template(name='inventorySummaryAll')
 
           td {{startingInventory}}
           td {{remainingInventory}}
-          td {{percentRemainingInventory}}%
+          td(class="{{ indicateLowPercent percentRemainingInventory 20 }}")
+            {{percentRemainingInventory}}%
