@@ -1,3 +1,18 @@
 template(name='inventorySummaryAll')
-  .col-md-12
-    h1 HIYA
+  table.table.table-striped
+    thead
+      tr
+        th Beverage name
+        th Starting inventory
+        th Last field inventory
+        th Remaining inventory
+        th % remaining inventory
+
+    tbody
+      each summaryRow
+        tr
+          td {{name}}
+          td {{startingInventory}}
+          td foo
+          td bar
+          td baz
