@@ -1,0 +1,23 @@
+template(name='inventorySummary')
+  header
+    +reportNav
+  .container
+    .row
+      +networkStatus
+      +yield
+
+template(name='reportNav')
+  button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+    span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+
+  nav.collapse.navbar-collapse.navbar.navbar-default
+    ul.nav.navbar-nav
+      li(class="{{ isActiveRoute 'inventorySummaryAll' }}")
+        a(href="{{pathFor 'reportTotal'}}") Inventory Summary All
+    ul.nav.navbar-nav.navbar-right
+      +loginButtons
+
+
