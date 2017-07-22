@@ -1,10 +1,12 @@
 template(name='inventorySummaryAll')
+  h2 Inventory summary across locations
   table.table.table-striped
     thead
       tr
         th Beverage name
-        th Starting inventory
+        th Total orders
         th Last field inventory
+        th Starting inventory
         th Remaining inventory
         th % remaining inventory
 
@@ -12,7 +14,13 @@ template(name='inventorySummaryAll')
       each summaryRow
         tr
           td {{name}}
+          td {{totalOrders}}
+
+          if lastFieldInventory
+            td {{lastFieldInventory}}
+          else
+            td "None found"
+
           td {{startingInventory}}
-          td foo
-          td bar
-          td baz
+          td {{remainingInventory}}
+          td {{percentRemainingInventory}}
