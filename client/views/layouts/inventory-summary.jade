@@ -1,12 +1,12 @@
 template(name='inventorySummary')
   header
-    +reportNav
+    +inventorySummaryNav
   .container
     .row
       +networkStatus
       +yield
 
-template(name='reportNav')
+template(name='inventorySummaryNav')
   button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
     span.sr-only Toggle navigation
       span.icon-bar
