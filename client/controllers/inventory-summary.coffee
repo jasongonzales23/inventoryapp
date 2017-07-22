@@ -36,7 +36,7 @@ Template.inventorySummaryAll.summaryRow = ->
     summaryRow.lastFieldInventory = getLastInventoryForBev(bev, inventories, locations)
     summaryRow.totalOrders = getTotalOrdersForBev(bev, orders)
     summaryRow.remainingInventory = summaryRow.startingInventory - summaryRow.totalOrders + summaryRow.lastFieldInventory
-    summaryRow.percentRemainingInventory = summaryRow.remainingInventory / summaryRow.startingInventory * 100
+    summaryRow.percentRemainingInventory = Math.round(summaryRow.remainingInventory / summaryRow.startingInventory * 100)
     summaryRows.push(summaryRow)
   return summaryRows
 
