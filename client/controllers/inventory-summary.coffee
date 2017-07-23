@@ -90,7 +90,7 @@ getLatestInv = (locations, inventories) ->
     inv = _.find(inventories, (inv) ->
       inv.location == location._id
     )
-    lastInvTime = if inv then inv.timestamp else "NA"
+    lastInvTime = if inv then inv.timestamp else null
     return {lastInvTime: lastInvTime}
   )
 
