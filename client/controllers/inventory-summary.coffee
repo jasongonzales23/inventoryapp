@@ -1,7 +1,7 @@
 getLastInventoryForBev = (bevObj, inventories, locations) ->
   return _.reduce(locations, (accum, location) ->
     inv = _.find(inventories, (inv) ->
-      inv.locationNumber = location.number
+      inv.location == location._id
     )
     bev = _.find(inv.beverages, (bev) ->
       bev.name == bevObj.name && bev.units
@@ -21,12 +21,11 @@ getTotalOrdersForBev = (bevObj, orders) ->
     return accum + bevUnits
   , 0)
 
-
-Template.inventorySummaryAll.summaryRow = ->
+Template.inventorySummaryAll.summaryRow = () ->
   beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
   inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
   orders = Orders.find().fetch()
-  locations = Locations.find().fetch()
+  locations = Locations.find({}, {sort: {number: 1}}).fetch()
 
   summaryRows = []
   _.each beverages, (bev) ->
@@ -40,3 +39,40 @@ Template.inventorySummaryAll.summaryRow = ->
     summaryRows.push(summaryRow)
   return summaryRows
 
+getLocationInventories = (bevObj, inventories, locations) ->
+  return _.reduce(locations, (accum, location) ->
+    inv = _.find(inventories, (inv) ->
+      inv.location == location._id
+    )
+    bev = _.find(inv.beverages, (bev) ->
+      bev.name == bevObj.name && bev.units
+    )
+
+    bevUnits = if bev then bev.units else 0
+    return accum.concat({lastInv: bevUnits})
+  , [])
+
+
+Template.inventorySummaryLocations.summaryRow = () ->
+  beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
+  inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
+  orders = Orders.find().fetch()
+  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+
+  summaryRows = []
+  _.each beverages, (bev) ->
+    summaryRow = {}
+    summaryRow.name = bev.name
+
+    summaryRow.locationInventories = getLocationInventories(bev, inventories, locations)
+    summaryRow.startingInventory = bev.startingInventory
+    summaryRow.lastFieldInventory = getLastInventoryForBev(bev, inventories, locations)
+    summaryRow.totalOrders = getTotalOrdersForBev(bev, orders)
+    summaryRow.remainingInventory = summaryRow.startingInventory - summaryRow.totalOrders + summaryRow.lastFieldInventory
+    summaryRow.percentRemainingInventory = Math.round(summaryRow.remainingInventory / summaryRow.startingInventory * 100)
+
+    summaryRows.push(summaryRow)
+  return summaryRows
+
+Template.inventorySummaryLocations.locations = () ->
+  locations = Locations.find().fetch()

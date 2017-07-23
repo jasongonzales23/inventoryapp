@@ -16,7 +16,9 @@ template(name='inventorySummaryNav')
   nav.collapse.navbar-collapse.navbar.navbar-default
     ul.nav.navbar-nav
       li(class="{{ isActiveRoute 'inventorySummaryAll' }}")
-        a(href="{{pathFor 'reportTotal'}}") Inventory Summary All
+        a(href="{{pathFor 'inventorySummaryAll'}}") Inventory Summary All
+      li(class="{{ isActiveRoute 'inventorySummaryLocations' }}")
+        a(href="{{pathFor 'inventorySummaryLocations'}}") Inventory Summary By Location
     ul.nav.navbar-nav.navbar-right
       +loginButtons
 

@@ -322,12 +322,10 @@ Router.map(->
     template: 'inventorySummaryAll'
     layoutTemplate: 'inventorySummary'
 
-  ###
   @.route 'inventorySummaryLocations',
     path: '/report/inventory-summary/locations'
     template: 'inventorySummaryLocations'
     layoutTemplate: 'inventorySummary'
-  ###
 
   @.route 'tokenMap',
     path: '/tokenMap'
