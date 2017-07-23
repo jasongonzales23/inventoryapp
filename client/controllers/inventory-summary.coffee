@@ -42,7 +42,7 @@ Template.inventorySummaryAll.summaryRow = () ->
   return summaryRows
 
 getLocationInventories = (bevObj, inventories, locations) ->
-  return _.reduce(locations, (accum, location) ->
+  return _.map(locations, (location) ->
     inv = _.find(inventories, (inv) ->
       inv.location == location._id
     )
@@ -53,8 +53,8 @@ getLocationInventories = (bevObj, inventories, locations) ->
       )
 
     bevUnits = if bev then bev.units else 0
-    return accum.concat({lastInv: bevUnits})
-  , [])
+    return {lastInv: bevUnits}
+  )
 
 getInventoriesTotal = (inventories) ->
   return _.reduce(inventories, (accum, inv) ->
@@ -83,4 +83,18 @@ Template.inventorySummaryLocations.summaryRow = () ->
   return summaryRows
 
 Template.inventorySummaryLocations.locations = () ->
-  locations = Locations.find().fetch()
+  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+
+getLatestInv = (locations, inventories) ->
+  return _.map(locations, (location) ->
+    inv = _.find(inventories, (inv) ->
+      inv.location == location._id
+    )
+    lastInvTime = if inv then inv.timestamp else "NA"
+    return {lastInvTime: lastInvTime}
+  )
+
+Template.inventorySummaryLocations.locationInventoriesTimes = () ->
+  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+  inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
+  return getLatestInv(locations, inventories)

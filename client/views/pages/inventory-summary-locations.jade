@@ -11,13 +11,18 @@ template(name='inventorySummaryLocations')
         th Starting inventory
         th Remaining inventory
         th % remaining inventory
+      tr
+        th Time since last inventory
+        each locationInventoriesTimes
+          th {{lastInvTime}}
+        th(colspan="5")
 
     tbody
       each summaryRow
         tr
           td {{name}}
           each locationInventories
-            td {{this.lastInv}}
+            td {{lastInv}}
           td {{totalOrders}}
 
           if lastFieldInventory
