@@ -3,9 +3,11 @@ getLastInventoryForBev = (bevObj, inventories, locations) ->
     inv = _.find(inventories, (inv) ->
       inv.location == location._id
     )
-    bev = _.find(inv.beverages, (bev) ->
-      bev.name == bevObj.name && bev.units
-    )
+
+    if inv
+      bev = _.find(inv.beverages, (bev) ->
+        bev.name == bevObj.name && bev.units
+      )
 
     bevUnits = if bev then bev.units else 0
     return accum + bevUnits
@@ -44,14 +46,20 @@ getLocationInventories = (bevObj, inventories, locations) ->
     inv = _.find(inventories, (inv) ->
       inv.location == location._id
     )
-    bev = _.find(inv.beverages, (bev) ->
-      bev.name == bevObj.name && bev.units
-    )
+
+    if inv
+      bev = _.find(inv.beverages, (bev) ->
+        bev.name == bevObj.name && bev.units
+      )
 
     bevUnits = if bev then bev.units else 0
     return accum.concat({lastInv: bevUnits})
   , [])
 
+getInventoriesTotal = (inventories) ->
+  return _.reduce(inventories, (accum, inv) ->
+    return accum + inv.lastInv
+  , 0)
 
 Template.inventorySummaryLocations.summaryRow = () ->
   beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
@@ -66,7 +74,7 @@ Template.inventorySummaryLocations.summaryRow = () ->
 
     summaryRow.locationInventories = getLocationInventories(bev, inventories, locations)
     summaryRow.startingInventory = bev.startingInventory
-    summaryRow.lastFieldInventory = getLastInventoryForBev(bev, inventories, locations)
+    summaryRow.lastFieldInventory = getInventoriesTotal(summaryRow.locationInventories)
     summaryRow.totalOrders = getTotalOrdersForBev(bev, orders)
     summaryRow.remainingInventory = summaryRow.startingInventory - summaryRow.totalOrders + summaryRow.lastFieldInventory
     summaryRow.percentRemainingInventory = Math.round(summaryRow.remainingInventory / summaryRow.startingInventory * 100)
