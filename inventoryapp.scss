@@ -16,8 +16,9 @@
   text-indent: -999px;
 }
 
-.low {
-  color: #ff5500;
+.low, .low td {
+  background-color: #ff5500 !important;
+  color: #fff;
 }
 
 .too-old {
@@ -90,6 +91,14 @@ h2 {
   .name, .start-units, .fill-to, .order-when {
     display: inline-block;
     width: 20%;
+    margin-right: 10px;
+  }
+}
+
+.beverage-admin {
+  .name, .start-units, .token-value {
+    display: inline-block;
+    width: 25%;
     margin-right: 10px;
   }
 }

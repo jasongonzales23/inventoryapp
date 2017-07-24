@@ -1,16 +1,31 @@
 template(name='addBeverages')
   h1 Beverage Admin
   .col-md-3
-    each beverages
-      .beverage
-        span.destroy &times;
-        span {{name}} -- {{value}}
-
-  .col-md-9
     .new-item-box
-      .form-group.col-md-6
+      .form-group
         input.form-control(type="text" id="beverage-text" placeholder="New Beverage")
-      .form-group.col-md-3
+      .form-group
         input.form-control(type="text" id="beverage-value" placeholder="Token Value")
-      .form-group.col-md-3
+      .form-group
+        input.form-control(type="text" id="beverage-startingInventory" placeholder="Starting Inventory")
+      .form-group
         button#beverageAdd.btn.btn-primary.btn-lg(type="button") Add Beverage
+  .col-md-9.beverage-admin
+    .name Beverage
+    .start-units Start Inventory
+    .token-value Token Value
+    .list-group
+      each beverages
+        if isBeingEdited
+          .list-group-item
+            input.name#editBevName(value='{{name}}')
+            input.start-units#editStartUnits(value='{{startingInventory}}')
+            input.token-value#editTokenValue(value='{{value}}')
+            a.save-bev.badge Save
+        else
+          .list-group-item
+            .name {{name}}
+            .start-units {{startingInventory}}
+            .token-value {{value}}
+            a.edit-bev.badge edit
+            span.destroy.badge &times;

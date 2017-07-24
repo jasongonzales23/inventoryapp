@@ -150,4 +150,3 @@ Template.adminLocation.events
 
     Session.set('editing_location', null)
     Deps.flush()
-

@@ -3,20 +3,26 @@ Accounts.config
 
 if Meteor.isServer
   Meteor.startup ->
-    if Meteor.users.findOne "XByGMdGpCcZhxfask"
-      Roles.addUsersToRoles "XByGMdGpCcZhxfask", ["admin"]
-    if Meteor.users.findOne "8u54qnNyk9GotXGEj"
-      Roles.addUsersToRoles "8u54qnNyk9GotXGEj", ["admin"]
-    if Meteor.users.findOne "wpx9kEjXDX98J7khE"
-      Roles.addUsersToRoles "wpx9kEjXDX98J7khE", ["admin"]
-    if Meteor.users.findOne "7sYEg2Fc3yzGm2cMe"
-      Roles.addUsersToRoles "7sYEg2Fc3yzGm2cMe", ["admin"]
-    if Meteor.users.findOne "vRpfz8hePJNPMqWSt"
-      Roles.addUsersToRoles "vRpfz8hePJNPMqWSt", ["admin"]
-    if Meteor.users.findOne "KDnvhXoEtqbHpcPzo"
-      Roles.addUsersToRoles "KDnvhXoEtqbHpcPzo", ["admin"]
-    if Meteor.users.findOne "QxDN9skK8zP5xbbpX"
-      Roles.addUsersToRoles "QxDN9skK8zP5xbbpX", ["admin"]
+    #
+    # XXX do this when you blow away admin
+    # run meteor then in another term
+    # meteor mongo
+    # then db.users.remove({})
+    # db.roles.remove({})
+    #
+    # uncomment code below and start meteor
+    # recomment the code below so it doesnt try to make more admins
+    # everytime you restart
+    #
+    ###
+    id = Accounts.createUser({
+      username: 'admin'
+      password: 'admin'
+      profile: { name: 'admin' }
+    })
+    Roles.addUsersToRoles(id, ['admin'])
+
+    ###
 
 if Meteor.isClient
   Template.adminTemplate.helpers

@@ -1,0 +1,36 @@
+template(name='inventorySummaryLocations')
+  h2 Inventory summary by location
+  table.table.table-striped
+    thead
+      tr
+        th Beverage name
+        each locations
+          th {{number}}
+        th Total orders
+        th Last field inventory
+        th Starting inventory
+        th Remaining inventory
+        th % remaining inventory
+      tr
+        th Time since last inventory
+        each locationInventoriesTimes
+          th {{ timesince lastInvTime}}
+        th(colspan="5")
+
+    tbody
+      each summaryRow
+        tr(class="{{ indicateLowPercent percentRemainingInventory 20 }}")
+          td {{name}}
+          each locationInventories
+            td {{lastInv}}
+          td {{totalOrders}}
+
+          if lastFieldInventory
+            td {{lastFieldInventory}}
+          else
+            td "None found"
+
+          td {{startingInventory}}
+          td {{remainingInventory}}
+          td {{percentRemainingInventory}}%
+

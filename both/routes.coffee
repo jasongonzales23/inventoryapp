@@ -317,6 +317,16 @@ Router.map(->
     template: 'vendorReport'
     layoutTemplate: 'report'
 
+  @.route 'inventorySummaryAll',
+    path: '/report/inventory-summary/all'
+    template: 'inventorySummaryAll'
+    layoutTemplate: 'inventorySummary'
+
+  @.route 'inventorySummaryLocations',
+    path: '/report/inventory-summary/locations'
+    template: 'inventorySummaryLocations'
+    layoutTemplate: 'inventorySummary'
+
   @.route 'tokenMap',
     path: '/tokenMap'
     template: 'tokenMap'
