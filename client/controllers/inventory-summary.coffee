@@ -27,7 +27,7 @@ Template.inventorySummaryAll.summaryRow = () ->
   beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
   inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
   orders = Orders.find().fetch()
-  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+  locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
 
   summaryRows = []
   _.each beverages, (bev) ->
@@ -65,7 +65,7 @@ Template.inventorySummaryLocations.summaryRow = () ->
   beverages = Beverages.find({}, {sort: {name: 1}}).fetch()
   inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
   orders = Orders.find().fetch()
-  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+  locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
 
   summaryRows = []
   _.each beverages, (bev) ->
@@ -83,7 +83,7 @@ Template.inventorySummaryLocations.summaryRow = () ->
   return summaryRows
 
 Template.inventorySummaryLocations.locations = () ->
-  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+  locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
 
 getLatestInv = (locations, inventories) ->
   return _.map(locations, (location) ->
@@ -95,6 +95,6 @@ getLatestInv = (locations, inventories) ->
   )
 
 Template.inventorySummaryLocations.locationInventoriesTimes = () ->
-  locations = Locations.find({}, {sort: {number: 1}}).fetch()
+  locations = Locations.find({vendor: false}, {sort: {number: 1}}).fetch()
   inventories = Inventories.find({}, {sort: {timestamp: -1}}).fetch()
   return getLatestInv(locations, inventories)

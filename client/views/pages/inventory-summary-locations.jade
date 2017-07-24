@@ -19,7 +19,7 @@ template(name='inventorySummaryLocations')
 
     tbody
       each summaryRow
-        tr
+        tr(class="{{ indicateLowPercent percentRemainingInventory 20 }}")
           td {{name}}
           each locationInventories
             td {{lastInv}}
@@ -32,6 +32,5 @@ template(name='inventorySummaryLocations')
 
           td {{startingInventory}}
           td {{remainingInventory}}
-          td(class="{{ indicateLowPercent percentRemainingInventory 20 }}")
-            {{percentRemainingInventory}}%
+          td {{percentRemainingInventory}}%
 
