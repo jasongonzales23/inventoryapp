@@ -2,7 +2,7 @@ getLastInventoryForBev = (bevObj, inventories, locations) ->
   return _.reduce(locations, (accum, location) ->
     hasBev = (inv) ->
       _.find(inv.beverages, (bev) ->
-        bev.name == bevObj.name && bev.units
+        bev.name == bevObj.name
       )
 
     inv = _.find(inventories, (inv) ->
@@ -11,10 +11,10 @@ getLastInventoryForBev = (bevObj, inventories, locations) ->
 
     if inv
       bev = _.find(inv.beverages, (bev) ->
-        bev.name == bevObj.name && bev.units
+        bev.name == bevObj.name
       )
 
-    bevUnits = if bev then bev.units else null
+    bevUnits = if bev then bev.units else 0
     return accum + bevUnits
   , 0)
 
@@ -50,7 +50,7 @@ getLocationInventories = (bevObj, inventories, locations) ->
   return _.map(locations, (location) ->
     hasBev = (inv) ->
       _.find(inv.beverages, (bev) ->
-        bev.name == bevObj.name && bev.units
+        bev.name == bevObj.name
       )
 
     inv = _.find(inventories, (inv) ->
