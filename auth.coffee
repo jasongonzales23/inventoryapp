@@ -22,12 +22,6 @@ if Meteor.isServer
     })
     Roles.addUsersToRoles(id, ['admin'])
     ###
-    id = Accounts.createUser({
-      username: 'admin'
-      password: 'admin'
-      profile: { name: 'admin' }
-    })
-    Roles.addUsersToRoles(id, ['admin'])
 
 if Meteor.isClient
   Template.adminTemplate.helpers
