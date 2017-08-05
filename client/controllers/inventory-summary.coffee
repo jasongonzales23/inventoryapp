@@ -1,7 +1,12 @@
 getLastInventoryForBev = (bevObj, inventories, locations) ->
   return _.reduce(locations, (accum, location) ->
+    hasBev = (inv) ->
+      _.find(inv.beverages, (bev) ->
+        bev.name == bevObj.name && bev.units
+      )
+
     inv = _.find(inventories, (inv) ->
-      inv.location == location._id
+      inv.location == location._id and hasBev(inv)
     )
 
     if inv
@@ -9,7 +14,7 @@ getLastInventoryForBev = (bevObj, inventories, locations) ->
         bev.name == bevObj.name && bev.units
       )
 
-    bevUnits = if bev then bev.units else 0
+    bevUnits = if bev then bev.units else null
     return accum + bevUnits
   , 0)
 
@@ -43,8 +48,13 @@ Template.inventorySummaryAll.summaryRow = () ->
 
 getLocationInventories = (bevObj, inventories, locations) ->
   return _.map(locations, (location) ->
+    hasBev = (inv) ->
+      _.find(inv.beverages, (bev) ->
+        bev.name == bevObj.name && bev.units
+      )
+
     inv = _.find(inventories, (inv) ->
-      inv.location == location._id
+      inv.location == location._id and hasBev(inv)
     )
 
     if inv
