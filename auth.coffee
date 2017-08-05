@@ -21,7 +21,6 @@ if Meteor.isServer
       profile: { name: 'admin' }
     })
     Roles.addUsersToRoles(id, ['admin'])
-
     ###
 
 if Meteor.isClient

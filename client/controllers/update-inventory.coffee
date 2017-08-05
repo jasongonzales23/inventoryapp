@@ -32,7 +32,8 @@ Template.modal.events
         bev = {}
         bev.name = name
         bev.units = parseInt(number)
-        beverages.push(bev)
+        if Number.isInteger(bev.units)
+          beverages.push(bev)
       )
 
       location = @

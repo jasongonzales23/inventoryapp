@@ -16,10 +16,7 @@ template(name='inventorySummaryAll')
           td {{name}}
           td {{totalOrders}}
 
-          if lastFieldInventory
-            td {{lastFieldInventory}}
-          else
-            td "None found"
+          td {{lastFieldInventory}}
 
           td {{startingInventory}}
           td {{remainingInventory}}
