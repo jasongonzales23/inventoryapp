@@ -1,3 +1,5 @@
+install meteor (https://www.meteor.com/install)
+
 install meteorite
 `npm install -g meteorite`
 
