@@ -23,7 +23,6 @@ if Meteor.isServer
     Roles.addUsersToRoles(id, ['admin'])
 
     ###
-
 if Meteor.isClient
   Template.adminTemplate.helpers
     isAdminUser: ->
