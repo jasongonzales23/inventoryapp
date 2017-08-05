@@ -1,19 +1,14 @@
+# Install 
 install meteor (https://www.meteor.com/install)
+// TODO see about freezing the meteor version
 
 install meteorite
 `npm install -g meteorite`
 
 `mrt install`
 
-Create a user
+# Setup
+To create your admin read the comments in auth.coffee, restart meteor. You've an admin and should be able to get started.
 
-`Meteor.call('create_user', 'admin', 'password')`
-
-then get the id of that user
-`Meteor.users.find().fetch()`
-
-Copy that id into one of the examples in auth.coffee, restart meteor. You've an admin and should be able to get started.
-
-Deploy
-
+# Deploy
 `https://github.com/oortcloud/heroku-buildpack-meteorite`
