@@ -93,7 +93,7 @@ Template.tokenReconciliationReport.reportTable = ->
           bigArr.push bevObj
 
       preTotal = _.map bigArr, (orderBev) ->
-        orderBev.units * bevMap[orderBev.name.toLowerCase()]
+        orderBev.units * bevMap[orderBev.name]
       invTotal = _.reduce preTotal, (memo, num) ->
         m = if Number.isInteger(memo) then memo else 0
         n = if Number.isInteger(num) then num else 0
@@ -148,7 +148,7 @@ Template.tokenReconciliationReport.reportTable = ->
         bigArr.push bevObj
 
     preTotal = _.map bigArr, (orderBev) ->
-      orderBev.units * bevMap[orderBev.name.toLowerCase()]
+      orderBev.units * bevMap[orderBev.name]
     invTotal = _.reduce preTotal, (memo, num) ->
       memo + num
     invTotal = Math.round10((invTotal * TOKEN_VAL), -2)
