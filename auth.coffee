@@ -20,7 +20,7 @@ if Meteor.isServer
       password: 'admin'
       profile: { name: 'admin' }
     })
-    Roles.addUsersToRoles(id, ['admin'])
+    Roles.addUsersToRoles("H64HvfkzHDoQBFKQB", ['admin'])
     ###
 
 if Meteor.isClient
