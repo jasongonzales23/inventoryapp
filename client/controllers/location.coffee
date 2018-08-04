@@ -4,9 +4,14 @@ Template.location.inventory = ->
   unless not location? or not inventory.length > 0
     locationbeverages = location.beverages
     inventorybeverages = inventory[0].beverages
+
+    findLocationBev = (bevName) ->
+      _.filter(locationbeverages, (b) -> b.name == bevName)[0]
+
     i = 0
     while i < inventorybeverages.length
-      inventorybeverages[i].fillTo = locationbeverages[i].fillTo
-      inventorybeverages[i].orderWhen = locationbeverages[i].orderWhen
+      locBev = findLocationBev(inventorybeverages[i].name)
+      inventorybeverages[i].fillTo = locBev.fillTo
+      inventorybeverages[i].orderWhen = locBev.orderWhen
       i++
   inventory
