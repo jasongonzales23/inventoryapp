@@ -17,4 +17,4 @@ When going from year to year due to the quirks of this project, do the following
 
 - On Heroku, make a new project and make sure you set this as the remote. Directions are on heroku.
 - Add the Compose MongoDB addon
-- 
+- Uncomment code in auth.coffee
