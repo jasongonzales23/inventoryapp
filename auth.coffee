@@ -14,12 +14,12 @@ if Meteor.isServer
     # recomment the code below so it doesnt try to make more admins
     # everytime you restart
     #
-    #id = Accounts.createUser({
-    #  username: 'admin'
-    #  password: 'admin'
-    #  profile: { name: 'admin' }
-    #})
-    #Roles.addUsersToRoles(id, ['admin'])
+    id = Accounts.createUser({
+      username: 'admin'
+      password: 'admin'
+      profile: { name: 'admin' }
+    })
+    Roles.addUsersToRoles(id, ['admin'])
 
 if Meteor.isClient
   Template.adminTemplate.helpers
