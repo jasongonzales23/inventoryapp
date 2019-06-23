@@ -17,5 +17,5 @@ When going from year to year due to the quirks of this project, do the following
 
 - On Heroku, make a new project and make sure you set this as the remote. Directions are on heroku.
 - Add the Compose MongoDB addon
-- add the buildpack to heroku settings: https://github.com/jasongonzales23/heroku-buildpack-meteorite
+<!--- add the buildpack to heroku settings: https://github.com/jasongonzales23/heroku-buildpack-meteorite-->
 - Uncomment code in auth.coffee
